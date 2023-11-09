@@ -1,3 +1,5 @@
+import LoginRegister from "../button/loginRegister";
+
 function Header() {
     return (
         <>
@@ -11,9 +13,9 @@ function Header() {
                         <h1>BuzzBudget</h1>
                     </div>
                     <div>
-                        <ul>
+                        <ul className="flex items-center">
                             <li>
-                                Contact
+                                <LoginRegister />
                             </li>
                         </ul>
                     </div>

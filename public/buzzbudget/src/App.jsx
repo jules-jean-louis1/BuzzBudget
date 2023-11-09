@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Homepage from "./pages/homepage";
+import Homepage from "./pages/Home/homepage.jsx";
 
 function App() {
   const [page, setPage] = useState('homepage');
