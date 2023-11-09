@@ -1,9 +1,20 @@
+import { useState } from "react"
+import Homepage from "./pages/homepage";
 
 function App() {
+  const [page, setPage] = useState('homepage');
 
+  const renderPage = () => {
+    switch(page) {
+      case 'homepage':
+        return <Homepage />;
+      default:
+        return <Homepage />;
+    }
+  }
   return (
     <>
-
+      {renderPage()}
     </>
   )
 }
