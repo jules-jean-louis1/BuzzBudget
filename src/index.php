@@ -9,7 +9,7 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $router = new AltoRouter();
 
 
-$router->setBasePath('/buzzbudget/api');
+$router->setBasePath('/buzzbudget/src');
 
 // map homepage
 $router->map('GET', '/', function () {
