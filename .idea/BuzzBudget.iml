@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/api/Controller" isTestSource="false" packagePrefix="App\Controller\" />
+      <sourceFolder url="file://$MODULE_DIR$/api/Model" isTestSource="false" packagePrefix="App\Model\" />
+      <sourceFolder url="file://$MODULE_DIR$/public/buzzbudget/index.html" isTestSource="false" packagePrefix="App\View\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/altorouter/altorouter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,20 @@
+{
+    "name": "financeflow/buzzbudget",
+    "autoload": {
+        "psr-4": {
+            "App\\Controller\\": "api/Controller",
+            "App\\Model\\": "api/Model",
+            "App\\View\\": "public/buzzbudget/index.html"
+        }
+    },
+    "authors": [
+        {
+            "name": "jules-jean-louis1",
+            "email": "jules.jean-louis@laplateforme.io"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^2.0",
+        "ext-pdo": "*"
+    }
+}
