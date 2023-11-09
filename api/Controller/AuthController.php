@@ -46,6 +46,12 @@ class AuthController extends AbstractClasses\AbstractContoller
     }
     public function register(): void
     {
+        $email = $this->verifyField('email');
+        $firstname = $this->verifyField('firstname');
+        $lastname = $this->verifyField('lastname');
+        $password = $this->verifyField('password');
+        $passwordConfirm = $this->verifyField('passwordConfirm');
 
+        $errors = [];
     }
 }
