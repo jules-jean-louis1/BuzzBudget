@@ -12,7 +12,7 @@ class AbstractContoller
             return false;
         }
     }
-    protected function ValidFieldForm(string $field): string
+    protected function CleanUpInput(string $field): string
     {
         $field = trim($field);
         $field = htmlspecialchars($field);

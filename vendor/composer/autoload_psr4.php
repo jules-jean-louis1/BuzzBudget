@@ -6,4 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\View\\' => array($baseDir . '/public/buzzbudget/index.html'),
+    'App\\Model\\' => array($baseDir . '/src/Model'),
+    'App\\Controller\\' => array($baseDir . '/src/Controller'),
 );

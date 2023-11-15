@@ -1,4 +1,5 @@
 <?php
+use App\Controller\AuthController;
 require_once '../vendor/autoload.php';
 
 // CORS headers
@@ -7,19 +8,23 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 
 $router = new AltoRouter();
-
+/*Controllers*/
+$authUser = new AuthController();
 
 $router->setBasePath('/buzzbudget/src');
 
 // map homepage
 $router->map('GET', '/', function () {
-    echo 'This is the homepage buzzbudget';
+    echo 'This is the homepage buzz-budget';
 });
-$router->map('GET','/users', function () {
-    echo 'This is the users page';
+/*
+ * Auth routes
+ */
+$router->map('POST', '/auth/register/checkEmail', function() use ($authUser) {
+    $authUser->checkEmail();
 });
-$router->map('GET','/test', function () {
-    echo 'This is the test page';
+$router->map('POST', '/auth/register', function() use ($authUser) {
+    $authUser->register();
 });
 
 
