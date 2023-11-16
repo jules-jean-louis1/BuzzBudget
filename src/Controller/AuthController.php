@@ -56,11 +56,19 @@ class AuthController extends AbstractClasses\AbstractContoller
 
         $randomString = bin2hex(random_bytes(3));
         $avatarName = $randomString . '-' . $username.'.png';
-        $filename = __DIR__ . '../../public/buzzbudget/public/images/avatars/' . $avatarName;
+        $filename = './../../public/buzzbudget/public/images/avatars/' . $avatarName;
         imagepng($canvas, $filename);
         imagedestroy($canvas);
 
         return $avatarName;
+    }
+    private function validate_money($money): bool
+    {
+        if (preg_match(pattern: "/^[0-9]+(\.[0-9]{1,2})?$/", subject: $money)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function register(): void
     {
@@ -69,6 +77,7 @@ class AuthController extends AbstractClasses\AbstractContoller
         $lastname = $this->verifyField('lastname');
         $password = $this->verifyField('password');
         $passwordConfirm = $this->verifyField('passwordConfirm');
+        $money = $this->verifyField('money');
 
         $errors = [];
 
@@ -104,6 +113,12 @@ class AuthController extends AbstractClasses\AbstractContoller
         } elseif ($password !== $passwordConfirm) {
             $errors['passwordConfirm'] = 'Vos mots de passe ne correspondent pas.';
         }
+        if (!$money) {
+            if (!$this->validate_money($money)) {
+                $errors['money'] = 'Veuillez indiquer votre budget.';
+            }
+            $money = null;
+        }
 
         if (empty($errors)) {
             if ($authModel->checkEmail($email)) {
@@ -117,11 +132,12 @@ class AuthController extends AbstractClasses\AbstractContoller
                 $backgroundColor = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
                 $avatar = $this->generateAvatarImage($firstLetter, $backgroundColor, $email);
 
-                $authModel->register($email, $firstname, $lastname, $password, $avatar);
+                $authModel->register($email, $firstname, $lastname, $password, $avatar, $money);
                 $errors['success'] = 'Votre compte a était créé avec success';
             }
             echo json_encode($errors);
+        } else {
+            echo json_encode($errors);
         }
-        echo json_encode($errors);
     }
 }

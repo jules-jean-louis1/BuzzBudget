@@ -7,7 +7,7 @@ const RegisterForm = () => {
     const fetchData = async () => {
         try {
             const formData = new FormData(formRef.current);
-            const response = await fetch('http://localhost:80/finance-flow/src/auth/register', {
+            const response = await fetch('http://localhost:80/buzzbudget/src/auth/register', {
                 method: 'POST',
                 body: formData
             });
@@ -42,6 +42,14 @@ const RegisterForm = () => {
             <div className="flex flex-col space-y-2">
                 <input type="password" name="password" id="password" placeholder="Mot de passe" />
                 <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" />
+            </div>
+            <div>              
+                <label htmlFor="money">Ajouter un solde de départ</label>
+                <input type="number" name="money" id="money" placeholder="Budget" step='0.01' />
+            </div>
+            <div>
+                <input type="checkbox" name="terms" id="terms" />
+                <label htmlFor="terms">J'accepte les conditions d'utilisation</label>
             </div>
             <div>
                 <button type="submit" className="p-3 bg-green-300">
