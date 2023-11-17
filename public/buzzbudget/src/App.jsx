@@ -3,6 +3,7 @@ import Footer from "./components/import/footer.jsx";
 import ErrorPage from "./pages/error-page.jsx";
 import Homepage from "./pages/Home/homepage.jsx";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import RegisterPage from "./pages/register-page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Homepage />,
-      },   
+      }, 
+      {
+        path: '/register',
+        element: <RegisterPage />,
+      },  
       {
         path: '/budget',
         element: <div>Budget</div>,
@@ -25,7 +30,7 @@ const router = createBrowserRouter([
 function Root() {
   return <>
   <Header />
-    <main>
+    <main className="h-screen">
       <Outlet />
     </main>
     <Footer />
