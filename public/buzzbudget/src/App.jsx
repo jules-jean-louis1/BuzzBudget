@@ -1,53 +1,39 @@
-import { useState } from "react"
+import Header from "./components/import/header.jsx";
+import Footer from "./components/import/footer.jsx";
+import ErrorPage from "./pages/error-page.jsx";
 import Homepage from "./pages/Home/homepage.jsx";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <Homepage />,
+      },   
+      {
+        path: '/budget',
+        element: <div>Budget</div>,
+      }
+    ]
+  },
+]);
+
+function Root() {
+  return <>
+  <Header />
+    <main>
+      <Outlet />
+    </main>
+    <Footer />
+  </>
+}
 function App() {
-  const [page, setPage] = useState('homepage');
-
-  const renderPage = () => {
-    switch(page) {
-      case 'homepage':
-        return <Homepage />;
-      default:
-        return <Homepage />;
-    }
-  }
-  return (
-    <>
-      {renderPage()}
-    </>
-  )
+  
+  return <RouterProvider router={router} />;
 }
 
 export default App
-
-// semi-working code for page navigation
-
-/* import React, { useState } from 'react';
-import LandingPage from './components/LandingPage';
-import BudgetPage from './components/BudgetPage';
-
-function App() {
-  const [page, setPage] = useState('landing');
-
-  const renderPage = () => {
-    switch(page) {
-      case 'landing':
-        return <LandingPage />;
-      case 'budget':
-        return <BudgetPage />;
-      default:
-        return <LandingPage />;
-    }
-  }
-
-  return (
-    <div>
-      <button onClick={() => setPage('landing')}>Go to Landing Page</button>
-      <button onClick={() => setPage('budget')}>Go to Budget Page</button>
-      {renderPage()}
-    </div>
-  );
-}
-
-export default App; */
