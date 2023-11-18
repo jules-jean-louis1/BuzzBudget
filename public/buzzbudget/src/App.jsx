@@ -4,6 +4,7 @@ import ErrorPage from "./pages/error-page.jsx";
 import Homepage from "./pages/Home/homepage.jsx";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import RegisterPage from "./pages/register-page.jsx";
+import LoginPage from "./pages/login-page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
       },  
       {
         path: '/budget',
