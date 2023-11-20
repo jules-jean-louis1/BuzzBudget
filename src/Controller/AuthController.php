@@ -77,7 +77,7 @@ class AuthController extends AbstractClasses\AbstractContoller
         $lastname = $this->verifyField('lastname');
         $password = $this->verifyField('password');
         $passwordConfirm = $this->verifyField('passwordConfirm');
-        $money = $this->verifyField('money');
+        $money = null;
 
         $errors = [];
 
@@ -113,13 +113,20 @@ class AuthController extends AbstractClasses\AbstractContoller
         } elseif ($password !== $passwordConfirm) {
             $errors['passwordConfirm'] = 'Vos mots de passe ne correspondent pas.';
         }
-        if (!$money) {
-            if (!$this->validate_money($money)) {
-                $errors['money'] = 'Veuillez indiquer votre budget.';
+        if (isset($_POST['money']) && !empty($_POST['money'])) {
+            echo 'test';
+            if (!$this->validate_money($_POST['money'])) {
+                $errors['money'] = 'Veuillez indiquer un montant valide';
+            } else {
+                $money = $_POST['money'];
             }
-            $money = null;
+        } else {
+            $money = '0';
         }
 
+        if ($_POST['terms'] === '0') {
+            $errors['terms'] = 'Veuillez accepter les conditions générales d\'utilisation.';
+        }
         if (empty($errors)) {
             if ($authModel->checkEmail($email)) {
                 $errors['email'] = 'Cette E-mail est déja utilisé';

@@ -32,29 +32,32 @@ const RegisterForm = () => {
 
     return (
         <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
-            <div className="flex items-center justify-between">
-                <input type="text" name="firstname" id="firstname" placeholder="Prénom" />
-                <input type="text" name="lastname" id="lastname" placeholder="Nom" />
-            </div>
-            <div className="flex items-center justify-between">
-                <input type="text" name="email" id="email" placeholder="Adresse email" />
-            </div>
-            <div className="flex flex-col space-y-2">
-                <input type="password" name="password" id="password" placeholder="Mot de passe" />
-                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" />
-            </div>
-            <div>              
-                <label htmlFor="money">Ajouter un solde de départ</label>
-                <input type="number" name="money" id="money" placeholder="Budget" step='0.01' />
-            </div>
-            <div>
-                <input type="checkbox" name="terms" id="terms" />
-                <label htmlFor="terms">J'accepte les conditions d'utilisation</label>
-            </div>
-            <div>
-                <button type="submit" className="p-3 bg-green-300">
-                    Inscription
-                </button>
+            <div className="flex flex-col gap-2 text-white">
+                <div className="flex items-center justify-between">
+                    <input type="text" name="firstname" id="firstname" placeholder="Prénom" />
+                    <input type="text" name="lastname" id="lastname" placeholder="Nom" />
+                </div>
+                <div className="flex items-center justify-between">
+                    <input type="text" name="email" id="email" placeholder="Adresse email" />
+                </div>
+                <div className="flex flex-col space-y-2">
+                    <input type="password" name="password" id="password" placeholder="Mot de passe" />
+                    <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" />
+                </div>
+                <div>              
+                    <label htmlFor="money">Ajouter un solde de départ</label>
+                    <input type="number" name="money" id="money" placeholder="Budget" step='0.01' className="bg-transparent" />
+                </div>
+                <div>
+                    <input type="hidden" name="terms" value="0" />
+                    <input type="checkbox" name="terms" id="terms" value="1" />
+                    <label htmlFor="terms">J'accepte les conditions d'utilisation</label>
+                </div>
+                <div>
+                    <button type="submit" className="p-3 bg-green-300">
+                        Inscription
+                    </button>
+                </div>
             </div>
         </form>
     );
