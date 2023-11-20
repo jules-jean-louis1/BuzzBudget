@@ -3,8 +3,8 @@ import Login from "../form/login";
 
 export default function ModalLogin({ onClose }) {
     return (
-        <div className="modal_login ">
-            <div className="modal-content">
+        <div className="fixed w-screen h-screen left-0 top-0 bg-[#0E1217]">
+            <div className="modal-content h-full">
                 <div className="flex justify-between">
                     <h2 className="text-2xl font-bold">Bienvenue</h2>
                     <span className="close" onClick={onClose}>

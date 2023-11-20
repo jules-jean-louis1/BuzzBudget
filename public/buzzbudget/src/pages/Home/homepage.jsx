@@ -31,7 +31,7 @@ function Homepage() {
                                 </span>
                             </button>
                         </div>
-                        <div>
+                        <div className="bg-[#0E1217] bg-opacity-[25%] rounded-xl">
                             <button type="button" className="bg-[#0E1217] flex items-center justify-between w-full px-2 rounded-2xl h-16">
                                 <span className="text-slate-50">Connexion</span>
                                 <span>
@@ -48,8 +48,8 @@ function Homepage() {
                                     </svg>
                                 </span>
                             </button>
-                            <div className="bg-[#0E1217] bg-opacity-[25%] rounded-b-xl h-20">
-                                <div className="h-full flex justify-center">
+                            <div className="flex items-center rounded-xl h-20">
+                                <div className="flex justify-center items-center">
                                     <p className="text-center text-xs text-slate-50">En rejoignant BuzzBudget, vous acceptez nos termes de service et notre politique de confidentialité.</p>
                                 </div>
                             </div>

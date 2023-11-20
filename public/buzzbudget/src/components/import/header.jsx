@@ -4,7 +4,7 @@ function Header() {
     return (
         <>
         <header>
-            <nav id='mobile' className="block md:hidden">
+            <nav id='mobile' className="block md:hidden fixed top-0 w-full">
                 <div className="flex items-center justify-between">
                     <div>
                         <p>Retour</p>
