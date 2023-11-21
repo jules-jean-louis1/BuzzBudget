@@ -72,7 +72,7 @@ const RegisterForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] flex items-center justify-between p-2">
+        <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-b-xl flex items-center justify-between p-2">
           <PasswordInput
             label="Confirmer le mot de passe"
             name="passwordConfirm"
@@ -81,24 +81,70 @@ const RegisterForm = () => {
             onChange={(e) => setPasswordConfirm(e.target.value)}
           />
         </div>
-        <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] rounded-b-xl flex items-center justify-between p-2">
-          <GenericInput
-            label="Ajouter un solde de départ"
-            type="number"
-            name="money"
-            id="money"
-            value={money}
-            onChange={(e) => setMoney(e.target.value)}
-          />
+        <div className="flex flex-col space-y-3">
+          <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-xl flex items-center justify-between p-2 mt-14">
+            <GenericInput
+              label="Ajouter un solde de départ"
+              type="number"
+              name="money"
+              id="money"
+              value={money}
+              onChange={(e) => setMoney(e.target.value)}
+            />
+          </div>
+          <div className="bg-[#4A4A4A] rounded-xl h-14 flex items-center justify-center">
+            <input type="hidden" name="terms" value="0" />
+            <input type="checkbox" name="terms" id="terms" value="1" />
+            <label htmlFor="terms">
+              J'accepte les conditions d'utilisation
+            </label>
+          </div>
         </div>
-        <div>
-          <input type="hidden" name="terms" value="0" />
-          <input type="checkbox" name="terms" id="terms" value="1" />
-          <label htmlFor="terms">J'accepte les conditions d'utilisation</label>
-        </div>
-        <div>
-          <button type="submit" className="p-3 bg-green-300">
-            Inscription
+        <div className="pt-14">
+          <button
+            type="submit"
+            style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
+            className="flex items-center justify-between w-full rounded-2xl h-16 px-3"
+          >
+            <span className="text-2xl">Inscription</span>
+            <span className="bg-[#0E1217] rounded-full p-3 text-white">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipPath="url(#clip0_5_232)">
+                  <path
+                    d="M1 12L19 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M11 20L20 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M11 3L20 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_5_232">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
           </button>
         </div>
       </div>
