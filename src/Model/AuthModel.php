@@ -20,7 +20,7 @@ class AuthModel extends AbstractDatabase
             return false;
         }
     }
-    public function register(string $email, string $firstname, string $lastname, string $password, mixed $avatar, string $money): void
+    public function register(string $email, string $firstname, string $lastname, string $password, string $avatar, string $money): void
     {
         $sql = "INSERT INTO users (email, firstname, lastname, password, avatar, created_at) VALUES (:email, :firstname, :lastname, :password, :avatar, NOW())";
         $req = $this->getBdd()->prepare($sql);
@@ -34,12 +34,14 @@ class AuthModel extends AbstractDatabase
 
         $id_users = $this->getBdd()->lastInsertId();
         // Créé un compte pour l'utilisateur
-        $sql2 = "INSERT INTO account (users_id, total) VALUES (:users_id, :money)";
+        $sql2 = "INSERT INTO account (total, created_at, users_id) VALUES (:money, NOW(), :users_id)";
         $req = $this->getBdd()->prepare($sql2);
         $req->bindParam(':users_id', $id_users, \PDO::PARAM_INT);
         if ($money !== '0') {
             $req->bindParam(':money', $money, \PDO::PARAM_STR);
-        } 
+        } else {
+            $req->bindValue(':money', '0.00', \PDO::PARAM_INT);
+        }
         $req->execute();
     }
 }

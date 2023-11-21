@@ -56,7 +56,7 @@ class AuthController extends AbstractClasses\AbstractContoller
 
         $randomString = bin2hex(random_bytes(3));
         $avatarName = $randomString . '-' . $username.'.png';
-        $filename = './../../public/buzzbudget/public/images/avatars/' . $avatarName;
+        $filename = __DIR__ . '/../../public/buzzbudget/public/images/avatars/' . $avatarName;
         imagepng($canvas, $filename);
         imagedestroy($canvas);
 
@@ -114,7 +114,6 @@ class AuthController extends AbstractClasses\AbstractContoller
             $errors['passwordConfirm'] = 'Vos mots de passe ne correspondent pas.';
         }
         if (isset($_POST['money']) && !empty($_POST['money'])) {
-            echo 'test';
             if (!$this->validate_money($_POST['money'])) {
                 $errors['money'] = 'Veuillez indiquer un montant valide';
             } else {
