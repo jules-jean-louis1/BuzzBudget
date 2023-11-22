@@ -146,4 +146,35 @@ class AuthController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    public function login() 
+    {
+        $email = $this->verifyField('email');
+        $password = $this->verifyField('password');
+
+        $errors = [];
+
+        $authModel = new AuthModel();
+        if(!$email) {
+            $errors['email'] = 'Veuillez indiquer votre adresse e-mail.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Veuillez indiquer votre adresse e-mail valide.';
+        } 
+        if (!$password) {
+            $errors['password'] = 'Veuillez indiquer votre mot de passe.';
+        } 
+
+        if (empty($errors)) {
+            $email = $this->CleanUpInput($email);
+            $password = $this->CleanUpInput($password);
+            $user = $authModel->login($email, $password);
+            if ($user) {
+                $_SESSION['user'] = $user;
+                $errors['success'] = 'Vous êtes connecté';
+            } else {
+                $errors['email'] = 'Email ou mot de passe incorrect';
+            }
+        } else {
+            echo json_encode($errors);
+        }
+    }
 }

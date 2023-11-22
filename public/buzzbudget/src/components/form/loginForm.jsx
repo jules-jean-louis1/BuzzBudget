@@ -1,17 +1,22 @@
+import GenericInput from "./input/genericInput";
+import { useState } from "react";
+import PasswordInput from "./input/passwordInput";
+
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <form action="" method="post" className="px-2">
       <div className="flex flex-col">
         <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2">
           <div className="flex flex-col pt-1 w-full">
-            <label htmlFor="email" className="text-[#8E8E92]">
-              E-mail
-            </label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none"
+            <GenericInput
+              label={"E-mail"}
+              type={"email"}
+              name={"email"}
+              id={"email"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -48,68 +53,13 @@ const LoginForm = () => {
         </div>
         <div className="flex flex-col bg-[#4A4A4A] rounded-b-xl">
           <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-b-xl flex items-center justify-between px-2">
-            <div className="flex flex-col pt-1 w-full">
-              <label htmlFor="password" className="text-[#8E8E92]">
-                Mot de passe
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none"
-              />
-            </div>
-            <div>
-              <button type="button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-lock"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="#8E8E92"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <link
-                    xmlns=""
-                    type="text/css"
-                    rel="stylesheet"
-                    id="dark-mode-custom-link"
-                  />
-                  <link
-                    xmlns=""
-                    type="text/css"
-                    rel="stylesheet"
-                    id="dark-mode-general-link"
-                  />
-                  <style
-                    xmlns=""
-                    lang="en"
-                    type="text/css"
-                    id="dark-mode-custom-style"
-                  />
-                  <style
-                    xmlns=""
-                    lang="en"
-                    type="text/css"
-                    id="dark-mode-native-style"
-                  />
-                  <style
-                    xmlns=""
-                    lang="en"
-                    type="text/css"
-                    id="dark-mode-native-sheet"
-                  />
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z" />
-                  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
-                  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
-                </svg>
-              </button>
-            </div>
+            <PasswordInput
+              label="Mot de passe"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className="h-20">
             <button className="w-full">

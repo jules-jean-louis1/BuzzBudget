@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'App\\View\\' => array($baseDir . '/public/buzzbudget/index.html'),
     'App\\Model\\' => array($baseDir . '/src/Model'),
     'App\\Controller\\' => array($baseDir . '/src/Controller'),
