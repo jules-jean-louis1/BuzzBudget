@@ -5,6 +5,7 @@ import PasswordInput from "./input/passwordInput";
 const RegisterForm = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [money, setMoney] = useState("");
@@ -61,6 +62,16 @@ const RegisterForm = () => {
             id={"lastname"}
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
+          />
+        </div>
+        <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] flex items-center justify-between p-2">
+          <GenericInput
+            label={"Adresse email"}
+            type={"email"}
+            name={"email"}
+            id={"email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] flex items-center justify-between p-2">
