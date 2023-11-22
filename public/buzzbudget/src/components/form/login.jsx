@@ -6,11 +6,17 @@ const Login = () => {
   const [display, setDisplay] = useState(false);
   const [text, setText] = useState("");
   const [message_display, setMessage_display] = useState("");
+  const [messageFromServer, setMessageFromServer] = useState(null);
 
   useEffect(() => {
     setText(display ? "Connexion" : "Inscription");
     setMessage_display(display ? "Déja inscrit ?" : "Pas encore inscrit ?");
   }, [display]);
+
+  const handleRegistrationSuccess = (message) => {
+    setMessageFromServer(message);
+    setDisplay(true);
+  };
 
   return (
     <div>
@@ -28,7 +34,7 @@ const Login = () => {
             <div className="px-3">
               <h1 className="text-2xl text-white">Inscription</h1>
             </div>
-            <RegisterForm />
+            <RegisterForm onRegistrationSuccess={handleRegistrationSuccess} />
           </div>
         )}
       </div>

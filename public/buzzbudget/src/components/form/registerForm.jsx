@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import GenericInput from "./input/genericInput";
 import PasswordInput from "./input/passwordInput";
 
-const RegisterForm = () => {
+const RegisterForm = ({ onRegistrationSuccess }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +24,9 @@ const RegisterForm = () => {
       );
       const data = await response.json();
       console.log(data);
+      if (data.success) {
+        onRegistrationSuccess(data.success);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
