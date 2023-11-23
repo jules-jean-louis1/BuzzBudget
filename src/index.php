@@ -27,6 +27,9 @@ $router->map('POST', '/auth/register/checkEmail', function() use ($authUser) {
 $router->map('POST', '/auth/register', function() use ($authUser) {
     $authUser->register();
 });
+$router->map('POST', '/auth/login', function() use ($authUser) {
+    $authUser->login();
+});
 
 
 // match current request url

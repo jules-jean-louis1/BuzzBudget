@@ -1,12 +1,49 @@
 import GenericInput from "./input/genericInput";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PasswordInput from "./input/passwordInput";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const formRef = useRef();
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const formData = new FormData(formRef.current);
+      const response = await fetch(
+        "http://localhost:80/buzzbudget/src/auth/login",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setButtonClicked(true);
+  };
+
+  useEffect(() => {
+    if (buttonClicked) {
+      fetchData();
+      setButtonClicked(false);
+    }
+  }, [buttonClicked]);
+
   return (
-    <form action="" method="post" className="px-2">
+    <form
+      ref={formRef}
+      action=""
+      method="POST"
+      className="px-2"
+      onSubmit={handleSubmit}
+    >
       <div className="flex flex-col">
         <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2">
           <div className="flex flex-col pt-1 w-full">

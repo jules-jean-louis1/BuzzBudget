@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AuthModel;
+use Firebase\JWT\JWT;
 
 class AuthController extends AbstractClasses\AbstractContoller
 {
@@ -146,11 +147,26 @@ class AuthController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    private function createToken(array $user): string 
+{
+    try {
+        $api_Key = 'votre_clé_firebase';
+        $userData = [
+            'id' => $user['id_users'],
+            'email' => $user['email'],
+            'avatar' => $user['avatar'],
+        ];
+        $token = JWT::encode($userData, $api_Key, 'HS256');
+        return $token;
+    } catch (\Exception $e) {
+        error_log('Erreur lors de la création du token : ' . $e->getMessage());
+        return '';
+    }
+}
     public function login() 
     {
         $email = $this->verifyField('email');
         $password = $this->verifyField('password');
-
         $errors = [];
 
         $authModel = new AuthModel();
@@ -168,11 +184,15 @@ class AuthController extends AbstractClasses\AbstractContoller
             $password = $this->CleanUpInput($password);
             $user = $authModel->login($email, $password);
             if ($user) {
-                $_SESSION['user'] = $user;
-                $errors['success'] = 'Vous êtes connecté';
+                $token = $this->createToken($user);
+                $errors['success'] = [
+                    'token' => $token,
+                    'message' => 'Vous êtes connecté'
+                ];
             } else {
                 $errors['email'] = 'Email ou mot de passe incorrect';
             }
+            echo json_encode($errors);
         } else {
             echo json_encode($errors);
         }
