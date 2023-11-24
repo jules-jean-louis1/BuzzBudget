@@ -154,6 +154,7 @@ class AuthController extends AbstractClasses\AbstractContoller
         $userData = [
             'id' => $user['id_users'],
             'email' => $user['email'],
+            'firstname' => $user['firstname'],
             'avatar' => $user['avatar'],
         ];
         $token = JWT::encode($userData, $api_Key, 'HS256');

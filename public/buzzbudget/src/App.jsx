@@ -5,45 +5,47 @@ import Homepage from "./pages/Home/homepage.jsx";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import RegisterPage from "./pages/register-page.jsx";
 import LoginPage from "./pages/login-page.jsx";
+import BudgetPage from "./pages/account-page.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Homepage />,
-      }, 
+      },
       {
-        path: '/register',
+        path: "/register",
         element: <RegisterPage />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <LoginPage />,
-      },  
+      },
       {
-        path: '/budget',
-        element: <div>Budget</div>,
-      }
-    ]
+        path: "/budgets/:userId",
+        element: <BudgetPage />,
+      },
+    ],
   },
 ]);
 
 function Root() {
-  return <>
-  <Header />
-    <main className="h-screen">
-      <Outlet />
-    </main>
-    <Footer />
-  </>
+  return (
+    <>
+      <Header />
+      <main className="h-screen">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
 }
 function App() {
-  
   return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
