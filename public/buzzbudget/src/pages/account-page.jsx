@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useAuth from "../components/hook/useAuth";
+import BtnAddTransaction from "../components/button/btnAddTransaction";
 
 function AccountPage() {
   const { user } = useAuth();
@@ -7,7 +8,7 @@ function AccountPage() {
   const getAccount = async () => {
     try {
       const response = await fetch(
-        `http://localhost:80/buzzbudget/src/auth/account/${user.id}`
+        `http://localhost:80/buzzbudget/src/account/display/${user.id}`
       );
       const data = await response.json();
       console.log(data);
@@ -22,6 +23,12 @@ function AccountPage() {
     <>
       <div className="mt-10">
         <h1 className="text-2xl font-bold">Account page</h1>
+        <div>
+          <p className="">Welcome {user.firstname}</p>
+        </div>
+        <div id="btnAddTransaction">
+          <BtnAddTransaction />
+        </div>
       </div>
     </>
   );

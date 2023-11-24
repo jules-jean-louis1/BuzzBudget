@@ -1,5 +1,9 @@
 <?php
-use App\Controller\AuthController;
+session_start();
+use App\Controller\{
+    AuthController,
+    AccountController
+};
 require_once '../vendor/autoload.php';
 
 
@@ -11,6 +15,7 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $router = new AltoRouter();
 /*Controllers*/
 $authUser = new AuthController();
+$account = new AccountController();
 
 $router->setBasePath('/buzzbudget/src');
 
@@ -34,8 +39,8 @@ $router->map('POST', '/auth/login', function() use ($authUser) {
 /* ############################# 
         Account routes
 ############################# */
-$router->map('GET', '/account/display/[i:id]', function($id) {
-    echo 'This is the account page with id = ' . $id;
+$router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
+    $account->display($id);
 });
 
 

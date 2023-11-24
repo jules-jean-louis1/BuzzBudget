@@ -190,6 +190,7 @@ class AuthController extends AbstractClasses\AbstractContoller
                     'token' => $token,
                     'message' => 'Vous êtes connecté'
                 ];
+                $_SESSION['user'] = $user;
             } else {
                 $errors['email'] = 'Email ou mot de passe incorrect';
             }
