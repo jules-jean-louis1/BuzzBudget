@@ -5,7 +5,7 @@ import Homepage from "./pages/Home/homepage.jsx";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import RegisterPage from "./pages/register-page.jsx";
 import LoginPage from "./pages/login-page.jsx";
-import BudgetPage from "./pages/account-page.jsx";
+import AccountPage from "./pages/account-page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: "/budgets/:userId",
-        element: <BudgetPage />,
+        path: "/account/:userId",
+        element: <AccountPage />,
       },
     ],
   },

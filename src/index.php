@@ -31,6 +31,13 @@ $router->map('POST', '/auth/login', function() use ($authUser) {
     $authUser->login();
 });
 
+/* ############################# 
+        Account routes
+############################# */
+$router->map('GET', '/account/display/[i:id]', function($id) {
+    echo 'This is the account page with id = ' . $id;
+});
+
 
 // match current request url
 $match = $router->match();
