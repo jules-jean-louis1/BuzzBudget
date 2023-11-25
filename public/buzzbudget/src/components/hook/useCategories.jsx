@@ -1,3 +1,4 @@
+// useCategories.jsx
 import { useState, useEffect } from "react";
 
 function useCategories() {
@@ -17,7 +18,7 @@ function useCategories() {
     fetchData();
   }, []);
 
-  return { categories, isLoading };
+  return { categories };
 }
 
 export default useCategories;

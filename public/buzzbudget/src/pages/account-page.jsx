@@ -1,24 +1,31 @@
 import { useState, useEffect } from "react";
-import useAuth from "../components/hook/useAuth";
+import { jwtDecode } from "jwt-decode";
 import BtnAddTransaction from "../components/button/btnAddTransaction";
+import BtnCategories from "../components/button/btnCategories";
 
 function AccountPage() {
-  const { user } = useAuth();
-  console.log(user);
+  const storedUser = localStorage.getItem("user_data");
+  const user = storedUser ? jwtDecode(storedUser) : null;
+
   const getAccount = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:80/buzzbudget/src/account/display/${user.id}`
-      );
-      const data = await response.json();
-      console.log(data);
+      if (user) {
+        const response = await fetch(
+          `http://localhost:80/buzzbudget/src/account/display/${user.id}`
+        );
+        const data = await response.json();
+        console.log(data);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
   };
+
   useEffect(() => {
-    getAccount();
-  }, []);
+    if (user) {
+      getAccount();
+    }
+  }, [user]);
   return (
     <>
       <div className="mt-10">
@@ -28,6 +35,12 @@ function AccountPage() {
         </div>
         <div id="btnAddTransaction">
           <BtnAddTransaction />
+        </div>
+        <div id="containerCategoriesTags">
+          <div id="containerCategories">
+            <BtnCategories />
+          </div>
+          <div id="containerTags"></div>
         </div>
       </div>
     </>

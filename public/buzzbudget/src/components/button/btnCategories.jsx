@@ -1,16 +1,14 @@
 import { useState } from "react";
 import ModalCategories from "../modal/modalCategories";
 
-function BtnHandleCategories() {
+const BtnCategories = () => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <button className="{}" onClick={() => setModalOpen(true)}>
-        Ajouter un opération
-      </button>
+      <button onClick={() => setModalOpen(true)}>Catégories</button>
       {modalOpen && <ModalCategories onClose={() => setModalOpen(false)} />}
     </>
   );
-}
+};
 
-export default BtnHandleCategories;
+export default BtnCategories;
