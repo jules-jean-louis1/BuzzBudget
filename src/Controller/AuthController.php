@@ -199,4 +199,9 @@ class AuthController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    public function logout(): void
+    {
+        session_destroy();
+        echo json_encode(['success' => 'Vous êtes déconnecté']);
+    }
 }

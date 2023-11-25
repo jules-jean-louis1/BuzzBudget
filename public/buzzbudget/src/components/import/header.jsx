@@ -1,3 +1,4 @@
+import BtnLogout from "../button/btnLogout";
 import LoginRegister from "../button/loginRegister";
 import { jwtDecode } from "jwt-decode";
 
@@ -11,7 +12,14 @@ function Header() {
         <nav id="mobile" className="block md:hidden fixed top-0 w-full">
           <div className="flex items-center justify-between">
             <div>
-              {user ? <p>Hello {decoded.firstname}</p> : <p>Not connected</p>}
+              {user ? (
+                <div>
+                  <p>Hello {decoded.firstname}</p>
+                  <BtnLogout />
+                </div>
+              ) : (
+                <p>Not connected</p>
+              )}
             </div>
             <div>
               <h1>BuzzBudget</h1>

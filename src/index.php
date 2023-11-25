@@ -37,6 +37,9 @@ $router->map('POST', '/auth/register', function() use ($authUser) {
 $router->map('POST', '/auth/login', function() use ($authUser) {
     $authUser->login();
 });
+$router->map('GET', '/auth/logout', function() use ($authUser) {
+    $authUser->logout();
+});
 
 /* ############################# 
         Account routes
