@@ -15,6 +15,7 @@ class ComposerStaticInitddd89ee5bf68737e0f31463625294ed6
         array (
             'App\\View\\' => 9,
             'App\\Model\\' => 10,
+            'App\\Entity\\' => 11,
             'App\\Controller\\' => 15,
         ),
     );
@@ -31,6 +32,10 @@ class ComposerStaticInitddd89ee5bf68737e0f31463625294ed6
         'App\\Model\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Model',
+        ),
+        'App\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Entity',
         ),
         'App\\Controller\\' => 
         array (

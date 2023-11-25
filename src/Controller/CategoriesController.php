@@ -8,7 +8,8 @@ class CategoriesController
     {
         $categories = new CategoriesModel();
         $id = $_SESSION['user']['id_users'];
-        echo $id;
-        //$categories = $categories->getCategories($id);
+        var_dump($_SESSION);
+        $categories = $categories->getCategories($id);
+        //echo json_encode($categories);
     }
 }

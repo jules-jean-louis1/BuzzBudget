@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\AuthModel;
 use Firebase\JWT\JWT;
+use App\Entity\User;
 
 class AuthController extends AbstractClasses\AbstractContoller
 {
@@ -150,7 +151,7 @@ class AuthController extends AbstractClasses\AbstractContoller
     private function createToken(array $user): string 
 {
     try {
-        $api_Key = 'votre_clé_firebase';
+        $api_Key = 'AIzaSyA_9fc5o8sWeVkqCTwOisn3dT2lQaRvolg';
         $userData = [
             'id' => $user['id_users'],
             'email' => $user['email'],
@@ -184,19 +185,26 @@ class AuthController extends AbstractClasses\AbstractContoller
             $email = $this->CleanUpInput($email);
             $password = $this->CleanUpInput($password);
             $user = $authModel->login($email, $password);
-            if ($user) {
+            if (!empty($user)) {
+                $loggedInUser = new User();
+                $loggedInUser->setId($user['id_users']);
+                $loggedInUser->setEmail($user['email']);
+                $loggedInUser->setFirstname($user['firstname']);
+                $loggedInUser->setLastname($user['lastname']);
+                $loggedInUser->setAvatar($user['avatar']);
+                $_SESSION['user'] = $loggedInUser;
+                /*
                 $token = $this->createToken($user);
                 $errors['success'] = [
                     'token' => $token,
                     'message' => 'Vous êtes connecté'
-                ];
-                $_SESSION['user'] = $user;
+                ]; */
             } else {
                 $errors['email'] = 'Email ou mot de passe incorrect';
             }
-            echo json_encode($errors);
+            //echo json_encode($errors);
         } else {
-            echo json_encode($errors);
+            //echo json_encode($errors);
         }
     }
     public function logout(): void

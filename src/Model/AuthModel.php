@@ -2,6 +2,8 @@
 
 namespace App\Model;
 use App\Model\AbstractDatabase;
+use PDO;
+
 class AuthModel extends AbstractDatabase
 {
     public function __construct()
@@ -46,13 +48,13 @@ class AuthModel extends AbstractDatabase
     }
     public function login(string $email, string $password): array|bool
     {
-        $req = $this->getBdd()->prepare('SELECT id_users, email, firstname, password, avatar FROM users WHERE email = :email');
+        $req = $this->getBdd()->prepare('SELECT id_users, email, firstname, lastname, password, avatar FROM users WHERE email = :email');
         $req->bindParam(':email', $email, \PDO::PARAM_STR);
         $req->execute();
-        $user = $req->fetch();
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                return $user;
+        $user = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($user[0])) {
+            if (password_verify($password, $user[0]['password'])) {
+                return $user[0];
             } else {
                 return false;
             }

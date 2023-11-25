@@ -23,7 +23,6 @@ const LoginForm = () => {
       if (data.success) {
         const user_token = data.success;
         localStorage.setItem("user_data", user_token.token);
-        console.log(user_token.token);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);

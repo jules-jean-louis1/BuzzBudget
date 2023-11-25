@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 use App\Controller\{
     AuthController,
     AccountController,
@@ -24,6 +25,12 @@ $router->setBasePath('/buzzbudget/src');
 // map homepage
 $router->map('GET', '/', function () {
     echo 'This is the homepage buzz-budget';
+    if (!is_writable(session_save_path())) {
+        echo 'Session path "'.session_save_path().'" is not writable for PHP!';
+    }
+    else {
+        echo 'Session path "'.session_save_path().'" is writable for PHP!';
+    }
 });
 /*
  * Auth routes
@@ -53,8 +60,10 @@ $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
 $router->map('GET', '/categories/get/', function() use ($categories) {
     $categories->getCategories();
 });
-$router->map('POST', '/categories/add', function() use ($categories) {
-    $categories->add();
+$router->map('GET', '/categories/add', function() use ($categories) {
+    //$categories->add();
+    var_dump($_SESSION);
+    echo 'test';
 });
 
 
