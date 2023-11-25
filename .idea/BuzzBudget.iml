@@ -5,8 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/public/buzzbudget/index.html" isTestSource="false" packagePrefix="App\View\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Controller" isTestSource="false" packagePrefix="App\Controller\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Model" isTestSource="false" packagePrefix="App\Model\" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/altorouter/altorouter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/firebase/php-jwt" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

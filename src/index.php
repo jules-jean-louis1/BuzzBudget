@@ -2,7 +2,8 @@
 session_start();
 use App\Controller\{
     AuthController,
-    AccountController
+    AccountController,
+    CategoriesController
 };
 require_once '../vendor/autoload.php';
 
@@ -16,6 +17,7 @@ $router = new AltoRouter();
 /*Controllers*/
 $authUser = new AuthController();
 $account = new AccountController();
+$categories = new CategoriesController();
 
 $router->setBasePath('/buzzbudget/src');
 
@@ -41,6 +43,15 @@ $router->map('POST', '/auth/login', function() use ($authUser) {
 ############################# */
 $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
     $account->display($id);
+});
+/* ############################# 
+        Categories routes
+############################# */
+$router->map('GET', '/categories/get/', function() use ($categories) {
+    $categories->getCategories();
+});
+$router->map('POST', '/categories/add', function() use ($categories) {
+    $categories->add();
 });
 
 
