@@ -4,16 +4,17 @@ session_set_cookie_params([
     'secure' => true,
 ]);
 
-session_start();
-// Configurer les paramètres de session
-
-
 use App\Controller\{
     AuthController,
     AccountController,
     CategoriesController
 };
 require_once '../vendor/autoload.php';
+
+session_start();
+// Configurer les paramètres de session
+
+
 
 
 // CORS headers
