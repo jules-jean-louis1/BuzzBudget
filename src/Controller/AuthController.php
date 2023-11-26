@@ -166,7 +166,7 @@ class AuthController extends AbstractClasses\AbstractContoller
         return '';
     }
 }
-    public function login() 
+    public function login(): void
     {
         $email = $this->verifyField('email');
         $password = $this->verifyField('password');
@@ -194,6 +194,7 @@ class AuthController extends AbstractClasses\AbstractContoller
                 $loggedInUser->setLastname($user['lastname']);
                 $loggedInUser->setAvatar($user['avatar']);
                 $_SESSION['user'] = $loggedInUser;
+                var_dump($_SESSION);
                 /*
                 $token = $this->createToken($user);
                 $errors['success'] = [
@@ -203,6 +204,7 @@ class AuthController extends AbstractClasses\AbstractContoller
             } else {
                 $errors['email'] = 'Email ou mot de passe incorrect';
             }
+            
             //echo json_encode($errors);
         } else {
             //echo json_encode($errors);

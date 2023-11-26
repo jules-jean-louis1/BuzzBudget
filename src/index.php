@@ -1,6 +1,12 @@
 <?php
+session_set_cookie_params([
+    'samesite' => 'None',
+    'secure' => true,
+]);
 
 session_start();
+// Configurer les paramètres de session
+
 
 use App\Controller\{
     AuthController,
@@ -12,6 +18,7 @@ require_once '../vendor/autoload.php';
 
 // CORS headers
 header('Access-Control-Allow-Origin: http://localhost:5173');
+header("Access-Control-Allow-Credentials: true");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 
@@ -25,7 +32,17 @@ $router->setBasePath('/buzzbudget/src');
 
 // map homepage
 $router->map('GET', '/', function () {
-    print_r($_SESSION);
+    var_dump($_SESSION);
+    ?>
+    <h1>Home page</h1>
+    <a href="/buzzbudget/src/auth/register">Register</a>
+    <form action="/buzzbudget/src/auth/login" method="post">
+        <input type="text" value="john.doe@gmail.com" name="email">
+        <input type="text" value="rLu!5n}:S&Tc3%V" name="password">
+        <input type="submit" value="login">
+    </form>
+    <a href="/buzzbudget/src/auth/logout">Logout</a>
+    <?php
 });
 /*
  * Auth routes
@@ -39,6 +56,10 @@ $router->map('POST', '/auth/register', function() use ($authUser) {
 $router->map('POST', '/auth/login', function() use ($authUser) {
     $authUser->login();
 });
+$router->map('GET', '/get', function() {
+    var_dump($_SESSION);
+});
+
 $router->map('GET', '/auth/logout', function() use ($authUser) {
     $authUser->logout();
 });
