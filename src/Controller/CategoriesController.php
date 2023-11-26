@@ -12,4 +12,8 @@ class CategoriesController
         $categories = $categories->getCategories($id);
         //echo json_encode($categories);
     }
+    public function add(): void
+    {
+        $_SESSION['user']['id_users'] = 1;
+    }
 }

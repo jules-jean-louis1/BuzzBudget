@@ -66,12 +66,13 @@ class AuthController extends AbstractClasses\AbstractContoller
     }
     private function validate_money($money): bool
     {
-        if (preg_match(pattern: "/^[0-9]+(\.[0-9]{1,2})?$/", subject: $money)) {
+        if (preg_match("/^[0-9]+(\.[0-9]{1,2})?$/", $money)) {
             return true;
         } else {
             return false;
         }
     }
+
     public function register(): void
     {
         $email = $this->verifyField('email');
