@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 08 nov. 2023 à 10:27
+-- Généré le : dim. 26 nov. 2023 à 15:03
 -- Version du serveur : 5.7.36
 -- Version de PHP : 8.1.0
 
@@ -33,8 +33,16 @@ CREATE TABLE IF NOT EXISTS `account` (
   `total` decimal(10,2) NOT NULL DEFAULT '0.00',
   `created_at` datetime NOT NULL,
   `update_at` datetime DEFAULT NULL,
+  `users_id` int(11) NOT NULL,
   PRIMARY KEY (`id_account`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `account`
+--
+
+INSERT INTO `account` (`id_account`, `total`, `created_at`, `update_at`, `users_id`) VALUES
+(4, '0.00', '2023-11-22 15:02:52', NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -134,10 +142,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(300) NOT NULL,
   `password` varchar(300) NOT NULL,
   `avatar` varchar(400) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_users`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id_users`, `firstname`, `lastname`, `email`, `password`, `avatar`, `created_at`, `updated_at`) VALUES
+(11, 'John', 'Doe', 'john.doe@gmail.com', '$2y$10$QVaTZEHKc0tJg7LzFxjod.Btlz1Rr1Q33jlqUeAikMWUvVAJ8wYCW', '5d513b-john.doe@gmail.com.png', '2023-11-22 15:02:52', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
