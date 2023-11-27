@@ -36,12 +36,6 @@ $router->map('GET', '/', function () {
     var_dump($_SESSION);
     ?>
     <h1>Home page</h1>
-    <a href="/buzzbudget/src/auth/register">Register</a>
-    <form action="/buzzbudget/src/auth/login" method="post">
-        <input type="text" value="john.doe@gmail.com" name="email">
-        <input type="text" value="rLu!5n}:S&Tc3%V" name="password">
-        <input type="submit" value="login">
-    </form>
     <a href="/buzzbudget/src/auth/logout">Logout</a>
     <?php
 });
