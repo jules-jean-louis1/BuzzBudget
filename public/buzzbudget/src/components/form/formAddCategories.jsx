@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 
 function FormAddCategories() {
   const [categories, setCategories] = useState("");
+  const [error, setError] = useState("");
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -19,6 +20,9 @@ function FormAddCategories() {
       );
       const data = await response.json();
       console.log(data);
+      if (data.categories) {
+        setError(data.categories);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -39,16 +43,19 @@ function FormAddCategories() {
   return (
     <div>
       <h1>Add Categories</h1>
-      <form ref={formRef} action="" method="post" onClick={handleSubmit}>
+      <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
         <GenericInput
           label={"Nom de la catégorie"}
           type={"text"}
           name={"categories"}
           id={"categories"}
           value={categories}
+          error={error}
           onChange={(e) => setCategories(e.target.value)}
         />
-        <button type="submit">Ajouter</button>
+        <button type="submit" className="w-full rounded-xl border">
+          Ajouter
+        </button>
       </form>
     </div>
   );

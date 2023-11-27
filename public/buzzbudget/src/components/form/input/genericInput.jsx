@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GenericInput = ({ label, type, name, id, ...rest }) => {
+const GenericInput = ({ label, type, name, id, error, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -23,6 +23,7 @@ const GenericInput = ({ label, type, name, id, ...rest }) => {
         placeholder={isFocused ? "" : label}
         {...rest}
       />
+      {error && <span className="text-red-500">{error}</span>}
     </div>
   );
 };

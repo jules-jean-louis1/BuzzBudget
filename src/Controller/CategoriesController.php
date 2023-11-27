@@ -22,9 +22,9 @@ class CategoriesController extends AbstractClasses\AbstractContoller
         $errors = [];
 
         if (!$input_categories) {
-            $errors['errors'] = 'Entrer le nom de la catégorie';
+            $errors['categories'] = 'Entrer le nom de la catégorie';
         } elseif (strlen($input_categories) < 2 || strlen($input_categories) > 50) {
-            $errors['errors'] = 'Le nom de la catégorie doit contenir entre 2 et 50 caractères';
+            $errors['categories'] = 'Le nom de la catégorie doit contenir entre 2 et 50 caractères';
         }
 
         if (empty($errors)) {
