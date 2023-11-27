@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import BtnAddTransaction from "../components/button/btnAddTransaction";
 import BtnCategories from "../components/button/btnCategories";
+import BtnTags from "../components/button/btnTags";
 
 function AccountPage() {
   const storedUser = localStorage.getItem("user_data");
@@ -26,6 +27,7 @@ function AccountPage() {
       getAccount();
     }
   }, [user]);
+
   return (
     <>
       <div className="mt-10">
@@ -39,6 +41,7 @@ function AccountPage() {
         <div id="containerCategoriesTags">
           <div id="containerCategories">
             <BtnCategories />
+            <BtnTags />
           </div>
           <div id="containerTags"></div>
         </div>
