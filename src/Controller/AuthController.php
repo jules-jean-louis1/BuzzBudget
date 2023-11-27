@@ -194,20 +194,18 @@ class AuthController extends AbstractClasses\AbstractContoller
                 $loggedInUser->setLastname($user['lastname']);
                 $loggedInUser->setAvatar($user['avatar']);
                 $_SESSION['user'] = $loggedInUser;
-                var_dump($_SESSION);
-                /*
+
                 $token = $this->createToken($user);
                 $errors['success'] = [
                     'token' => $token,
                     'message' => 'Vous êtes connecté'
-                ]; */
+                ]; 
             } else {
                 $errors['email'] = 'Email ou mot de passe incorrect';
             }
-            
-            //echo json_encode($errors);
+                echo json_encode($errors);
         } else {
-            //echo json_encode($errors);
+            echo json_encode($errors);
         }
     }
     public function logout(): void
