@@ -15,7 +15,6 @@ function useCategories() {
         }
       );
       const result = await response.json();
-      console.log(result);
       setCategories(result);
       setIsLoading(false);
     };
