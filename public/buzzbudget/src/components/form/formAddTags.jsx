@@ -12,7 +12,7 @@ function FormAddTags({ onSuccessChange }) {
     try {
       const formData = new FormData(formRef.current);
       const response = await fetch(
-        "http://localhost:80/buzzbudget/src/categories/add",
+        "http://localhost:80/buzzbudget/src/tags/add",
         {
           method: "POST",
           body: formData,

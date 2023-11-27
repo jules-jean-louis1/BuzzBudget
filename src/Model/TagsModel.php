@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-
+use PDO;
 class TagsModel extends AbstractDatabase
 {
 

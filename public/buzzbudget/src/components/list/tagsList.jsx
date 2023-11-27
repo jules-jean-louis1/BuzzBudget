@@ -3,7 +3,7 @@ const TagsList = ({ tags }) => {
   return (
     <div>
       {tags &&
-        tags.map((category, index) => (
+        tags.map((tags, index) => (
           <p key={index} className="text-gray-50">
             {tags.name_tags}
           </p>
