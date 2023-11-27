@@ -67,6 +67,10 @@ $router->map('GET', '/auth/logout', function() use ($authUser) {
 $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
     $account->display($id);
 });
+/* #############################
+        Transaction routes
+############################# */
+
 
 /* ############################# 
         Categories routes
@@ -88,6 +92,7 @@ $router->map('GET', '/tags/get/', function() use ($tags) {
 $router->map('POST', '/tags/add', function() use ($tags) {
     $tags->add();
 });
+
 
 
 // match current request url
