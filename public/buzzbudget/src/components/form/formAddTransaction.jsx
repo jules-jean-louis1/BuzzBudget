@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GenericInput from "./input/genericInput";
 import useCategories from "../hook/useCategories";
+import useTags from "../hook/useTags";
 import GenericAddBtn from "../button/AddSome/GenericAddBtn";
 
 function FormAddTransaction() {
@@ -9,10 +10,11 @@ function FormAddTransaction() {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState(false);
   const [recurrent, setRecurrent] = useState(false);
-  const [tags, setTags] = useState([]);
+  const [tag, setTag] = useState(false);
   const [category, setCategory] = useState(false);
 
   const { categories, isLoading, reload } = useCategories();
+  const { tags, isLoadingTags, reloadTags } = useTags();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -109,6 +111,29 @@ function FormAddTransaction() {
                     </option>
                   ))}
                 </select>
+              </div>
+            </div>
+          )}
+        </div>
+        <div id="containerTags">
+          <p>Tags</p>
+          <button onClick={() => setTag(!tag)}>
+            {tag ? "Masquer" : "Ajouter"}
+          </button>
+          {tag && (
+            <div>
+              <div>
+                {tags.map((tag) => (
+                  <div key={tag.id_tags}>
+                    <input
+                      type="checkbox"
+                      name="tags"
+                      id="tags"
+                      value={tag.id_tags}
+                    />
+                    <label htmlFor="tags">{tag.name_tags}</label>
+                  </div>
+                ))}
               </div>
             </div>
           )}

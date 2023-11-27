@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function useTags() {
   const [tags, setTags] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingTags, setIsLoadingTags] = useState(true);
 
   const fetchData = async () => {
     const response = await fetch(
@@ -14,16 +14,16 @@ function useTags() {
     );
     const result = await response.json();
     setTags(result);
-    setIsLoading(false);
+    setIsLoadingTags(false);
   };
   useEffect(() => {
     fetchData();
   }, []);
 
-  const reload = () => {
+  const reloadTags = () => {
     fetchData();
   };
 
-  return { tags, isLoading, reload };
+  return { tags, isLoadingTags, reloadTags };
 }
 export default useTags;
