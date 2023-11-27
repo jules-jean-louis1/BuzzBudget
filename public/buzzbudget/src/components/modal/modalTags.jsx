@@ -1,6 +1,21 @@
 import FormAddTags from "../form/formAddTags";
+import useTags from "../hook/useTags";
+import TagsList from "../list/tagsList";
+import { useState, useEffect } from "react";
 
 function ModalTags({ onClose }) {
+  const { tags, reload } = useTags();
+  const [success, setSuccess] = useState(false);
+
+  const handleSuccessChange = (success) => {
+    setSuccess(success);
+  };
+  useEffect(() => {
+    if (success) {
+      reload();
+    }
+  }, [success]);
+
   return (
     <>
       <div className="fixed w-screen h-screen left-0 top-0 bg-[#141414]">
@@ -29,7 +44,8 @@ function ModalTags({ onClose }) {
             </button>
           </div>
           <h2 className="text-2xl font-bold text-gray-50">Tags</h2>
-          <FormAddTags />
+          <FormAddTags onSuccessChange={handleSuccessChange} />
+          <TagsList tags={tags} />
         </div>
       </div>
     </>

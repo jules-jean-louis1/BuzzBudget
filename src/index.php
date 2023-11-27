@@ -7,7 +7,8 @@ session_set_cookie_params([
 use App\Controller\{
     AuthController,
     AccountController,
-    CategoriesController
+    CategoriesController,
+    TagsController
 };
 require_once '../vendor/autoload.php';
 
@@ -28,6 +29,7 @@ $router = new AltoRouter();
 $authUser = new AuthController();
 $account = new AccountController();
 $categories = new CategoriesController();
+$tags = new TagsController();
 
 $router->setBasePath('/buzzbudget/src');
 
@@ -65,6 +67,7 @@ $router->map('GET', '/auth/logout', function() use ($authUser) {
 $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
     $account->display($id);
 });
+
 /* ############################# 
         Categories routes
 ############################# */
@@ -73,6 +76,17 @@ $router->map('GET', '/categories/get/', function() use ($categories) {
 });
 $router->map('POST', '/categories/add', function() use ($categories) {
     $categories->add();
+});
+
+/* #############################
+        Tags routes
+############################# */
+
+$router->map('GET', '/tags/get/', function() use ($tags) {
+    $tags->getTags();
+});
+$router->map('POST', '/tags/add', function() use ($tags) {
+    $tags->add();
 });
 
 
