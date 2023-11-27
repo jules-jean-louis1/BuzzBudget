@@ -22,4 +22,10 @@ class CategoriesModel extends AbstractDatabase
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
         $req->execute();
     }
+    public function deleteCategories(int $id): void
+    {
+        $req = $this->getBdd()->prepare('DELETE FROM categories WHERE id_categories = :id');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+    }
 }
