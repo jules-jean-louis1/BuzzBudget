@@ -71,93 +71,110 @@ function FormAddTransaction() {
             </div>
           </div>
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
-            <div className="flex flex-col h-full w-full">
+            <div className="flex flex-col h-full w-full py-4">
               <div className="w-full flex items-center justify-between">
-                <p className="text-white text-xl">Déscription</p>
+                <p className="text-white text-xl">Description</p>
                 <button onClick={() => setDescription(!description)}>
                   {description ? "Masquer" : "Ajouter"}
                 </button>
               </div>
               {description && (
-                <div className="w-full h-fit">
+                <div className="w-full h-fit ">
                   <textarea
                     name="description"
                     id="description"
                     cols="40"
                     rows="5"
+                    className="bg-[#1C1F26] rounded-lg w-full p-3 text-white text-xl outline-none"
                   ></textarea>
                 </div>
               )}
             </div>
           </div>
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
-            <div className="w-full flex items-center justify-between">
-              <p className="text-white text-xl">Récurrent</p>
-              <button onClick={() => setRecurrent(!recurrent)}>
-                {recurrent ? "Masquer" : "Ajouter"}
-              </button>
-            </div>
-            {recurrent && (
-              <div>
-                <div>
-                  <label htmlFor="recurrent">Tous les</label>
-                  <input type="number" name="recurrent" id="recurrent" />
-                </div>
-                <div>
-                  <label htmlFor="recurrent">Jour(s)</label>
-                  <input type="number" name="recurrent" id="recurrent" />
-                </div>
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
+            <div className="flex flex-col w-full h-full py-4">
+              <div className="w-full h-full flex items-center justify-between">
+                <p className="text-white text-xl">Récurrence</p>
+                <button onClick={() => setRecurrent(!recurrent)}>
+                  {recurrent ? "Masquer" : "Ajouter"}
+                </button>
               </div>
-            )}
+              {recurrent && (
+                <div className="w-full">
+                  <select
+                    name="recurrent"
+                    id="recurrent"
+                    className="bg-[#1C1F26] rounded-lg w-full p-3 text-white text-xl outline-none"
+                  >
+                    <option value="day">Jour</option>
+                    <option value="week">Semaine</option>
+                    <option value="month">Mois</option>
+                    <option value="year">Année</option>
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-
-        <div></div>
-        <div id="containersCategories">
-          <p>Catégories</p>
-          <button onClick={() => setCategory(!category)}>
-            {category ? "Masquer" : "Ajouter"}
-          </button>
-          {category && (
-            <div>
-              <div>
-                <label htmlFor="categories">Catégories</label>
-                <select name="categories" id="categories">
-                  {categories.map((category) => (
-                    <option
-                      value={category.id_categories}
-                      key={category.id_categories}
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
+            <div
+              className="flex flex-col w-full h-full py-4"
+              id="containersCategories"
+            >
+              <div className="w-full h-full flex items-center justify-between">
+                <p className="text-white text-xl">Catégories</p>
+                <button onClick={() => setCategory(!category)}>
+                  {category ? "Masquer" : "Ajouter"}
+                </button>
+              </div>
+              {category && (
+                <div>
+                  <div>
+                    <select
+                      name="categories"
+                      id="categories"
+                      className="bg-[#1C1F26] rounded-lg w-full p-3 text-white text-xl outline-none"
                     >
-                      {category.name_categories}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          )}
-        </div>
-        <div id="containerTags">
-          <p>Tags</p>
-          <button onClick={() => setTag(!tag)}>
-            {tag ? "Masquer" : "Ajouter"}
-          </button>
-          {tag && (
-            <div>
-              <div>
-                {tags.map((tag) => (
-                  <div key={tag.id_tags}>
-                    <input
-                      type="checkbox"
-                      name="tags"
-                      id="tags"
-                      value={tag.id_tags}
-                    />
-                    <label htmlFor="tags">{tag.name_tags}</label>
+                      {categories.map((category) => (
+                        <option
+                          value={category.id_categories}
+                          key={category.id_categories}
+                        >
+                          {category.name_categories}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+          <div className="border-2 border-b-2 rounded-b-xl border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
+            <div className="flex flex-col w-full h-full py-4">
+              <div className="w-full h-full flex items-center justify-between">
+                <p className="text-white text-xl">Tags</p>
+                <button onClick={() => setTag(!tag)}>
+                  {tag ? "Masquer" : "Ajouter"}
+                </button>
+              </div>
+              {tag && (
+                <div>
+                  <div>
+                    {tags.map((tag) => (
+                      <div key={tag.id_tags}>
+                        <input
+                          type="checkbox"
+                          name="tags"
+                          id="tags"
+                          value={tag.id_tags}
+                        />
+                        <label htmlFor="tags">{tag.name_tags}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="pt-14">
           <GenericAddBtn text={"Ajouter une transaction"} />
