@@ -1,7 +1,8 @@
+// FormAddCategories.jsx
 import GenericInput from "./input/genericInput";
 import { useState, useRef, useEffect } from "react";
 
-function FormAddCategories() {
+function FormAddCategories({ onSuccessChange }) {
   const [categories, setCategories] = useState("");
   const [error, setError] = useState("");
   const formRef = useRef();
@@ -20,8 +21,13 @@ function FormAddCategories() {
       );
       const data = await response.json();
       console.log(data);
-      if (data.categories) {
+      if (data.success) {
+        onSuccessChange(true);
+        setError("");
+        setCategories("");
+      } else if (data.categories) {
         setError(data.categories);
+        onSuccessChange(false);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);

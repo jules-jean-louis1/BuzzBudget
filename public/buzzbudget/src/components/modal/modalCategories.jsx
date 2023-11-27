@@ -1,8 +1,20 @@
 import FormAddCategories from "../form/formAddCategories";
 import useCategories from "../hook/useCategories";
+import { useState, useEffect } from "react";
+import CategoriesList from "../list/categoriesList";
 
 function ModalCategories({ onClose }) {
-  const { categories } = useCategories();
+  const { categories, reload } = useCategories();
+  const [success, setSuccess] = useState(false);
+
+  const handleSuccessChange = (success) => {
+    setSuccess(success);
+  };
+  useEffect(() => {
+    if (success) {
+      reload();
+    }
+  }, [success]);
 
   return (
     <>
@@ -32,14 +44,8 @@ function ModalCategories({ onClose }) {
             </button>
           </div>
           <h2 className="text-2xl font-bold text-gray-50">Catégories</h2>
-          {categories &&
-            categories.map((category, index) => (
-              <p key={index} className="text-gray-50">
-                {category.name_categories}
-              </p>
-            ))}
-          {!categories.length && <p>Aucune catégorie</p>}
-          <FormAddCategories />
+          <FormAddCategories onSuccessChange={handleSuccessChange} />
+          <CategoriesList categories={categories} />
         </div>
       </div>
     </>
