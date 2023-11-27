@@ -30,7 +30,7 @@ function ModalCategories({ onClose }) {
             categories.map((category, index) => (
               <p key={index}>{category[1]}</p>
             ))}
-          {!categories && <p>Aucune categories</p>}
+          {!categories.length && <p>Aucune catégorie</p>}
           <FormAddCategories />
         </div>
       </div>
