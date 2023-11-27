@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use PDO;
+
 class CategoriesModel extends AbstractDatabase
 {
 
@@ -10,7 +12,7 @@ class CategoriesModel extends AbstractDatabase
         $req = $this->getBdd()->prepare('SELECT * FROM categories WHERE users_id = :id');
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
         $req->execute();
-        $categories = $req->fetchAll();
+        $categories = $req->fetchAll(PDO::FETCH_ASSOC);
         return $categories;
     }
 }

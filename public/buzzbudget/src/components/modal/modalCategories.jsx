@@ -3,7 +3,7 @@ import useCategories from "../hook/useCategories";
 
 function ModalCategories({ onClose }) {
   const { categories } = useCategories();
-  console.log(categories);
+
   return (
     <>
       <div className="fixed w-screen h-screen left-0 top-0 bg-[#0E1217]">
@@ -26,7 +26,11 @@ function ModalCategories({ onClose }) {
               </svg>
             </span>
           </div>
-
+          {categories &&
+            categories.map((category, index) => (
+              <p key={index}>{category[1]}</p>
+            ))}
+          {!categories && <p>Aucune categories</p>}
           <FormAddCategories />
         </div>
       </div>
