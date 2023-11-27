@@ -2,7 +2,7 @@ import GenericInput from "./input/genericInput";
 import { useState, useRef, useEffect } from "react";
 
 function FormAddCategories() {
-  const [name, setName] = useState("");
+  const [categories, setCategories] = useState("");
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -14,6 +14,7 @@ function FormAddCategories() {
         {
           method: "POST",
           body: formData,
+          credentials: "include",
         }
       );
       const data = await response.json();
@@ -34,6 +35,7 @@ function FormAddCategories() {
       setButtonClicked(false);
     }
   }, [buttonClicked]);
+
   return (
     <div>
       <h1>Add Categories</h1>
@@ -41,11 +43,12 @@ function FormAddCategories() {
         <GenericInput
           label={"Nom de la catégorie"}
           type={"text"}
-          name={"name"}
-          id={"name"}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name={"categories"}
+          id={"categories"}
+          value={categories}
+          onChange={(e) => setCategories(e.target.value)}
         />
+        <button type="submit">Ajouter</button>
       </form>
     </div>
   );

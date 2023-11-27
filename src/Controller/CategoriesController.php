@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use App\Model\CategoriesModel;
-class CategoriesController
+class CategoriesController extends AbstractClasses\AbstractContoller
 {
     public function getCategories(): void
     {
@@ -14,6 +14,25 @@ class CategoriesController
     }
     public function add(): void
     {
-        $_SESSION['user']['id_users'] = 1;
+        $input_categories = $this->verifyField('categories');
+        $user = $_SESSION['user'];
+        $id = $user->getId();
+        $categories = new CategoriesModel();
+
+        $errors = [];
+
+        if (!$input_categories) {
+            $errors['errors'] = 'Entrer le nom de la catégorie';
+        } elseif (strlen($input_categories) < 2 || strlen($input_categories) > 50) {
+            $errors['errors'] = 'Le nom de la catégorie doit contenir entre 2 et 50 caractères';
+        }
+
+        if (empty($errors)) {
+            $categories->addCategories($input_categories, $id);
+            $errors['success'] = 'La catégorie a bien été ajoutée';
+            echo json_encode($errors);
+        } else {
+            echo json_encode($errors);
+        }
     }
 }

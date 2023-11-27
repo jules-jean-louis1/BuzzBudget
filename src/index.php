@@ -71,7 +71,7 @@ $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
 $router->map('GET', '/categories/get/', function() use ($categories) {
     $categories->getCategories();
 });
-$router->map('GET', '/categories/add', function() use ($categories) {
+$router->map('POST', '/categories/add', function() use ($categories) {
     $categories->add();
 });
 
