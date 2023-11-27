@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Model;
-
-class TransactionModel
+use PDO;
+class TransactionModel extends AbstractDatabase
 {
 
 }

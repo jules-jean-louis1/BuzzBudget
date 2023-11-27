@@ -61,7 +61,7 @@ function FormAddTransaction() {
               <select
                 name="type"
                 id="type"
-                className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none"
+                className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
               >
                 <option value="1">Carte</option>
                 <option value="2">Espèces</option>

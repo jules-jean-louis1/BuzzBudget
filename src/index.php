@@ -71,7 +71,9 @@ $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
         Transaction routes
 ############################# */
 
-
+$router->map('POST', '/transaction/add', function() use ($transaction) {
+    $transaction->add();
+});
 /* ############################# 
         Categories routes
 ############################# */

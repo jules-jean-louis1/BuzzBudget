@@ -4,7 +4,7 @@ const ModalAddTransaction = ({ onClose }) => {
   return (
     <>
       <div className="fixed w-screen h-screen left-0 top-0 bg-[#0E1217]">
-        <div className="modal-content h-full p-2">
+        <div className="modal-content h-full p-2 overflow-auto">
           <div className="mt-2">
             <button onClick={onClose} className="p-2 bg-[#1C1F26] rounded-full">
               <span className="close">

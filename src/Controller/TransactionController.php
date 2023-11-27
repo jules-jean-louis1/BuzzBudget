@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Controller;
-
-class TransactionController
+use App\Model\TransactionModel;
+class TransactionController extends AbstractClasses\AbstractContoller
 {
 
 }
