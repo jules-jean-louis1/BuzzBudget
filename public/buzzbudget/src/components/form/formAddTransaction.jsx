@@ -21,7 +21,6 @@ function FormAddTransaction() {
   };
   return (
     <div>
-      <h1>Ajouter un transaction</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>
           <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2 min-h-16 h-20">
