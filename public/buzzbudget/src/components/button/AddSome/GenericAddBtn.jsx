@@ -3,7 +3,7 @@ function GenericAddBtn({ text }) {
     <button
       type="submit"
       style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
-      className="flex items-center justify-between w-full rounded-2xl h-16 px-3"
+      className="flex items-center justify-between w-full rounded-2xl  min-h-16 h-20 px-3"
     >
       <span className="text-2xl">{text}</span>
       <span className="bg-[#0E1217] rounded-full p-3 text-white">
