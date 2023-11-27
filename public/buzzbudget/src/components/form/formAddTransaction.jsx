@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import GenericInput from "./input/genericInput";
+import useCategories from "../hook/useCategories";
+import GenericAddBtn from "../button/AddSome/GenericAddBtn";
 
 function FormAddTransaction() {
   const [name, setName] = useState("");
@@ -7,10 +9,18 @@ function FormAddTransaction() {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState(false);
   const [recurrent, setRecurrent] = useState(false);
+  const [tags, setTags] = useState([]);
+  const [category, setCategory] = useState(false);
+
+  const { categories, isLoading, reload } = useCategories();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
-      <h1>FormAddTransaction</h1>
-      <form action="" method="post">
+      <h1>Ajouter un transaction</h1>
+      <form action="" method="post" onSubmit={handleSubmit}>
         <div>
           <GenericInput
             label={"Nom de la transaction"}
@@ -47,7 +57,10 @@ function FormAddTransaction() {
         </div>
         <div>
           <p>Déscription</p>
-          <button onClick={() => setDescription(!description)}>Ajouter</button>
+          <button onClick={() => setDescription(!description)}>
+            {description ? "Masquer" : "Ajouter"}
+          </button>
+
           {description && (
             <div>
               <textarea
@@ -61,7 +74,9 @@ function FormAddTransaction() {
         </div>
         <div>
           <p>Récurrent</p>
-          <button onClick={() => setRecurrent(!recurrent)}>Ajouter</button>
+          <button onClick={() => setRecurrent(!recurrent)}>
+            {recurrent ? "Masquer" : "Ajouter"}
+          </button>
           {recurrent && (
             <div>
               <div>
@@ -74,6 +89,32 @@ function FormAddTransaction() {
               </div>
             </div>
           )}
+        </div>
+        <div id="containersCategories">
+          <p>Catégories</p>
+          <button onClick={() => setCategory(!category)}>
+            {category ? "Masquer" : "Ajouter"}
+          </button>
+          {category && (
+            <div>
+              <div>
+                <label htmlFor="categories">Catégories</label>
+                <select name="categories" id="categories">
+                  {categories.map((category) => (
+                    <option
+                      value={category.id_categories}
+                      key={category.id_categories}
+                    >
+                      {category.name_categories}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="pt-14">
+          <GenericAddBtn text={"Ajouter une transaction"} />
         </div>
       </form>
     </div>
