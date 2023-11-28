@@ -4,7 +4,7 @@ import TagsList from "../list/tagsList";
 import { useState, useEffect } from "react";
 
 function ModalTags({ onClose }) {
-  const { tags, reload } = useTags();
+  const { tags, reloadTags } = useTags();
   const [success, setSuccess] = useState(false);
 
   const handleSuccessChange = (success) => {
@@ -12,7 +12,7 @@ function ModalTags({ onClose }) {
   };
   useEffect(() => {
     if (success) {
-      reload();
+      reloadTags();
     }
   }, [success]);
 

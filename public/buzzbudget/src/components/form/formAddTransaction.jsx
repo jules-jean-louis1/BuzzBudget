@@ -12,6 +12,7 @@ function FormAddTransaction() {
   const [recurrent, setRecurrent] = useState(false);
   const [tag, setTag] = useState(false);
   const [category, setCategory] = useState(false);
+  const [checkedTags, setCheckedTags] = useState([]);
 
   const [selectedType, setSelectedType] = useState("depense");
 
@@ -210,18 +211,31 @@ function FormAddTransaction() {
                   {tag ? "Masquer" : "Ajouter"}
                 </button>
               </div>
-              {tag && (
+              {tags && (
                 <div>
                   <div>
                     {tags.map((tag) => (
                       <div key={tag.id_tags}>
                         <input
                           type="checkbox"
-                          name="tags"
-                          id="tags"
+                          name="tags[]"
+                          id={`tags${tag.id_tags}`}
                           value={tag.id_tags}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setCheckedTags([...checkedTags, e.target.value]);
+                            } else {
+                              setCheckedTags(
+                                checkedTags.filter(
+                                  (id) => id !== e.target.value
+                                )
+                              );
+                            }
+                          }}
                         />
-                        <label htmlFor="tags">{tag.name_tags}</label>
+                        <label htmlFor={`tags${tag.id_tags}`}>
+                          {tag.name_tags}
+                        </label>
                       </div>
                     ))}
                   </div>
