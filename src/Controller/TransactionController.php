@@ -6,8 +6,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
 {
     public function add(): void
     {
-        var_dump($_POST);
-        /*$name = $this->verifyField('name');
+        $name = $this->verifyField('name');
         $amount = $this->verifyField('amount');
         $date = $this->verifyField('date');
         $type = $this->verifyField('type');
@@ -37,9 +36,11 @@ class TransactionController extends AbstractClasses\AbstractContoller
         if ($type !== 'depense' && $type !== 'revenu') {
             $errors['type'] = 'Le type de transaction doit être soit une dépense soit un revenu';
         } elseif ($type === 'depense') {
-            if($paymentMethod !== 'espece' && $paymentMethod !== 'carte' && $paymentMethod !== 'cheque' && $paymentMethod !== 'virement') {
+            if($paymentMethod !== 'espece' && $paymentMethod !== 'carte' && $paymentMethod !== 'cheque' && $paymentMethod !== 'virement' && $paymentMethod !== 'n/a') {
                 $errors['paymentMethod'] = 'Le mode de paiement doit être soit espèce, carte, chèque ou virement';
             }
+        } else {
+            $paymentMethod = null;
         }
         if (isset($_POST['description'])) {
             if (!$description) {
@@ -47,14 +48,25 @@ class TransactionController extends AbstractClasses\AbstractContoller
             } elseif (strlen($description) < 2 || strlen($description) > 255) {
                 $errors['description'] = 'La description doit contenir entre 2 et 255 caractères';
             }
+        } else {
+            $description = null;
         }
         if(isset($_POST['recurrent'])) {
             if ($recurrent !== 'day' && $recurrent !== 'week' && $recurrent !== 'month' && $recurrent !== 'year') {
                 $errors['recurrent'] = 'La transaction doit être soit récurrente soit non récurrente';
             }
+        } else {
+            $recurrent = null;
         }
-
-        if (empty($errors)) {
+        if (!isset($_POST['categories'])) {
+            $categories = null;
+        }
+        if (!isset($_POST['tags'])) {
+            $tags = null;
+        }
+        var_dump($errors);
+        var_dump($name, $amount, $date, $type, $paymentMethod, $description, $recurrent, $categories, $tags);
+        /*if (empty($errors)) {
             $transaction = new TransactionModel();
             $user = $_SESSION['user'];
             $id = $user->getId();
