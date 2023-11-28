@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import GenericInput from "./input/genericInput";
 import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
@@ -18,12 +18,41 @@ function FormAddTransaction() {
   const { categories, isLoading, reload } = useCategories();
   const { tags, isLoadingTags, reloadTags } = useTags();
 
+  const formRef = useRef();
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const formData = new FormData(formRef.current);
+      const response = await fetch(
+        "http://localhost:80/buzzbudget/src/transaction/add",
+        {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setButtonClicked(true);
   };
+
+  useEffect(() => {
+    if (buttonClicked) {
+      fetchData();
+      setButtonClicked(false);
+    }
+  }, [buttonClicked]);
+
   return (
     <div>
-      <form action="" method="post" onSubmit={handleSubmit}>
+      <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
         <div>
           <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2 min-h-16 h-20">
             <GenericInput
@@ -86,9 +115,10 @@ function FormAddTransaction() {
                   id="paymentMethod"
                   className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
                 >
-                  <option value="Carte">Carte</option>
-                  <option value="Espèces">Espèces</option>
-                  <option value="Chèque">Chèque</option>
+                  <option value="carte">Carte</option>
+                  <option value="espece">Espèces</option>
+                  <option value="cheque">Chèque</option>
+                  <option value="virement">Virement</option>
                 </select>
               </div>
             </div>

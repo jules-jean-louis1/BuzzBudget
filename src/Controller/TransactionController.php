@@ -7,7 +7,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
     public function add(): void
     {
         var_dump($_POST);
-        $name = $this->verifyField('name');
+        /*$name = $this->verifyField('name');
         $amount = $this->verifyField('amount');
         $date = $this->verifyField('date');
         $type = $this->verifyField('type');
@@ -63,6 +63,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         } else {
             echo json_encode($errors);
-        }
+        }*/
     }
 }
