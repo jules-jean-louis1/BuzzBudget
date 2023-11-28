@@ -13,6 +13,8 @@ function FormAddTransaction() {
   const [tag, setTag] = useState(false);
   const [category, setCategory] = useState(false);
 
+  const [selectedType, setSelectedType] = useState("depense");
+
   const { categories, isLoading, reload } = useCategories();
   const { tags, isLoadingTags, reloadTags } = useTags();
 
@@ -56,19 +58,41 @@ function FormAddTransaction() {
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
             <div className="flex flex-col pt-1 w-full relative">
               <label htmlFor="type" className="text-[#8E8E92] absolute">
-                Méthode de paiement
+                Type
               </label>
               <select
                 name="type"
                 id="type"
                 className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                onChange={(e) => setSelectedType(e.target.value)}
               >
-                <option value="1">Carte</option>
-                <option value="2">Espèces</option>
-                <option value="3">Chèque</option>
+                <option value="depense">Dépense</option>
+                <option value="revenu">Revenu</option>
               </select>
             </div>
           </div>
+
+          {selectedType === "depense" && (
+            <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
+              <div className="flex flex-col pt-1 w-full relative">
+                <label
+                  htmlFor="paymentMethod"
+                  className="text-[#8E8E92] absolute"
+                >
+                  Méthode de paiement
+                </label>
+                <select
+                  name="paymentMethod"
+                  id="paymentMethod"
+                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                >
+                  <option value="Carte">Carte</option>
+                  <option value="Espèces">Espèces</option>
+                  <option value="Chèque">Chèque</option>
+                </select>
+              </div>
+            </div>
+          )}
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
             <div className="flex flex-col h-full w-full py-4">
               <div className="w-full flex items-center justify-between">

@@ -8,7 +8,8 @@ use App\Controller\{
     AuthController,
     AccountController,
     CategoriesController,
-    TagsController
+    TagsController,
+    TransactionController
 };
 require_once '../vendor/autoload.php';
 
@@ -30,6 +31,7 @@ $authUser = new AuthController();
 $account = new AccountController();
 $categories = new CategoriesController();
 $tags = new TagsController();
+$transaction = new TransactionController();
 
 $router->setBasePath('/buzzbudget/src');
 
