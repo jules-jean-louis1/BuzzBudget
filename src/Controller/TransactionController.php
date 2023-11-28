@@ -6,6 +6,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
 {
     public function add(): void
     {
+        var_dump($_POST);
         $name = $this->verifyField('name');
         $amount = $this->verifyField('amount');
         $date = $this->verifyField('date');
@@ -15,5 +16,53 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $recurrent = $this->verifyField('recurrent');
         $categories = $this->verifyField('categories');
         $tags = $this->verifyField('tags');
+
+        $errors = [];
+
+        if (!$name) {
+            $errors['name'] = 'Entrer le nom';
+        } elseif (strlen($name) < 2 || strlen($name) > 50) {
+            $errors['name'] = 'Le nom de la transaction doit contenir entre 2 et 50 caractères';
+        }
+        if (!$amount) {
+            $errors['amount'] = 'Entrer le montant';
+        } elseif (!is_numeric($amount)) {
+            $errors['amount'] = 'Le montant doit être un nombre';
+        }
+        if (!$date) {
+            $errors['date'] = 'Entrer la date';
+        } elseif (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
+            $errors['date'] = 'La date doit être au format YYYY-MM-DD';
+        }
+        if ($type !== 'depense' && $type !== 'revenu') {
+            $errors['type'] = 'Le type de transaction doit être soit une dépense soit un revenu';
+        } elseif ($type === 'depense') {
+            if($paymentMethod !== 'espece' && $paymentMethod !== 'carte' && $paymentMethod !== 'cheque' && $paymentMethod !== 'virement') {
+                $errors['paymentMethod'] = 'Le mode de paiement doit être soit espèce, carte, chèque ou virement';
+            }
+        }
+        if (isset($_POST['description'])) {
+            if (!$description) {
+                $errors['description'] = 'Entrer la description';
+            } elseif (strlen($description) < 2 || strlen($description) > 255) {
+                $errors['description'] = 'La description doit contenir entre 2 et 255 caractères';
+            }
+        }
+        if(isset($_POST['recurrent'])) {
+            if ($recurrent !== 'day' && $recurrent !== 'week' && $recurrent !== 'month' && $recurrent !== 'year') {
+                $errors['recurrent'] = 'La transaction doit être soit récurrente soit non récurrente';
+            }
+        }
+
+        if (empty($errors)) {
+            $transaction = new TransactionModel();
+            $user = $_SESSION['user'];
+            $id = $user->getId();
+            $transaction->addTransaction($name, $amount, $date, $type, $paymentMethod, $description, $recurrent, $categories, $tags, $id);
+            $errors['success'] = 'La transaction a bien été ajoutée';
+            echo json_encode($errors);
+        } else {
+            echo json_encode($errors);
+        }
     }
 }
