@@ -129,7 +129,10 @@ function FormAddTransaction() {
             <div className="flex flex-col h-full w-full py-4">
               <div className="w-full flex items-center justify-between">
                 <p className="text-white text-xl">Description</p>
-                <button onClick={() => setDescription(!description)}>
+                <button
+                  type="button"
+                  onClick={() => setDescription(!description)}
+                >
                   {description ? "Masquer" : "Ajouter"}
                 </button>
               </div>
@@ -150,7 +153,7 @@ function FormAddTransaction() {
             <div className="flex flex-col w-full h-full py-4">
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Récurrence</p>
-                <button onClick={() => setRecurrent(!recurrent)}>
+                <button type="button" onClick={() => setRecurrent(!recurrent)}>
                   {recurrent ? "Masquer" : "Ajouter"}
                 </button>
               </div>
@@ -177,7 +180,7 @@ function FormAddTransaction() {
             >
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Catégories</p>
-                <button onClick={() => setCategory(!category)}>
+                <button type="button" onClick={() => setCategory(!category)}>
                   {category ? "Masquer" : "Ajouter"}
                 </button>
               </div>
@@ -207,11 +210,11 @@ function FormAddTransaction() {
             <div className="flex flex-col w-full h-full py-4">
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Tags</p>
-                <button onClick={() => setTag(!tag)}>
+                <button type="button" onClick={() => setTag(!tag)}>
                   {tag ? "Masquer" : "Ajouter"}
                 </button>
               </div>
-              {tags && (
+              {tags && tag && (
                 <div>
                   <div>
                     {tags.map((tag) => (

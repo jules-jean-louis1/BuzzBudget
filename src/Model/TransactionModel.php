@@ -6,13 +6,13 @@ use App\Model\AccountModel;
 class TransactionModel extends AbstractDatabase
 {
 
-    public function addTransaction(string $name, mixed $amount, string $date, string $type, string $paymentMethod, ?string $description, ?string $recurrent, ?string $categories, ?array $tags, int $id)
+    public function addTransaction(string $name, mixed $amount, string $date, string $type, string $paymentMethod, ?string $description, ?string $recurrent, ?string $categories, ?array $tags, int $id): void
     {
         $accountM = new AccountModel();
         $count = $accountM->getAccount($id);
         $account_id = $count['id_account'];
 
-        $req = $this->getBdd()->prepare('INSERT INTO transaction (name_transaction, amount_transaction, date_of_transaction, type_of_transaction, payment_method, description, recurrent, users_id, created_at, account_id) VALUES (:name, :amount, :date, :type, :paymentMethod, :description, :recurrent, :id, NOW(), :accound_id)');
+        $req = $this->getBdd()->prepare('INSERT INTO transaction (name_transaction, amount_transaction, date_of_transaction, type_of_transaction, payment_method, description, recurrent, users_id, created_at, account_id) VALUES (:name, :amount, :date, :type, :paymentMethod, :description, :recurrent, :id, NOW(), :account_id)');
         $req->bindParam(':name', $name, \PDO::PARAM_STR);
         $req->bindParam(':amount', $amount, \PDO::PARAM_STR);
         $req->bindParam(':date', $date, \PDO::PARAM_STR);
@@ -21,7 +21,7 @@ class TransactionModel extends AbstractDatabase
         $req->bindParam(':description', $description, \PDO::PARAM_STR);
         $req->bindParam(':recurrent', $recurrent, \PDO::PARAM_STR);
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
-        $req->bindParam(':accound_id', $account_id, \PDO::PARAM_INT);
+        $req->bindParam(':account_id', $account_id, \PDO::PARAM_INT);
         $req->execute();
         $id_transaction = $this->getBdd()->lastInsertId();
         if ($categories !== null) {

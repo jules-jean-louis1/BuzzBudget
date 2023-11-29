@@ -12,10 +12,12 @@ class AccountModel extends AbstractDatabase
     }
     public function getAccount(int $id): array
     {
-        $req = $this->getBdd()->prepare('SELECT total, created_at, update_at, users_id FROM account WHERE users_id = :id');
+        $req = $this->getBdd()->prepare('SELECT id_account, total, created_at, update_at, users_id FROM account WHERE users_id = :id');
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
         $req->execute();
-        return $req->fetch();
+        $account = $req->fetchAll(\PDO::FETCH_ASSOC);
+        return $account[0];
+
     }
     public function updateAccount(int $id, string $total): void
     {

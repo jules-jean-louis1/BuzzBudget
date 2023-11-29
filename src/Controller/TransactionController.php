@@ -14,7 +14,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $description = $this->verifyField('description');
         $recurrent = $this->verifyField('recurrent');
         $categories = $this->verifyField('categories');
-        $tags = $_POST['tags'];
+
 
         $errors = [];
 
@@ -61,9 +61,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
         if (!isset($_POST['categories'])) {
             $categories = null;
         }
-        if (!isset($_POST['tags'])) {
-            $tags = null;
-        }
+        $tags = !isset($_POST['tags']) ? null : $_POST['tags'];
 
         if (empty($errors)) {
             $transaction = new TransactionModel();
