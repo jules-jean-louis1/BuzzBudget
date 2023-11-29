@@ -116,7 +116,7 @@ function FormAddTransaction() {
                   id="paymentMethod"
                   className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
                 >
-                  <option value="n/a">Non applicable</option>
+                  <option value="n/a">Non défini</option>
                   <option value="carte">Carte</option>
                   <option value="espece">Espèces</option>
                   <option value="cheque">Chèque</option>
