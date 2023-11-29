@@ -45,4 +45,11 @@ class TransactionModel extends AbstractDatabase
         $total = $count['total'] + $amount;
         $accountM->updateAccount($id, $total);
     }
+    public function getLast5Transaction(int $id): array
+    {
+        $req = $this->getBdd()->prepare('SELECT * FROM transaction WHERE users_id = :id ORDER BY created_at DESC LIMIT 5');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

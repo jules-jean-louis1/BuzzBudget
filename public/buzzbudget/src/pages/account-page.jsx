@@ -33,11 +33,11 @@ function AccountPage() {
   return (
     <>
       <div className="pt-12 bg-[#f8f8f8] h-full w-full px-2">
-        <h1 className="text-2xl font-bold">Account page</h1>
         <div>
-          <p className="">Welcome {user.firstname}</p>
+          <p className="text-2xl font-bold">Welcome {user.firstname}</p>
         </div>
         <div className="flex flex-col space-y-4">
+          <div id="containerRecapAccount"></div>
           <div id="btnAddTransaction" className="w-full">
             <BtnAddTransaction />
           </div>

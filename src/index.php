@@ -67,7 +67,7 @@ $router->map('GET', '/auth/logout', function() use ($authUser) {
         Account routes
 ############################# */
 $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {
-    $account->display($id);
+    $account->displayHome($id);
 });
 /* #############################
         Transaction routes
