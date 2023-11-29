@@ -64,9 +64,8 @@ class TransactionController extends AbstractClasses\AbstractContoller
         if (!isset($_POST['tags'])) {
             $tags = null;
         }
-        var_dump($errors);
-        var_dump($name, $amount, $date, $type, $paymentMethod, $description, $recurrent, $categories, $tags);
-        /*if (empty($errors)) {
+
+        if (empty($errors)) {
             $transaction = new TransactionModel();
             $user = $_SESSION['user'];
             $id = $user->getId();
@@ -75,6 +74,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         } else {
             echo json_encode($errors);
-        }*/
+        }
     }
 }
