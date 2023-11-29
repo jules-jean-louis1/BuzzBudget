@@ -30,12 +30,12 @@ function AccountPage() {
 
   return (
     <>
-      <div className="mt-10">
+      <div className="pt-12 bg-[#f8f8f8] h-full w-full">
         <h1 className="text-2xl font-bold">Account page</h1>
         <div>
           <p className="">Welcome {user.firstname}</p>
         </div>
-        <div id="btnAddTransaction">
+        <div id="btnAddTransaction" className="w-full">
           <BtnAddTransaction />
         </div>
         <div id="containerCategoriesTags">

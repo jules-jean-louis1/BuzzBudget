@@ -3,6 +3,8 @@ import GenericInput from "./input/genericInput";
 import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
 import GenericAddBtn from "../button/AddSome/GenericAddBtn";
+import ChevronUp from "../svg/chevronUp";
+import ChevronDown from "../svg/chevronDown";
 
 function FormAddTransaction() {
   const [name, setName] = useState("");
@@ -133,7 +135,15 @@ function FormAddTransaction() {
                   type="button"
                   onClick={() => setDescription(!description)}
                 >
-                  {description ? "Masquer" : "Ajouter"}
+                  {description ? (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Masquer</p>
+                    </div>
+                  ) : (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Ajouter</p>
+                    </div>
+                  )}
                 </button>
               </div>
               {description && (
@@ -154,7 +164,15 @@ function FormAddTransaction() {
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Récurrence</p>
                 <button type="button" onClick={() => setRecurrent(!recurrent)}>
-                  {recurrent ? "Masquer" : "Ajouter"}
+                  {recurrent ? (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Masquer</p>
+                    </div>
+                  ) : (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Ajouter</p>
+                    </div>
+                  )}
                 </button>
               </div>
               {recurrent && (
@@ -181,7 +199,15 @@ function FormAddTransaction() {
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Catégories</p>
                 <button type="button" onClick={() => setCategory(!category)}>
-                  {category ? "Masquer" : "Ajouter"}
+                  {category ? (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Masquer</p>
+                    </div>
+                  ) : (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Ajouter</p>
+                    </div>
+                  )}
                 </button>
               </div>
               {category && (
@@ -211,7 +237,15 @@ function FormAddTransaction() {
               <div className="w-full h-full flex items-center justify-between">
                 <p className="text-white text-xl">Tags</p>
                 <button type="button" onClick={() => setTag(!tag)}>
-                  {tag ? "Masquer" : "Ajouter"}
+                  {tag ? (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Masquer</p>
+                    </div>
+                  ) : (
+                    <div className="p-2 rounded-md bg-[#1c1f26]">
+                      <p className="text-[#a8b3cfa3]">Ajouter</p>
+                    </div>
+                  )}
                 </button>
               </div>
               {tags && tag && (
