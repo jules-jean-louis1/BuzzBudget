@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import BtnAddTransaction from "../components/button/btnAddTransaction";
 import BtnCategories from "../components/button/btnCategories";
 import BtnTags from "../components/button/btnTags";
+import { Link } from "react-router-dom";
+import HistorySvg from "../components/svg/historySvg";
 
 function AccountPage() {
   const storedUser = localStorage.getItem("user_data");
@@ -30,20 +32,39 @@ function AccountPage() {
 
   return (
     <>
-      <div className="pt-12 bg-[#f8f8f8] h-full w-full">
+      <div className="pt-12 bg-[#f8f8f8] h-full w-full px-2">
         <h1 className="text-2xl font-bold">Account page</h1>
         <div>
           <p className="">Welcome {user.firstname}</p>
         </div>
-        <div id="btnAddTransaction" className="w-full">
-          <BtnAddTransaction />
-        </div>
-        <div id="containerCategoriesTags">
-          <div id="containerCategories">
-            <BtnCategories />
-            <BtnTags />
+        <div className="flex flex-col space-y-4">
+          <div id="btnAddTransaction" className="w-full">
+            <BtnAddTransaction />
           </div>
-          <div id="containerTags"></div>
+          <div id="containerLinkHistory">
+            <Link to="/account/history">
+              <button
+                type="button"
+                className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#3e3e3e]"
+              >
+                <span className="text-xl text-[#f8f8f8]">Historiques</span>
+                <span className="bg-[#222222] rounded-full p-3">
+                  <HistorySvg fill={"none"} stroke={"#f8f8f8"} />
+                </span>
+              </button>
+            </Link>
+          </div>
+          <div
+            id="containerCategoriesTags"
+            className="flex items-center justify-between w-full space-x-2"
+          >
+            <div id="containerCategories" className="w-full">
+              <BtnCategories />
+            </div>
+            <div id="containerTags" className="w-full">
+              <BtnTags />
+            </div>
+          </div>
         </div>
       </div>
     </>
