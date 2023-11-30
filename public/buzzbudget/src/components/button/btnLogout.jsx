@@ -29,7 +29,12 @@ function BtnLogout() {
   };
   return (
     <>
-      <button onClick={handleLogout}>Déconnexion</button>
+      <button
+        onClick={handleLogout}
+        className="border flex-row justify-center items-center rounded-xl py-4"
+      >
+        <span>Déconnexion</span>
+      </button>
     </>
   );
 }
