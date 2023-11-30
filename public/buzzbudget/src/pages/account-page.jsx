@@ -34,15 +34,28 @@ function AccountPage() {
     }
   };
 
-  useEffect(() => {
-    if (user.current) {
-      getAccount();
-    }
-  }, [user.current]);
-
   const handleDataSuccessT = (success) => {
     setDataSuccessT(success);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user.current) {
+        await getAccount();
+        setDataSuccessT(false); // Remettre à faux après le fetch
+      }
+    };
+
+    // Appeler la fonction d'initialisation lors de l'arrivée sur la page
+    if (user.current && !dataSuccessT) {
+      fetchData();
+    }
+
+    // Appeler la fonction de mise à jour lorsque dataSuccess change
+    if (user.current && dataSuccessT) {
+      fetchData();
+    }
+  }, [user.current, dataSuccessT]);
 
   function displayAccount() {
     if (account && transactions) {
