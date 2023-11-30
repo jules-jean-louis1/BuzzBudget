@@ -17,7 +17,6 @@ function FormAddTransaction({ onDataSuccess }) {
   const [checkedTags, setCheckedTags] = useState([]);
 
   const [selectedType, setSelectedType] = useState("depense");
-  const [dataSuccess, setDataSuccess] = useState(false);
 
   const { categories, isLoading, reload } = useCategories();
   const { tags, isLoadingTags, reloadTags } = useTags();
@@ -39,7 +38,9 @@ function FormAddTransaction({ onDataSuccess }) {
       const data = await response.json();
       console.log(data);
       if (data.success) {
-        setDataSuccess(true);
+        onDataSuccess(true);
+      } else {
+        onDataSuccess(false);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -53,9 +54,6 @@ function FormAddTransaction({ onDataSuccess }) {
   useEffect(() => {
     if (buttonClicked) {
       fetchData();
-      if (dataSuccess) {
-        onDataSuccess(dataSuccess);
-      }
       setButtonClicked(false);
     }
   }, [buttonClicked]);

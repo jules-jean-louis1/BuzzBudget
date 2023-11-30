@@ -1,13 +1,6 @@
 import FormAddTransaction from "../form/formAddTransaction";
 import { useState } from "react";
-const ModalAddTransaction = ({ onDataSuccessToParent, onClose }) => {
-  const [dataSuccess, setDataSuccess] = useState(false);
-
-  const handleDataSuccessChange = (success) => {
-    setDataSuccess(success);
-    onDataSuccessToParent(success);
-  };
-
+const ModalAddTransaction = ({ onDataSuccess, onClose }) => {
   return (
     <>
       <div className="fixed w-screen h-screen left-0 top-0 bg-[#0E1217]">
@@ -34,7 +27,7 @@ const ModalAddTransaction = ({ onDataSuccessToParent, onClose }) => {
           <h2 className="text-2xl font-bold text-slate-50 py-2">
             Ajouter une transaction
           </h2>
-          <FormAddTransaction onDataSuccess={handleDataSuccessChange} />
+          <FormAddTransaction onDataSuccess={onDataSuccess} />
         </div>
       </div>
     </>

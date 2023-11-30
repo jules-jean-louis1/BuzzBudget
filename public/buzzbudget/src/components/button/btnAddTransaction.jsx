@@ -2,14 +2,8 @@ import { useState } from "react";
 import ModalAddTransaction from "../modal/modalAddTransaction";
 import CirclePlus from "../svg/circlePlus";
 
-const BtnAddTransaction = ({ onSuccessChange }) => {
+const BtnAddTransaction = ({ onDataSuccess }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [dataSuccess, setDataSuccess] = useState(false);
-
-  const handleDataSuccessChange = (success) => {
-    setDataSuccess(success);
-    onSuccessChange(success);
-  };
 
   return (
     <>
@@ -25,7 +19,7 @@ const BtnAddTransaction = ({ onSuccessChange }) => {
       </button>
       {modalOpen && (
         <ModalAddTransaction
-          onDataSuccessToParent={handleDataSuccessChange}
+          onDataSuccess={onDataSuccess}
           onClose={() => setModalOpen(false)}
         />
       )}
