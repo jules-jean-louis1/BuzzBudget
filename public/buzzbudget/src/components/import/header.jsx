@@ -21,7 +21,7 @@ function Header() {
           <div className="flex flex-row items-center justify-between w-full">
             <div>
               <button
-                className="p-2 hover:bg-[#5258661f] rounded-lg"
+                className="p-2 hover:bg-[#5258661f] rounded-xl"
                 onClick={handleClicMenu}
               >
                 <svg
@@ -60,7 +60,7 @@ function Header() {
           </div>
         </nav>
       </header>
-      <AsideMenu menuBtn={menuBtn} />
+      <AsideMenu menuBtn={menuBtn} user={user} />
       <div className="block md:hidden">
         <FooterMobile />
       </div>
