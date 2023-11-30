@@ -1,6 +1,7 @@
 import BtnLogout from "../button/btnLogout";
 import LoginRegister from "../button/loginRegister";
 import { jwtDecode } from "jwt-decode";
+import FooterMobile from "./footerMobile";
 
 function Header() {
   const storedUser = localStorage.getItem("user_data");
@@ -34,6 +35,9 @@ function Header() {
           </div>
         </nav>
       </header>
+      <div className="block md:hidden">
+        <FooterMobile />
+      </div>
     </>
   );
 }
