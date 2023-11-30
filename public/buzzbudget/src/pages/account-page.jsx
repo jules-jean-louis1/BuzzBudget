@@ -50,7 +50,7 @@ function AccountPage() {
               <span className="text-xl text-[#222222]">Compte</span>
               <span className="text-xl text-[#222222]">{account.total} €</span>
             </div>
-            <div id="trancation" className="rounded-xl">
+            <div id="trancation" className="rounded-xl mx-2">
               {transactions.map((transaction) => (
                 <div
                   key={transaction.id_transaction}
