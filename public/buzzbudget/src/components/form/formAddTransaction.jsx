@@ -6,7 +6,7 @@ import GenericAddBtn from "../button/AddSome/GenericAddBtn";
 import ChevronUp from "../svg/chevronUp";
 import ChevronDown from "../svg/chevronDown";
 
-function FormAddTransaction() {
+function FormAddTransaction({ onDataSuccess }) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -17,6 +17,7 @@ function FormAddTransaction() {
   const [checkedTags, setCheckedTags] = useState([]);
 
   const [selectedType, setSelectedType] = useState("depense");
+  const [dataSuccess, setDataSuccess] = useState(false);
 
   const { categories, isLoading, reload } = useCategories();
   const { tags, isLoadingTags, reloadTags } = useTags();
@@ -37,6 +38,9 @@ function FormAddTransaction() {
       );
       const data = await response.json();
       console.log(data);
+      if (data.success) {
+        setDataSuccess(true);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -49,6 +53,9 @@ function FormAddTransaction() {
   useEffect(() => {
     if (buttonClicked) {
       fetchData();
+      if (dataSuccess) {
+        onDataSuccess(dataSuccess);
+      }
       setButtonClicked(false);
     }
   }, [buttonClicked]);

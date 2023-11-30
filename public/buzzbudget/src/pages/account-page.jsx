@@ -14,6 +14,13 @@ function AccountPage() {
   const [account, setAccount] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
+  const [successAddTransaction, setSuccessAddTransaction] = useState(false);
+
+  const handleSuccessAddTransaction = (success) => {
+    setSuccessAddTransaction(success);
+  };
+  console.log(successAddTransaction);
+
   const getAccount = async () => {
     try {
       if (user.current) {
@@ -87,7 +94,9 @@ function AccountPage() {
             <div id="TotalInAccount">{displayAccount()}</div>
           </div>
           <div id="btnAddTransaction" className="w-full">
-            <BtnAddTransaction />
+            <BtnAddTransaction
+              onSuccessChange={handleSuccessAddTransaction()}
+            />
           </div>
           <div id="containerLinkHistory">
             <Link to={`/account/history/${user.current.id}`}>
