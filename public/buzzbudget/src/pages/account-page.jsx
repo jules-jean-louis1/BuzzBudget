@@ -50,11 +50,11 @@ function AccountPage() {
               <span className="text-xl text-[#222222]">Compte</span>
               <span className="text-xl text-[#222222]">{account.total} €</span>
             </div>
-            <div id="trancation" className="rounded-xl mx-2">
+            <div id="trancation" className="rounded-xl mx-2 bg-[#b9b9b9]">
               {transactions.map((transaction) => (
                 <div
                   key={transaction.id_transaction}
-                  className="flex items-center justify-between  w-full min-h-14 h-14 bg-[#b9b9b9]"
+                  className="flex items-center justify-between  w-full min-h-14 h-14"
                 >
                   <span className="text-lg text-[#222222]">
                     {transaction.name_transaction}
@@ -80,7 +80,7 @@ function AccountPage() {
     <>
       <div className="pt-12 bg-[#f8f8f8] h-full w-full px-2">
         <div>
-          <p className="text-2xl font-bold">Welcome {user.firstname}</p>
+          <p className="text-2xl font-bold">Welcome {user.current.firstname}</p>
         </div>
         <div className="flex flex-col space-y-4">
           <div id="containerRecapAccount">
@@ -90,7 +90,7 @@ function AccountPage() {
             <BtnAddTransaction />
           </div>
           <div id="containerLinkHistory">
-            <Link to="/account/history">
+            <Link to={`/account/history/${user.current.id}`}>
               <button
                 type="button"
                 className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#3e3e3e]"
