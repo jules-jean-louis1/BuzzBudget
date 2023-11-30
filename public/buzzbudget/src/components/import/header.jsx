@@ -61,9 +61,11 @@ function Header() {
         </nav>
       </header>
       <AsideMenu menuBtn={menuBtn} user={user} />
-      <div className="block md:hidden">
-        <FooterMobile />
-      </div>
+      {user && user.current && user.current.id && (
+        <div className="block md:hidden">
+          <FooterMobile />
+        </div>
+      )}
     </>
   );
 }

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function BtnLogout() {
   const [buttonClicked, setButtonClicked] = useState(false);
+  let navigate = useNavigate();
+
   const logoutSession = async () => {
     try {
       const response = await fetch(
@@ -21,6 +24,7 @@ function BtnLogout() {
     if (buttonClicked) {
       logoutSession();
       setButtonClicked(false);
+      navigate("/");
     }
   }, [buttonClicked]);
 
@@ -31,7 +35,7 @@ function BtnLogout() {
     <>
       <button
         onClick={handleLogout}
-        className="border flex-row justify-center items-center rounded-xl py-4"
+        className="border border-[#5258661f] flex-row justify-center items-center rounded-xl py-3 hover:bg-[#5258661f]"
       >
         <span>Déconnexion</span>
       </button>
