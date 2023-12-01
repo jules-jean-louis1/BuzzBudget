@@ -2,14 +2,20 @@ import { Link } from "react-router-dom";
 import Logout from "../button/btnLogout";
 import HomeSvg from "../svg/homeSvg";
 import LoginRegister from "../button/loginRegister";
+import { useLocation } from "react-router-dom";
 
 const AsideMenu = ({ menuBtn, user }) => {
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/" ? true : false;
   return (
     <>
       <aside
         className={
           menuBtn
-            ? "block h-full top-14 w-64 bg-white z-30 border-r border-[#52586633] fixed left-0 transition-all duration-300 ease-in-out"
+            ? `block h-full top-14 w-64 z-30 border-r border-[#52586633] fixed left-0 transition-all duration-300 ease-in-out ${
+                isHomePage ? "bg-transparent backdrop-blur-lg" : "bg-white"
+              }`
             : "hidden"
         }
       >
