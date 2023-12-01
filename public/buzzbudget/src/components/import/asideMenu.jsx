@@ -8,7 +8,6 @@ const AsideMenu = ({ menuBtn, user }) => {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/" ? true : false;
-  console.log(user);
   return (
     <>
       <aside
@@ -28,7 +27,7 @@ const AsideMenu = ({ menuBtn, user }) => {
                   <div className="flex items-center mb-4">
                     <Link
                       to={`/account/${user.id}`}
-                      className="flex items-center p-0 ml-0.5 font-bold no-underline rounded-lg border-none cursor-pointer text-theme-label-primary bg-theme-bg-secondary typo-callout focus-outline flex items-center no-underline"
+                      className="flex items-center p-0 ml-0.5 font-bold no-underline rounded-lg border-none cursor-pointer text-theme-label-primary bg-theme-bg-secondary"
                     >
                       <div className="object-cover w-8 h-8 rounded-10 relative overflow-hidden">
                         <img
