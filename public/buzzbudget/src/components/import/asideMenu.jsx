@@ -8,6 +8,7 @@ const AsideMenu = ({ menuBtn, user }) => {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/" ? true : false;
+  console.log(user);
   return (
     <>
       <aside
@@ -21,24 +22,24 @@ const AsideMenu = ({ menuBtn, user }) => {
       >
         <div className="flex overflow-x-hidden overflow-y-auto flex-col h-full no-scrollbar">
           <nav className="my-4 mt-10 xl:mt-8">
-            {user && user.current && user.current.id && (
+            {user && user.id && (
               <>
                 <li className="flex flex-col p-6 pt-2">
                   <div className="flex items-center mb-4">
                     <Link
-                      to={`/account/${user.current.id}`}
+                      to={`/account/${user.id}`}
                       className="flex items-center p-0 ml-0.5 font-bold no-underline rounded-lg border-none cursor-pointer text-theme-label-primary bg-theme-bg-secondary typo-callout focus-outline flex items-center no-underline"
                     >
                       <div className="object-cover w-8 h-8 rounded-10 relative overflow-hidden">
                         <img
-                          src={`/public/images/avatars/${user.current.avatar}`}
+                          src={`/public/images/avatars/${user.avatar}`}
                           alt="avatar"
                           className="w-full h-full object-cover rounded-full"
                         />
                       </div>
                     </Link>
                     <div className="flex-1"></div>
-                    <Link to={`/profile/${user.current.id}`}>
+                    <Link to={`/profile/${user.id}`}>
                       <button
                         type="button"
                         className="p-2 rounded-xl hover:bg-[#5258661f]"
@@ -60,15 +61,15 @@ const AsideMenu = ({ menuBtn, user }) => {
                     </Link>
                   </div>
                   <strong className="mb-0.5 typo-callout">
-                    <span>{user.current.firstname}</span>
-                    <span>{user.current.lastname}</span>
+                    <span>{user.firstname}</span>
+                    <span>{user.lastname}</span>
                   </strong>
                   <Logout />
                 </li>
                 <ul className="mt-0 xl:mt-4">
                   <li className="hover:bg-[#DCDDE0] px-4">
                     <Link
-                      to={`/account/${user.current.id}`}
+                      to={`/account/${user.id}`}
                       className="flex w-full h-12"
                     >
                       <button className="flex flex-row items-center justify-between w-full">
@@ -81,7 +82,7 @@ const AsideMenu = ({ menuBtn, user }) => {
                   </li>
                   <li className="hover:bg-[#DCDDE0] px-4">
                     <Link
-                      to={`/account/history/${user.current.id}`}
+                      to={`/account/history/${user.id}`}
                       className="flex w-full h-12"
                     >
                       <button className="flex flex-row items-center justify-between w-full">
@@ -96,7 +97,7 @@ const AsideMenu = ({ menuBtn, user }) => {
                   </li>
                   <li className="hover:bg-[#DCDDE0] px-4">
                     <Link
-                      to={`/profil/${user.current.id}`}
+                      to={`/profil/${user.id}`}
                       className="flex w-full h-12"
                     >
                       <button className="flex flex-row items-center justify-between w-full">
@@ -110,9 +111,13 @@ const AsideMenu = ({ menuBtn, user }) => {
                 </ul>
               </>
             )}
-            {user && user.current === null && (
+            {user === null && (
               <>
-                <LoginRegister />
+                <li className="flex flex-col p-6 pt-2">
+                  <div className="flex items-center mb-4">
+                    <LoginRegister />
+                  </div>
+                </li>
               </>
             )}
           </nav>

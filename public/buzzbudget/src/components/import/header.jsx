@@ -1,11 +1,16 @@
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import FooterMobile from "./footerMobile";
 import AsideMenu from "./asideMenu";
 
 function Header() {
   const storedUser = localStorage.getItem("user_data");
-  const user = useRef(storedUser ? jwtDecode(storedUser) : null);
+  const [user, setUser] = useState(storedUser ? jwtDecode(storedUser) : null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user_data");
+    setUser(storedUser ? jwtDecode(storedUser) : null);
+  }, []);
 
   const [menuBtn, setMenuBtn] = useState(false);
   const handleClicMenu = () => {
@@ -61,7 +66,7 @@ function Header() {
         </nav>
       </header>
       <AsideMenu menuBtn={menuBtn} user={user} />
-      {user && user.current && user.current.id && (
+      {user && user.id && (
         <div className="block md:hidden">
           <FooterMobile />
         </div>
