@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import useCategories from "../hook/useCategories";
+import useTags from "../hook/useTags";
 
 const FormFilter = () => {
   const [filter, setFilter] = useState(false);
   const formRef = useRef();
+  // get categories and tags
+  const { categories, isLoading, reload } = useCategories();
+  const { tags, isLoadingTags, reloadTags } = useTags();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,9 +29,41 @@ const FormFilter = () => {
           </button>
           {filter && (
             <>
-              <div id="filterCategories"></div>
-              <div id="filterTags"></div>
-              <div id="filterDate"></div>
+              <div id="filterCategories">
+                <select name="categories" id="categories">
+                  {isLoading ? (
+                    <option value="">Loading...</option>
+                  ) : (
+                    <>
+                      <option value="">--Choisir une catégorie--</option>
+                      {categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </>
+                  )}
+                </select>
+              </div>
+              <div id="filterTags">
+                <select name="tags" id="tags">
+                  {isLoadingTags ? (
+                    <option value="">Loading...</option>
+                  ) : (
+                    <>
+                      <option value="">--Choisir un tag--</option>
+                      {tags.map((tag) => (
+                        <option key={tag.id} value={tag.id}>
+                          {tag.name}
+                        </option>
+                      ))}
+                    </>
+                  )}
+                </select>
+              </div>
+              <div id="filterDate">
+                <select name="date" id="date"></select>
+              </div>
             </>
           )}
         </div>
