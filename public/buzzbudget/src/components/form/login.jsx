@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import LoginForm from "./loginForm";
 import RegisterForm from "./registerForm";
 
-const Login = () => {
+const Login = ({ successLogin }) => {
   const [display, setDisplay] = useState(false);
   const [text, setText] = useState("");
   const [message_display, setMessage_display] = useState("");
@@ -26,7 +26,7 @@ const Login = () => {
             <div className="px-3">
               <h1 className="text-2xl text-white">Connexion</h1>
             </div>
-            <LoginForm />
+            <LoginForm onDataSuccess={successLogin} />
           </div>
         )}
         {display && (

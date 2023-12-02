@@ -2,7 +2,7 @@ import GenericInput from "./input/genericInput";
 import { useState, useEffect, useRef } from "react";
 import PasswordInput from "./input/passwordInput";
 
-const LoginForm = () => {
+const LoginForm = ({ onDataSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const formRef = useRef();
@@ -24,6 +24,7 @@ const LoginForm = () => {
       if (data.success) {
         const user_token = data.success;
         localStorage.setItem("user_data", user_token.token);
+        onDataSuccess(true);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);

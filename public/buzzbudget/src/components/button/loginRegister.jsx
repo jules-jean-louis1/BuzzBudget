@@ -3,6 +3,14 @@ import ModalLogin from "../modal/modalLogin";
 
 export default function LoginRegister() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [successLogin, setSuccessLoginM] = useState(false);
+
+  const handleSuccessLogin = (success) => {
+    setSuccessLoginM(success);
+    if (successLogin) {
+      setModalOpen(false);
+    }
+  };
 
   return (
     <>
@@ -12,7 +20,12 @@ export default function LoginRegister() {
       >
         Connexion
       </button>
-      {modalOpen && <ModalLogin onClose={() => setModalOpen(false)} />}
+      {modalOpen && (
+        <ModalLogin
+          onClose={() => setModalOpen(false)}
+          successLogin={handleSuccessLogin}
+        />
+      )}
     </>
   );
 }
