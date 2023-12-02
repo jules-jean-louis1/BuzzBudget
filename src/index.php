@@ -97,6 +97,14 @@ $router->map('POST', '/tags/add', function() use ($tags) {
     $tags->add();
 });
 
+/* ############################# 
+        History routes
+############################# */
+
+$router->map('POST', 'history/get/[i:id]/', function($id) use ($transaction) {
+    $transaction->getHistory($id);
+});
+
 
 
 // match current request url

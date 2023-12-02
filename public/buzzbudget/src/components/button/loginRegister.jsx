@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalLogin from "../modal/modalLogin";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginRegister() {
+  let navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
-  const [successLogin, setSuccessLoginM] = useState(false);
+  const [successLogin, setSuccessLogin] = useState(false);
+
+  const storedUser = localStorage.getItem("user_data");
+  const [user, setUser] = useState(storedUser ? jwtDecode(storedUser) : null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user_data");
+    setUser(storedUser ? jwtDecode(storedUser) : null);
+  }, [user]);
 
   const handleSuccessLogin = (success) => {
-    setSuccessLoginM(success);
+    setSuccessLogin(success);
     if (successLogin) {
       setModalOpen(false);
+      setSuccessLogin(false);
+      navigate("/account/${user.id}");
     }
   };
 

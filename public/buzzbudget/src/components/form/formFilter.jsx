@@ -37,8 +37,11 @@ const FormFilter = () => {
                     <>
                       <option value="">--Choisir une catégorie--</option>
                       {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
+                        <option
+                          key={category.id_categories}
+                          value={category.id_categories}
+                        >
+                          {category.name_categories}
                         </option>
                       ))}
                     </>
@@ -53,8 +56,8 @@ const FormFilter = () => {
                     <>
                       <option value="">--Choisir un tag--</option>
                       {tags.map((tag) => (
-                        <option key={tag.id} value={tag.id}>
-                          {tag.name}
+                        <option key={tag.id_tags} value={tag.id_tags}>
+                          {tag.name_tags}
                         </option>
                       ))}
                     </>
@@ -62,7 +65,7 @@ const FormFilter = () => {
                 </select>
               </div>
               <div id="filterDate">
-                <select name="date" id="date"></select>
+                <input type="date" name="date" id="date" />
               </div>
             </>
           )}

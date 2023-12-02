@@ -74,4 +74,8 @@ class TransactionController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    public function getHistory(int $id): void
+    {
+        
+    }
 }
