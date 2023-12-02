@@ -76,6 +76,22 @@ class TransactionController extends AbstractClasses\AbstractContoller
     }
     public function getHistory(int $id): void
     {
-        
+        $search = $_POST['search'];
+        $categories = $_POST['categories'];
+        $tags = $_POST['tags'];
+        $date = $_POST['date'];
+        $paymentMethod = $_POST['paymentMethod'];
+
+        $transaction = new TransactionModel();
+        $user = $_SESSION['user'];
+        $id_users = $user->getId();
+
+        if ($id_users === $id) {
+            $transactions = $transaction->getHistory($id, $search, $categories, $tags, $date, $paymentMethod);
+            echo json_encode($transactions);
+        } else {
+            echo json_encode('Vous n\'avez pas accès à ces transactions');
+        }
+
     }
 }

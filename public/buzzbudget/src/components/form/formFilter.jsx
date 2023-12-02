@@ -18,8 +18,8 @@ const FormFilter = () => {
         <div id="containerInputAuto">
           <input
             type="text"
-            name="autoComplete"
-            id="autoComplete"
+            name="search"
+            id="search"
             placeholder="Rechercher..."
           />
         </div>
@@ -66,6 +66,25 @@ const FormFilter = () => {
               </div>
               <div id="filterDate">
                 <input type="date" name="date" id="date" />
+              </div>
+              <div id="containerMethode">
+                <label
+                  htmlFor="paymentMethod"
+                  className="text-[#8E8E92] absolute"
+                >
+                  Méthode de paiement
+                </label>
+                <select
+                  name="paymentMethod"
+                  id="paymentMethod"
+                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                >
+                  <option value="n/a">Non défini</option>
+                  <option value="carte">Carte</option>
+                  <option value="espece">Espèces</option>
+                  <option value="cheque">Chèque</option>
+                  <option value="virement">Virement</option>
+                </select>
               </div>
             </>
           )}
