@@ -35,7 +35,7 @@ const FormFilter = () => {
                     <option value="">Loading...</option>
                   ) : (
                     <>
-                      <option value="">--Choisir une catégorie--</option>
+                      <option value="all">--Choisir une catégorie--</option>
                       {categories.map((category) => (
                         <option
                           key={category.id_categories}
@@ -54,7 +54,7 @@ const FormFilter = () => {
                     <option value="">Loading...</option>
                   ) : (
                     <>
-                      <option value="">--Choisir un tag--</option>
+                      <option value="all">--Choisir un tag--</option>
                       {tags.map((tag) => (
                         <option key={tag.id_tags} value={tag.id_tags}>
                           {tag.name_tags}
@@ -84,6 +84,19 @@ const FormFilter = () => {
                   <option value="espece">Espèces</option>
                   <option value="cheque">Chèque</option>
                   <option value="virement">Virement</option>
+                </select>
+              </div>
+              <div id="containerOrder">
+                <label htmlFor="order" className="text-[#8E8E92] absolute">
+                  Ordre
+                </label>
+                <select
+                  name="order"
+                  id="order"
+                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                >
+                  <option value="asc">Croissant</option>
+                  <option value="desc">Décroissant</option>
                 </select>
               </div>
             </>

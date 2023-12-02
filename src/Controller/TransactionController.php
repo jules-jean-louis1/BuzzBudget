@@ -81,13 +81,14 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $tags = $_POST['tags'];
         $date = $_POST['date'];
         $paymentMethod = $_POST['paymentMethod'];
+        $order = $_POST['order'];
 
         $transaction = new TransactionModel();
         $user = $_SESSION['user'];
         $id_users = $user->getId();
 
         if ($id_users === $id) {
-            $transactions = $transaction->getHistory($id, $search, $categories, $tags, $date, $paymentMethod);
+            $transactions = $transaction->getHistory($search, $categories, $tags, $date, $paymentMethod, $order, $id);
             echo json_encode($transactions);
         } else {
             echo json_encode('Vous n\'avez pas accès à ces transactions');
