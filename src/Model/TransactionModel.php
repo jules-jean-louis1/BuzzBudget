@@ -63,6 +63,8 @@ class TransactionModel extends AbstractDatabase
         if ($categories !== '') {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM categories_transaction WHERE categories_id = :categories)';
         }
+
+        
     }
 
 }
