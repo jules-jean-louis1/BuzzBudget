@@ -101,7 +101,7 @@ $router->map('POST', '/tags/add', function() use ($tags) {
         History routes
 ############################# */
 
-$router->map('POST', 'history/get/[i:id]/', function($id) use ($transaction) {
+$router->map('POST', 'history/get/filter/[i:id]', function($id) use ($transaction) {
     $transaction->getHistory($id);
 });
 

@@ -52,7 +52,7 @@ class TransactionModel extends AbstractDatabase
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getHistory(?string $search, ?string $categories, ?array $tags, ?string $date, ?string $paymentMethod, ?string $order, int $id): array
+    public function getHistory(?string $search, ?string $categories, ?array $tags, ?string $date, ?string $paymentMethod, ?string $order, int $id)
     {
         $sql = 'SELECT * FROM transaction WHERE users_id = :id';
         $bdd = $this->getBdd();
@@ -63,8 +63,42 @@ class TransactionModel extends AbstractDatabase
         if ($categories !== '') {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM categories_transaction WHERE categories_id = :categories)';
         }
+        if ($tags !== '') {
+            $sql .= ' AND id_transaction IN (SELECT transaction_id FROM tags_transaction WHERE tags_id = :tags)';
+        }
+        if ($date !== '') {
+            $sql .= ' AND date_of_transaction = :date';
+        }
+        if ($paymentMethod !== '') {
+            $sql .= ' AND payment_method = :paymentMethod';
+        }
+        if ($order !== '') {
+            $sql .= ' ORDER BY date_of_transaction ' . $order;
+        }
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        if ($search !== '') {
+            $search = '%' . $search . '%';
+            $req->bindParam(':search', $search, \PDO::PARAM_STR);
+        }
+        if ($categories !== '') {
+            $req->bindParam(':categories', $categories, \PDO::PARAM_INT);
+        }
+        if ($tags !== '') {
+            $req->bindParam(':tags', $tags, \PDO::PARAM_INT);
+        }
+        if ($date !== '') {
+            $req->bindParam(':date', $date, \PDO::PARAM_STR);
+        }
+        if ($paymentMethod !== '') {
+            $req->bindParam(':paymentMethod', $paymentMethod, \PDO::PARAM_STR);
+        }
+        var_dump($sql);
+        var_dump($req);
+        /* $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC); */
 
-        
+
     }
 
 }
