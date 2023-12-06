@@ -31,6 +31,9 @@ const FormFilter = () => {
     }
   };
 
+  const handleChangeSearch = (e) => {
+    console.log(e.target.value);
+  };
   const handleChangeCat = (e) => {
     console.log(e.target.value);
   };
@@ -56,11 +59,7 @@ const FormFilter = () => {
             name="search"
             id="search"
             placeholder="Rechercher..."
-            onKeyUp={(e) => {
-              if (e.target.value.length > 2) {
-                console.log(e.target.value);
-              }
-            }}
+            onKeyUp={handleChangeSearch}
           />
           <button type="button" onClick={() => setFilter(!filter)}>
             Filter
