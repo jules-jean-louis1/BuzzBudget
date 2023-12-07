@@ -171,8 +171,8 @@ const FormFilter = ({ onData }) => {
                     className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
                     onChange={handleChangeOrder}
                   >
-                    <option value="asc">Croissant</option>
-                    <option value="desc">Décroissant</option>
+                    <option value="ASC">Croissant</option>
+                    <option value="DESC">Décroissant</option>
                   </select>
                 </div>
               </>

@@ -77,12 +77,12 @@ class TransactionController extends AbstractClasses\AbstractContoller
     public function getHistory(string $id): void
     {
 
-        $search = $_POST['search'] ?? null;
-        $categories = $_POST['categories'] ?? null;
-        $tags = $_POST['tags'] ?? null;
-        $date = $_POST['date'] ?? null;
-        $paymentMethod = $_POST['paymentMethod'] ?? null;
-        $order = $_POST['order'] ?? null;
+        $search = isset($_POST['search']) ? $_POST['search'] : '';
+        $categories = isset($_POST['categories']) ? $_POST['categories'] : '';
+        $tags = isset($_POST['tags']) ? $_POST['tags'] : '';
+        $date = isset($_POST['date']) ? $_POST['date'] : '';
+        $paymentMethod = isset($_POST['paymentMethod']) ? $_POST['paymentMethod'] : '';
+        $order = isset($_POST['order']) ? $_POST['order'] : '';
 
         $transaction = new TransactionModel();
         $user = $_SESSION['user'];
