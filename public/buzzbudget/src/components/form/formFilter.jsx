@@ -3,7 +3,7 @@ import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
 import { jwtDecode } from "jwt-decode";
 
-const FormFilter = () => {
+const FormFilter = ({ onData }) => {
   const [search, setSearch] = useState("");
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedTag, setSelectedTag] = useState(null);
@@ -33,6 +33,11 @@ const FormFilter = () => {
       );
       const data = await response.json();
       console.log(data);
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        onData(data);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }

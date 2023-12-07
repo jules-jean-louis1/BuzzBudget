@@ -92,7 +92,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
             $transactions = $transaction->getHistory($search, $categories, $tags, $date, $paymentMethod, $order, $id_users);
             echo json_encode($transactions);
         } else {
-            echo json_encode('Vous n\'avez pas accès à ces transactions');
+            echo json_encode(['error' => 'Vous n\'avez pas accès à ces transactions']);
         }
 
     }
