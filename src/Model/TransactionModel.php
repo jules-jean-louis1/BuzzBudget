@@ -56,23 +56,25 @@ class TransactionModel extends AbstractDatabase
     {
         $sql = 'SELECT * FROM transaction WHERE users_id = :id';
         $bdd = $this->getBdd();
-
+        var_dump($search, $categories, $tags, $date, $paymentMethod, $order);
         if ($search !== '') {
             $sql .= ' AND name_transaction LIKE :search';
         }
-        if ($categories !== '') {
+        if ($categories !== null) {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM categories_transaction WHERE categories_id = :categories)';
         }
-        if ($tags !== '') {
+        if ($tags !== null) {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM tags_transaction WHERE tags_id = :tags)';
         }
-        if ($date !== '') {
+        if ($date !== null) {
             $sql .= ' AND date_of_transaction = :date';
         }
-        if ($paymentMethod !== '') {
+        if ($paymentMethod !== null) {
             $sql .= ' AND payment_method = :paymentMethod';
         }
-        if ($order !== '') {
+        if ($order === null) {
+            $sql .= ' ORDER BY date_of_transaction ' . 'DESC';
+        }elseif ($order !== null) {
             $sql .= ' ORDER BY date_of_transaction ' . $order;
         }
         $req = $bdd->prepare($sql);
@@ -81,20 +83,19 @@ class TransactionModel extends AbstractDatabase
             $search = '%' . $search . '%';
             $req->bindParam(':search', $search, \PDO::PARAM_STR);
         }
-        if ($categories !== '') {
+        if ($categories !== null) {
             $req->bindParam(':categories', $categories, \PDO::PARAM_INT);
         }
-        if ($tags !== '') {
+        if ($tags !== null) {
             $req->bindParam(':tags', $tags, \PDO::PARAM_INT);
         }
-        if ($date !== '') {
+        if ($date !== null) {
             $req->bindParam(':date', $date, \PDO::PARAM_STR);
         }
-        if ($paymentMethod !== '') {
+        if ($paymentMethod !== null) {
             $req->bindParam(':paymentMethod', $paymentMethod, \PDO::PARAM_STR);
         }
         var_dump($sql);
-        var_dump($req);
         /* $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC); */
 
