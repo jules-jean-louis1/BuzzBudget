@@ -52,11 +52,11 @@ class TransactionModel extends AbstractDatabase
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getHistory(?string $search, ?string $categories, ?array $tags, ?string $date, ?string $paymentMethod, ?string $order, int $id)
+    public function getHistory(?string $search, ?string $categories, ?array $tags, ?string $date, ?string $paymentMethod, ?string $order, int $id): array
     {
         $sql = 'SELECT * FROM transaction WHERE users_id = :id';
         $bdd = $this->getBdd();
-        var_dump($search, $categories, $tags, $date, $paymentMethod, $order);
+        
         if ($search !== '') {
             $sql .= ' AND name_transaction LIKE :search';
         }
@@ -95,11 +95,8 @@ class TransactionModel extends AbstractDatabase
         if ($paymentMethod !== null) {
             $req->bindParam(':paymentMethod', $paymentMethod, \PDO::PARAM_STR);
         }
-        var_dump($sql);
-        /* $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC); */
-
-
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
