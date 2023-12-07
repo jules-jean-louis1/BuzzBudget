@@ -4,8 +4,13 @@ import useTags from "../hook/useTags";
 import { jwtDecode } from "jwt-decode";
 
 const FormFilter = () => {
-  const [search, setSearch] = useState(""); // [1]
-  const [selectedCat, setSelectedCat] = useState(null); // [1]
+  const [search, setSearch] = useState("");
+  const [selectedCat, setSelectedCat] = useState(null);
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
   const [filter, setFilter] = useState(false);
   const formRef = useRef();
 
@@ -35,7 +40,14 @@ const FormFilter = () => {
 
   useEffect(() => {
     fetchData();
-  }, [search, selectedCat]);
+  }, [
+    search,
+    selectedCat,
+    selectedTag,
+    selectedDate,
+    selectedPaymentMethod,
+    selectedOrder,
+  ]);
 
   const handleChangeSearch = (e) => {
     if (e.target.value.length > 2) {
@@ -46,16 +58,16 @@ const FormFilter = () => {
     setSelectedCat(e.target.value);
   };
   const handleChangeTag = (e) => {
-    console.log(e.target.value);
+    setSelectedTag(e.target.value);
   };
   const handleChangeDate = (e) => {
-    console.log(e.target.value);
+    setSelectedDate(e.target.value);
   };
   const handleChangePaymentMethod = (e) => {
-    console.log(e.target.value);
+    setSelectedPaymentMethod(e.target.value);
   };
   const handleChangeOrder = (e) => {
-    console.log(e.target.value);
+    setSelectedOrder(e.target.value);
   };
 
   return (
