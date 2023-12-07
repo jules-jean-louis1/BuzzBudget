@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
 import { jwtDecode } from "jwt-decode";
+import SearchSvg from "../svg/searchSvg";
 
 const FormFilter = ({ onData }) => {
   const [search, setSearch] = useState("");
@@ -55,7 +56,7 @@ const FormFilter = ({ onData }) => {
   ]);
 
   const handleChangeSearch = (e) => {
-    if (e.target.value.length > 2) {
+    if (e.target.value.length >= 2) {
       setSearch(e.target.value);
     }
   };
@@ -78,15 +79,28 @@ const FormFilter = ({ onData }) => {
   return (
     <>
       <form ref={formRef} action="" method="post">
-        <div id="containerInputAuto" className="flex">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Rechercher..."
-            onKeyUp={handleChangeSearch}
-          />
-          <button type="button" onClick={() => setFilter(!filter)}>
+        <div
+          id="containerInputAuto"
+          className="flex items-center justify-between"
+        >
+          <div className="flex items-center rounded-lg p-2 bg-[#e0e4ec]">
+            <span>
+              <SearchSvg stroke={"#525866"} />
+            </span>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Rechercher..."
+              onKeyUp={handleChangeSearch}
+              className="bg-[#e0e4ec] text-[#525866] outline-none ml-2"
+            />
+          </div>
+          <button
+            type="button"
+            className="bg-[#e0e4ec] rounded-lg p-2 font-semibold text-[#525866]"
+            onClick={() => setFilter(!filter)}
+          >
             Filter
           </button>
         </div>

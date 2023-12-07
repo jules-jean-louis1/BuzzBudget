@@ -48,7 +48,7 @@ class TransactionModel extends AbstractDatabase
     public function getLast5Transaction(int $id): array
     {
         $req = $this->getBdd()->prepare('SELECT * FROM transaction WHERE users_id = :id ORDER BY created_at DESC LIMIT 5');
-        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -56,21 +56,20 @@ class TransactionModel extends AbstractDatabase
     {
         $sql = 'SELECT * FROM transaction WHERE users_id = :id';
         $bdd = $this->getBdd();
-
-        var_dump($search, $categories, $tags, $date, $paymentMethod, $order);
+        //var_dump($search, $categories, $tags, $date, $paymentMethod, $order);
         if ($search !== '') {
             $sql .= ' AND name_transaction LIKE :search';
         }
-        if ($categories !== 'all') {
+        if ($categories !== 'all' && $categories !== '') {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM categories_transaction WHERE id_categories_transaction = :categories)';
         }
-        if ($tags !== 'all') {
+        if ($tags !== 'all' && $tags !== '') {
             $sql .= ' AND id_transaction IN (SELECT transaction_id FROM tags_transaction WHERE id_tags_transaction = :tags)';
         }
         if ($date !== '') {
             $sql .= ' AND date_of_transaction = :date';
         }
-        if ($paymentMethod !== 'n/a') {
+        if ($paymentMethod !== 'n/a' && $paymentMethod !== '') {
             $sql .= ' AND payment_method = :paymentMethod';
         }
         if ($order === 'DESC') {
@@ -78,23 +77,23 @@ class TransactionModel extends AbstractDatabase
         }elseif ($order === 'ASC') {
             $sql .= ' ORDER BY date_of_transaction ' . 'ASC';
         }
-        var_dump($sql);
+        //var_dump($sql);
         $req = $bdd->prepare($sql);
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         if ($search !== '') {
             $search = '%' . $search . '%';
             $req->bindParam(':search', $search, PDO::PARAM_STR);
         }
-        if ($categories !== 'all') {
+        if ($categories !== 'all' && $categories !== '') {
             $req->bindParam(':categories', $categories, PDO::PARAM_INT);
         }
-        if ($tags !== 'all') {
+        if ($tags !== 'all' && $tags !== '') {
             $req->bindParam(':tags', $tags, PDO::PARAM_INT);
         }
         if ($date !== '') {
             $req->bindParam(':date', $date, PDO::PARAM_STR);
         }
-        if ($paymentMethod !== 'n/a') {
+        if ($paymentMethod !== 'n/a' && $paymentMethod !== '') {
             $req->bindParam(':paymentMethod', $paymentMethod, PDO::PARAM_STR);
         }
         $req->execute();
