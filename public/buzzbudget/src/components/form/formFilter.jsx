@@ -4,6 +4,8 @@ import useTags from "../hook/useTags";
 import { jwtDecode } from "jwt-decode";
 
 const FormFilter = () => {
+  const [search, setSearch] = useState(""); // [1]
+  const [selectedCat, setSelectedCat] = useState(null); // [1]
   const [filter, setFilter] = useState(false);
   const formRef = useRef();
 
@@ -31,11 +33,17 @@ const FormFilter = () => {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, [search, selectedCat]);
+
   const handleChangeSearch = (e) => {
-    console.log(e.target.value);
+    if (e.target.value.length > 2) {
+      setSearch(e.target.value);
+    }
   };
   const handleChangeCat = (e) => {
-    console.log(e.target.value);
+    setSelectedCat(e.target.value);
   };
   const handleChangeTag = (e) => {
     console.log(e.target.value);

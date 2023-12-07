@@ -74,9 +74,11 @@ class TransactionController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
-    public function getHistory(int $id): void
+    public function getHistory(string $id): void
     {
-        $search = $_POST['search'];
+        var_dump($_POST);
+        var_dump($id);
+        /* $search = $_POST['search'];
         $categories = $_POST['categories'];
         $tags = $_POST['tags'];
         $date = $_POST['date'];
@@ -92,7 +94,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
             //echo json_encode($transactions);
         } else {
             echo json_encode('Vous n\'avez pas accès à ces transactions');
-        }
+        } */
 
     }
 }
