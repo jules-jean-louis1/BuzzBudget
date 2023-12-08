@@ -3,6 +3,7 @@ import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
 import { jwtDecode } from "jwt-decode";
 import SearchSvg from "../svg/searchSvg";
+import FilterSvg from "../svg/filterSvg";
 
 const FormFilter = ({ onData }) => {
   const [search, setSearch] = useState("");
@@ -81,9 +82,9 @@ const FormFilter = ({ onData }) => {
       <form ref={formRef} action="" method="post">
         <div
           id="containerInputAuto"
-          className="flex items-center justify-between"
+          className="flex items-center justify-between space-x-2 py-2"
         >
-          <div className="flex items-center rounded-lg p-2 bg-[#ECECF1]">
+          <div className="flex items-center rounded-lg p-2 bg-[#e0e4ec] hover:bg-[#DADEE5] w-full h-12">
             <span>
               <SearchSvg stroke={"#525866"} />
             </span>
@@ -93,15 +94,18 @@ const FormFilter = ({ onData }) => {
               id="search"
               placeholder="Rechercher..."
               onKeyUp={handleChangeSearch}
-              className="bg-[#ECECF1] text-[#525866] outline-none ml-2"
+              className="bg-transparent text-[#525866] outline-none ml-2"
             />
           </div>
           <button
             type="button"
-            className="bg-[#e0e4ec] rounded-lg p-2 font-semibold text-[#525866]"
+            className="bg-[#e0e4ec] rounded-lg p-2 font-semibold text-[#525866] flex items-center justify-between h-12"
             onClick={() => setFilter(!filter)}
           >
-            Filter
+            <span>Filter</span>
+            <span>
+              <FilterSvg fill={"#525866"} />
+            </span>
           </button>
         </div>
         <div id="optionFilter">
