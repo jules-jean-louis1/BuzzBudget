@@ -10,7 +10,7 @@ const HistoryPage = () => {
   };
 
   return (
-    <div className="h-screen bg-yellow-300">
+    <div className="h-screen bg-[f2f2f6]">
       <div className="pt-14">
         <h1 className="text-2xl uppercase font-black">History Page</h1>
         <div id="contianerHistory">
