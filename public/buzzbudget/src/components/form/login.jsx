@@ -26,7 +26,7 @@ const Login = ({ successLogin }) => {
             <div className="px-3">
               <h1 className="text-2xl text-white">Connexion</h1>
             </div>
-            <LoginForm onDataSuccess={successLogin} />
+            <LoginForm successLogin={successLogin} />
           </div>
         )}
         {display && (

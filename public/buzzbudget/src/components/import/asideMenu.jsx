@@ -5,15 +5,11 @@ import LoginRegister from "../button/loginRegister";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const AsideMenu = ({ menuBtn, user, userStatus }) => {
+const AsideMenu = ({ menuBtn, user, userStatus, successLogin }) => {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/" ? true : false;
 
-  useEffect(() => {
-    console.log("User has changed", user);
-  }, [user]);
-  console.log("User", user);
   return (
     <>
       <aside
@@ -120,7 +116,7 @@ const AsideMenu = ({ menuBtn, user, userStatus }) => {
               <>
                 <li className="flex flex-col p-6 pt-2">
                   <div className="flex items-center mb-4">
-                    <LoginRegister />
+                    <LoginRegister successLogin={successLogin} />
                   </div>
                 </li>
               </>
