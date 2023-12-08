@@ -81,7 +81,7 @@ function Header() {
       />
       {user && user.id && (
         <div className="block md:hidden">
-          <FooterMobile />
+          <FooterMobile user={user} />
         </div>
       )}
     </>

@@ -16,15 +16,19 @@ export default function LoginRegister({ successLogin }) {
     setUser(storedUser ? jwtDecode(storedUser) : null);
   }, [success]);
 
-  console.log(user);
   const handleSuccessLogin = (success) => {
     if (success) {
       setModalOpen(false);
       successLogin(true);
       setSuccess(true);
-      navigate(`/account/${user.id}`);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(`/account/${user.id}`);
+    }
+  }, [user]);
 
   return (
     <>
