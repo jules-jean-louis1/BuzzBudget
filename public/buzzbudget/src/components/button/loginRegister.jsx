@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 export default function LoginRegister({ successLogin }) {
   let navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const storedUser = localStorage.getItem("user_data");
   const [user, setUser] = useState(storedUser ? jwtDecode(storedUser) : null);
@@ -13,12 +14,14 @@ export default function LoginRegister({ successLogin }) {
   useEffect(() => {
     const storedUser = localStorage.getItem("user_data");
     setUser(storedUser ? jwtDecode(storedUser) : null);
-  }, [user]);
+  }, [success]);
 
+  console.log(user);
   const handleSuccessLogin = (success) => {
     if (success) {
       setModalOpen(false);
       successLogin(true);
+      setSuccess(true);
       navigate(`/account/${user.id}`);
     }
   };

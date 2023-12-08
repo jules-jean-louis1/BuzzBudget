@@ -11,7 +11,7 @@ function Header() {
   useEffect(() => {
     const storedUser = localStorage.getItem("user_data");
     setUser(storedUser ? jwtDecode(storedUser) : null);
-  }, [user, login]);
+  }, [login]);
 
   const [menuBtn, setMenuBtn] = useState(false);
   const handleClicMenu = () => {
