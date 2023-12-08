@@ -3,11 +3,17 @@ import Logout from "../button/btnLogout";
 import HomeSvg from "../svg/homeSvg";
 import LoginRegister from "../button/loginRegister";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-const AsideMenu = ({ menuBtn, user }) => {
+const AsideMenu = ({ menuBtn, user, userStatus }) => {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/" ? true : false;
+
+  useEffect(() => {
+    console.log("User has changed", user);
+  }, [user]);
+  console.log("User", user);
   return (
     <>
       <aside
@@ -63,7 +69,7 @@ const AsideMenu = ({ menuBtn, user }) => {
                     <span>{user.firstname}</span>
                     <span>{user.lastname}</span>
                   </strong>
-                  <Logout />
+                  <Logout userStatus={userStatus} />
                 </li>
                 <ul className="mt-0 xl:mt-4">
                   <li className="hover:bg-[#DCDDE0] px-4">

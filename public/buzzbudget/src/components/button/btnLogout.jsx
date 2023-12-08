@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function BtnLogout() {
+function BtnLogout({ userStatus }) {
   const [buttonClicked, setButtonClicked] = useState(false);
   let navigate = useNavigate();
 
@@ -14,6 +14,7 @@ function BtnLogout() {
       console.log(data);
       if (data.success) {
         localStorage.removeItem("user_data");
+        userStatus(null);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);

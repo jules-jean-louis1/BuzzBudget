@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import FooterMobile from "./footerMobile";
+import { useLocation } from "react-router-dom";
 import AsideMenu from "./asideMenu";
 
 function Header() {
   const storedUser = localStorage.getItem("user_data");
   const [user, setUser] = useState(storedUser ? jwtDecode(storedUser) : null);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/" ? true : false;
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user_data");
@@ -15,6 +18,10 @@ function Header() {
   const [menuBtn, setMenuBtn] = useState(false);
   const handleClicMenu = () => {
     setMenuBtn(!menuBtn);
+  };
+
+  const handleChangeUser = () => {
+    setUser(null);
   };
   return (
     <>
@@ -65,7 +72,7 @@ function Header() {
           </div>
         </nav>
       </header>
-      <AsideMenu menuBtn={menuBtn} user={user} />
+      <AsideMenu menuBtn={menuBtn} user={user} userStatus={handleChangeUser} />
       {user && user.id && (
         <div className="block md:hidden">
           <FooterMobile />
