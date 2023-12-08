@@ -61,15 +61,17 @@ function AccountPage() {
     if (account && transactions) {
       return (
         <>
-          <div className=" rounded-xl bg-[#e9e9e9]">
+          <div className=" rounded-xl bg-[#edf0f7]">
             <div
               id="totalAccount"
               className="flex items-center justify-between px-2 w-full min-h-16 h-16"
             >
-              <span className="text-xl text-[#222222]">Compte</span>
-              <span className="text-xl text-[#222222]">{account.total} €</span>
+              <span className="text-xl text-[#222222]">Solde</span>
+              <span className="text-xl text-[#222222] font-bold">
+                {account.total} €
+              </span>
             </div>
-            <div id="trancation" className="rounded-xl mx-2 bg-[#b9b9b9]">
+            <div id="trancation" className="rounded-xl mx-2 bg-[#e0e4ec]">
               {transactions.map((transaction) => (
                 <div
                   key={transaction.id_transaction}
@@ -97,9 +99,12 @@ function AccountPage() {
 
   return (
     <>
-      <div className="pt-12 bg-[#f8f8f8] h-full w-full px-2">
-        <div>
-          <p className="text-2xl font-bold">Welcome {user.current.firstname}</p>
+      <div className="pt-12 bg-[#f2f2f6] h-full w-full px-2">
+        <div className="px-2 py-3">
+          <p className="text-2xl font-bold flex space-x-2">
+            <span>Bonjour</span>
+            <span>{user.current.firstname}</span>
+          </p>
         </div>
         <div className="flex flex-col space-y-4">
           <div id="containerRecapAccount">
@@ -112,9 +117,9 @@ function AccountPage() {
             <Link to={`/account/history/${user.current.id}`}>
               <button
                 type="button"
-                className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#3e3e3e]"
+                className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#ced1da]"
               >
-                <span className="text-xl text-[#f8f8f8]">Historiques</span>
+                <span className="text-xl text-[#222222]">Historiques</span>
                 <span className="bg-[#222222] rounded-full p-3">
                   <HistorySvg fill={"none"} stroke={"#f8f8f8"} />
                 </span>
