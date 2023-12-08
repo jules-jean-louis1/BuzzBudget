@@ -36,7 +36,10 @@ const HistoryList = ({ items }) => {
                   {buttons[item.id_transaction] && (
                     <>
                       <div className="w-full text-slate-500 bg-white pb-2 rounded-b-xl px-2">
-                        <div className="flex items-center justify-between text-sm">
+                        <div
+                          className="flex items-center justify-between text-sm"
+                          id="date"
+                        >
                           <p>Date</p>
                           <p>
                             <FormattedDate
@@ -44,7 +47,10 @@ const HistoryList = ({ items }) => {
                             />
                           </p>
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div
+                          className="flex items-center justify-between text-sm"
+                          id="type"
+                        >
                           <p>Type</p>
                           <p>{item.type_of_transaction}</p>
                         </div>
