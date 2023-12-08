@@ -83,7 +83,7 @@ const FormFilter = ({ onData }) => {
           id="containerInputAuto"
           className="flex items-center justify-between"
         >
-          <div className="flex items-center rounded-lg p-2 bg-[#e0e4ec]">
+          <div className="flex items-center rounded-lg p-2 bg-[#ECECF1]">
             <span>
               <SearchSvg stroke={"#525866"} />
             </span>
@@ -93,7 +93,7 @@ const FormFilter = ({ onData }) => {
               id="search"
               placeholder="Rechercher..."
               onKeyUp={handleChangeSearch}
-              className="bg-[#e0e4ec] text-[#525866] outline-none ml-2"
+              className="bg-[#ECECF1] text-[#525866] outline-none ml-2"
             />
           </div>
           <button

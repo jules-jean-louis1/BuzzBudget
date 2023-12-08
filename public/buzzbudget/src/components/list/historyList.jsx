@@ -18,9 +18,9 @@ const HistoryList = ({ items }) => {
                       [item.id_transaction]: !buttons[item.id_transaction],
                     })
                   }
-                  className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#3e3e3e]"
+                  className="flex items-center justify-between px-2 rounded-xl w-full min-h-16 h-16 bg-[#FFFFFF] border border-[#5258661f]"
                 >
-                  <span className="text-xl text-[#f8f8f8]">
+                  <span className="text-xl text-black">
                     {item.name_transaction}
                   </span>
                   <span
@@ -35,19 +35,18 @@ const HistoryList = ({ items }) => {
                 <div id="containerDetailTransaction">
                   {buttons[item.id_transaction] && (
                     <>
-                      <div className="w-full">
-                        <p className="text-xl font-bold">Détails</p>
-                        <div className="flex items-center justify-between">
-                          <p className="text-lg">Date</p>
-                          <p className="text-lg">
+                      <div className="w-full text-slate-500 bg-white pb-2 rounded-b-xl px-2">
+                        <div className="flex items-center justify-between text-sm">
+                          <p>Date</p>
+                          <p>
                             <FormattedDate
                               dateString={item.date_of_transaction}
                             />
                           </p>
                         </div>
-                        <div className="flex items-center justify-between">
-                          <p className="text-lg">Type</p>
-                          <p className="text-lg">{item.type_of_transaction}</p>
+                        <div className="flex items-center justify-between text-sm">
+                          <p>Type</p>
+                          <p>{item.type_of_transaction}</p>
                         </div>
                       </div>
                     </>
