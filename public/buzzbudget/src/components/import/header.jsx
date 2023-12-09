@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import FooterMobile from "./footerMobile";
 import AsideMenu from "./asideMenu";
+import { useLocation } from "react-router-dom";
 
 function Header() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/" ? true : false;
   const storedUser = localStorage.getItem("user_data");
   const [user, setUser] = useState(storedUser ? jwtDecode(storedUser) : null);
   const [login, setLogin] = useState(false);
@@ -53,7 +56,9 @@ function Header() {
               </button>
             </div>
             <div>
-              <h1>BuzzBudget</h1>
+              <h1 className={isHomePage ? "text-white" : "text-black"}>
+                BuzzBudget
+              </h1>
             </div>
             <div className="hidden">
               <svg

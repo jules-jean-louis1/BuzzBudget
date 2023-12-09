@@ -3,11 +3,11 @@ import Logout from "../button/btnLogout";
 import HomeSvg from "../svg/homeSvg";
 import LoginRegister from "../button/loginRegister";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import UserSvg from "../svg/userSvg";
+import HistorySvg from "../svg/historySvg";
 
 const AsideMenu = ({ menuBtn, user, userStatus, successLogin }) => {
   const location = useLocation();
-
   const isHomePage = location.pathname === "/" ? true : false;
 
   return (
@@ -88,7 +88,11 @@ const AsideMenu = ({ menuBtn, user, userStatus, successLogin }) => {
                     >
                       <button className="flex flex-row items-center justify-between w-full">
                         <span className="text-lg text-[#525866]">
-                          <HomeSvg className={"w-7 h-7"} stroke={"#525866"} />
+                          <HistorySvg
+                            className={"w-7 h-7"}
+                            stroke={"#525866"}
+                            fill={"none"}
+                          />
                         </span>
                         <span className="text-lg text-[#525866]">
                           Historique
@@ -103,7 +107,7 @@ const AsideMenu = ({ menuBtn, user, userStatus, successLogin }) => {
                     >
                       <button className="flex flex-row items-center justify-between w-full">
                         <span className="text-lg text-[#525866]">
-                          <HomeSvg className={"w-7 h-7"} stroke={"#525866"} />
+                          <UserSvg className={"w-7 h-7"} stroke={"#525866"} />
                         </span>
                         <span className="text-lg text-[#525866]">Profil</span>
                       </button>
