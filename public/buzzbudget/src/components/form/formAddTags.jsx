@@ -47,8 +47,7 @@ function FormAddTags({ onSuccessChange }) {
   }, [buttonClicked]);
 
   return (
-    <div>
-      <h1>Add Categories</h1>
+    <>
       <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
         <GenericInput
           label={"Nom du tags"}
@@ -59,11 +58,15 @@ function FormAddTags({ onSuccessChange }) {
           error={error}
           onChange={(e) => setTags(e.target.value)}
         />
-        <button type="submit" className="w-full rounded-xl border">
+        <button
+          type="submit"
+          style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
+          className="w-full rounded-xl border p-3 text-slate-50 font-semibold text-xl mt-2"
+        >
           Ajouter
         </button>
       </form>
-    </div>
+    </>
   );
 }
 export default FormAddTags;

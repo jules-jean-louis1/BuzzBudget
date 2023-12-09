@@ -2,6 +2,7 @@ import FormAddTags from "../form/formAddTags";
 import useTags from "../hook/useTags";
 import TagsList from "../list/tagsList";
 import { useState, useEffect } from "react";
+import CloseSvg from "../svg/closeSvg";
 
 function ModalTags({ onClose }) {
   const { tags, reloadTags } = useTags();
@@ -18,34 +19,27 @@ function ModalTags({ onClose }) {
 
   return (
     <>
-      <div className="fixed w-screen h-screen left-0 top-0 bg-[#141414]">
+      <div className="fixed w-screen max-h-[calc(100vh-2.5rem)] h-[40rem] md:max-h-[calc(100vh-5rem)] left-0 bottom-0 bg-[#edf0f7] rounded-t-2xl border border-[#52586666]">
         <div className="modal-content h-full">
-          <div className="flex justify-between">
+          <div className="border-b border-[#52586666] flex justify-between items-center py-4 px-4 w-full h-14">
+            <h2 className="text-2xl font-bold text-black">Gérer les tags</h2>
             <button
               type="button"
               className="px-3 rounded-full"
               onClick={onClose}
             >
-              <span className="close">
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-7 h-7 pointer-events-none"
-                >
-                  <path
-                    d="M16.804 6.147a.75.75 0 011.049 1.05l-.073.083L13.061 12l4.72 4.72a.75.75 0 01-.977 1.133l-.084-.073L12 13.061l-4.72 4.72-.084.072a.75.75 0 01-1.049-1.05l.073-.083L10.939 12l-4.72-4.72a.75.75 0 01.977-1.133l.084.073L12 10.939l4.72-4.72.084-.072z"
-                    fill="#fff"
-                    fillRule="evenodd"
-                  ></path>
-                </svg>
+              <span className="p-2 rounded">
+                <CloseSvg
+                  className={"w-7 h-7 pointer-events-none"}
+                  fill={"#525866"}
+                />
               </span>
             </button>
           </div>
-          <h2 className="text-2xl font-bold text-gray-50">Tags</h2>
-          <FormAddTags onSuccessChange={handleSuccessChange} />
-          <TagsList tags={tags} />
+          <div className="px-4 pt-4">
+            <FormAddTags onSuccessChange={handleSuccessChange} />
+            <TagsList tags={tags} />
+          </div>
         </div>
       </div>
     </>
