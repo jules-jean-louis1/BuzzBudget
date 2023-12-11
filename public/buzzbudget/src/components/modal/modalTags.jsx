@@ -11,17 +11,9 @@ function ModalTags({ onClose }) {
 
   const handleSuccessChange = (success) => {
     setSuccess(success);
-    messageError();
   };
   const handleDeleteTags = (success) => {
     setSuccess(success);
-  };
-  const messageError = () => {
-    if (success) {
-      setError("Le tag a bien été supprimé.");
-    } else if (!success) {
-      setError("Le tag n'a pas été supprimé.");
-    }
   };
 
   useEffect(() => {
@@ -52,23 +44,7 @@ function ModalTags({ onClose }) {
           <div className="px-4 pt-4">
             <FormAddTags onSuccessChange={handleSuccessChange} />
             <h3 className="text-xl font-bold text-black">Liste des tags</h3>
-            <div id="messageTags">
-              {error && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-                  <strong className="font-bold">Erreur !</strong>
-                  <span className="block sm:inline">{error}</span>
-                  <span
-                    className="absolute top-0 bottom-0 right-0 px-4 py-3"
-                    onClick={() => setError("")}
-                  >
-                    <CloseSvg
-                      className={"w-5 h-5 pointer-events-none"}
-                      fill={"#525866"}
-                    />
-                  </span>
-                </div>
-              )}
-            </div>
+            <div id="messageTags"></div>
             <TagsList tags={tags} onSuccesDelete={handleDeleteTags} />
           </div>
         </div>
