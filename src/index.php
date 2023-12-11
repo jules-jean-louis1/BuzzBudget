@@ -96,6 +96,9 @@ $router->map('GET', '/tags/get/', function() use ($tags) {
 $router->map('POST', '/tags/add', function() use ($tags) {
     $tags->add();
 });
+$router->map('DELETE', '/tags/delete/[i:id]', function($id) use ($tags) {
+    $tags->delete($id);
+});
 
 /* ############################# 
         History routes

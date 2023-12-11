@@ -35,4 +35,18 @@ class TagsController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    public function delete(int $id): void
+{
+    $tags = new TagsModel();
+    if ($tags->deleteTags($id)) {
+        if ($tags->deleteTagsOfUser($id)) {
+            $errors['success'] = 'Le tag a bien été supprimé';
+        } else {
+            $errors['error'] = 'Le tag a été supprimé, mais pas des transactions de l\'utilisateur';
+        }
+    } else {
+        $errors['error'] = 'Le tag n\'a pas pu être supprimé';
+    }
+    echo json_encode($errors);
+}
 }

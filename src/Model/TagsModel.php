@@ -19,11 +19,17 @@ class TagsModel extends AbstractDatabase
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
         $req->execute();
     }
-    public function deleteTags(int $id): void
+    public function deleteTags(int $id): bool
     {
         $req = $this->getBdd()->prepare('DELETE FROM tags WHERE id_tags = :id');
-        $req->bindParam(':id', $id, \PDO::PARAM_INT);
-        $req->execute();
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        return $req->execute();
+    }
+    public function deleteTagsOfUser(int $id_tags): bool
+    {
+        $req = $this->getBdd()->prepare('DELETE FROM tags_transaction WHERE tags_id = :id_tags');
+        $req->bindParam(':id_tags', $id_tags, PDO::PARAM_INT);
+        return $req->execute();
     }
     public function updateTags(int $id, string $name): void
     {
