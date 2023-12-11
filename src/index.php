@@ -22,7 +22,7 @@ session_start();
 // CORS headers
 header('Access-Control-Allow-Origin: http://localhost:5173');
 header("Access-Control-Allow-Credentials: true");
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header("Access-Control-Allow-Methods: GET, POST, DELETE, PUT, OPTIONS");
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 
 $router = new AltoRouter();
@@ -96,7 +96,7 @@ $router->map('GET', '/tags/get/', function() use ($tags) {
 $router->map('POST', '/tags/add', function() use ($tags) {
     $tags->add();
 });
-$router->map('DELETE', '/tags/delete/[i:id]', function($id) use ($tags) {
+$router->map('POST', '/tags/delete/[i:id]', function($id) use ($tags) {
     $tags->delete($id);
 });
 

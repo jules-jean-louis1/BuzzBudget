@@ -9,7 +9,7 @@ const BtnDeleteTags = ({ tagsId, onSuccesDelete }) => {
       const response = await fetch(
         `http://localhost:80/buzzbudget/src/tags/delete/${tagsId}`,
         {
-          method: "DELETE",
+          method: "POST",
           credentials: "include",
         }
       );
@@ -26,7 +26,6 @@ const BtnDeleteTags = ({ tagsId, onSuccesDelete }) => {
   const handleClic = (e) => {
     e.preventDefault();
     setButton(true);
-    console.log(tagsId);
   };
 
   useEffect(() => {
