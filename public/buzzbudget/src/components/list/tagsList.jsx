@@ -2,7 +2,7 @@ import BtnDeleteTags from "../button/btnDeleteTags";
 import BtnEditTags from "../button/btnEditTags";
 
 // CategoriesList.jsx
-const TagsList = ({ tags }) => {
+const TagsList = ({ tags, onSuccesDelete }) => {
   return (
     <>
       <div className="flex flex-col space-y-2 pt-3">
@@ -15,7 +15,10 @@ const TagsList = ({ tags }) => {
                 </h4>
                 <div className="flex items-center">
                   <BtnEditTags tagsId={tags.id_tags} />
-                  <BtnDeleteTags tagsId={tags.id_tags} />
+                  <BtnDeleteTags
+                    tagsId={tags.id_tags}
+                    onSuccesDelete={onSuccesDelete}
+                  />
                 </div>
               </div>
             </div>
