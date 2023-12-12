@@ -7,7 +7,6 @@ import CloseSvg from "../svg/closeSvg";
 function ModalTags({ onClose }) {
   const { tags, reloadTags } = useTags();
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSuccessChange = (success) => {
     setSuccess(success);

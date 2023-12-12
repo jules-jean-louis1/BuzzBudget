@@ -14,7 +14,10 @@ const TagsList = ({ tags, onSuccesDelete }) => {
                   <span>{tags.name_tags}</span>
                 </h4>
                 <div className="flex items-center">
-                  <BtnEditTags tagsId={tags.id_tags} />
+                  <BtnEditTags
+                    tagsId={tags.id_tags}
+                    valueTags={tags.name_tags}
+                  />
                   <BtnDeleteTags
                     tagsId={tags.id_tags}
                     onSuccesDelete={onSuccesDelete}
