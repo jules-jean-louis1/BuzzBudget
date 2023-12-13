@@ -99,7 +99,9 @@ $router->map('POST', '/tags/add', function() use ($tags) {
 $router->map('POST', '/tags/delete/[i:id]', function($id) use ($tags) {
     $tags->delete($id);
 });
-
+$router->map('POST', '/tags/edit/[i:id]', function($id) use ($tags) {
+    $tags->edit($id);
+});
 /* ############################# 
         History routes
 ############################# */
