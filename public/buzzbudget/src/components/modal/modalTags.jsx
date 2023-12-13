@@ -26,7 +26,10 @@ function ModalTags({ onClose }) {
 
   return (
     <>
-      <div className="fixed w-screen max-h-[calc(100vh-2.5rem)] h-[40rem] md:max-h-[calc(100vh-5rem)] left-0 bottom-0 bg-[#edf0f7] rounded-t-2xl border border-[#52586666]">
+      <div
+        className="fixed w-screen max-h-[calc(100vh-2.5rem)] h-[40rem] md:max-h-[calc(100vh-5rem)] left-0 bottom-0 bg-[#edf0f7] rounded-t-2xl border border-[#52586666]"
+        style={{ backgroundColor: "#e950373d" }}
+      >
         <div className="modal-content h-full">
           <div className="border-b border-[#52586666] flex justify-between items-center py-4 px-4 w-full h-14">
             <h2 className="text-2xl font-bold text-black">Gérer les tags</h2>

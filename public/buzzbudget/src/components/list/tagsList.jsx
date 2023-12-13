@@ -17,7 +17,7 @@ const TagsList = ({ tags, onSuccesDelete, onSuccessEdit }) => {
                   <BtnEditTags
                     tagsId={tags.id_tags}
                     valueTags={tags.name_tags}
-                    onSuccesDelete={onSuccesDelete}
+                    onSuccessEdit={onSuccessEdit}
                   />
                   <BtnDeleteTags
                     tagsId={tags.id_tags}
