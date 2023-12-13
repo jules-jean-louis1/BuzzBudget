@@ -1,5 +1,6 @@
 import DeleteSvg from "../../assets/svg/deleteSvg";
 import { useState, useEffect } from "react";
+
 const BtnDeleteCategories = ({ categoriesId, onSuccesDelete }) => {
   const [buttonClicked, setButtonClicked] = useState(false);
   const fetchData = async () => {

@@ -85,6 +85,12 @@ $router->map('GET', '/categories/get/', function() use ($categories) {
 $router->map('POST', '/categories/add', function() use ($categories) {
     $categories->add();
 });
+$router->map('POST', '/categories/delete/[i:id]', function($id) use ($categories) {
+    $categories->delete($id);
+});
+$router->map('POST', '/categories/edit/[i:id]', function($id) use ($categories) {
+    $categories->edit($id);
+});
 
 /* #############################
         Tags routes

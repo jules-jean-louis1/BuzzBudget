@@ -11,6 +11,9 @@ function ModalCategories({ onClose }) {
   const handleSuccessChange = (success) => {
     setSuccess(success);
   };
+  const handleSuccessDelete = (success) => {
+    setSuccess(success);
+  };
   useEffect(() => {
     if (success) {
       reload();
@@ -44,7 +47,10 @@ function ModalCategories({ onClose }) {
               </button>
             </div>
             <FormAddCategories onSuccessChange={handleSuccessChange} />
-            <CategoriesList categories={categories} />
+            <CategoriesList
+              categories={categories}
+              onSuccesDelete={handleSuccessDelete}
+            />
           </div>
         </div>
       </div>

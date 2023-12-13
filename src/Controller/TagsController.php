@@ -72,4 +72,5 @@ class TagsController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    
 }
