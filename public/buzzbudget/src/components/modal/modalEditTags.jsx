@@ -24,6 +24,7 @@ const ModalEditTags = ({ onClose, tagsId, valueTags, onSuccessEdit }) => {
       console.log(data);
       if (data.success) {
         onClose();
+        setError("");
         onSuccessEdit(true);
       } else if (data.tags) {
         setError(data.tags);
@@ -64,7 +65,7 @@ const ModalEditTags = ({ onClose, tagsId, valueTags, onSuccessEdit }) => {
         </div>
         <div
           id="containerEditTags"
-          className="flex flex-col items-center w-full h-full justify-center"
+          className="flex flex-col items-center w-full h-[80%] justify-center"
         >
           <form ref={formRef} action="" method="post">
             <div
@@ -78,9 +79,13 @@ const ModalEditTags = ({ onClose, tagsId, valueTags, onSuccessEdit }) => {
                 name={"tags"}
                 id={"tags"}
                 value={tags}
-                error={error}
                 onChange={(e) => setTags(e.target.value)}
               />
+            </div>
+            <div className="px-2">
+              {error && (
+                <div className="text-red-500 text-sm font-bold">{error}</div>
+              )}
             </div>
             <button
               type="submit"

@@ -48,18 +48,24 @@ function FormAddCategories({ onSuccessChange }) {
 
   return (
     <div>
-      <h1>Add Categories</h1>
       <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
-        <GenericInput
-          label={"Nom de la catégorie"}
-          type={"text"}
-          name={"categories"}
-          id={"categories"}
-          value={categories}
-          error={error}
-          onChange={(e) => setCategories(e.target.value)}
-        />
-        <button type="submit" className="w-full rounded-xl border">
+        <div className="border rounded-2xl border-gray-500 onfocus:border-black m-2">
+          <GenericInput
+            label={"Nom de la catégorie"}
+            type={"text"}
+            name={"categories"}
+            id={"categories"}
+            value={categories}
+            error={error}
+            onChange={(e) => setCategories(e.target.value)}
+          />
+        </div>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <button
+          type="submit"
+          style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
+          className="w-full rounded-xl border p-3 text-slate-50 font-semibold text-xl mt-2"
+        >
           Ajouter
         </button>
       </form>

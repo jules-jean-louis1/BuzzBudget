@@ -1,12 +1,29 @@
+import BtnEditCategories from "../button/btnEditCategories";
+import BtnDeleteCategories from "../button/btnDeleteCategories";
 // CategoriesList.jsx
-const CategoriesList = ({ categories }) => {
+const CategoriesList = ({ categories, onSuccesDelete, onSuccessEdit }) => {
   return (
     <div>
       {categories &&
         categories.map((category, index) => (
-          <p key={index} className="text-gray-50">
-            {category.name_categories}
-          </p>
+          <div key={index} className="rounded-xl bg-[#ced1da]">
+            <div className="flex justify-between text-lg text-white font-medium">
+              <h4 className="text-black p-3">
+                <span>{category.name_categories}</span>
+              </h4>
+              <div className="flex items-center">
+                <BtnEditCategories
+                  categoriesId={category.id_categories}
+                  valueCategories={category.name_categories}
+                  onSuccessEdit={onSuccessEdit}
+                />
+                <BtnDeleteCategories
+                  categoriesId={category.id_categories}
+                  onSuccesDelete={onSuccesDelete}
+                />
+              </div>
+            </div>
+          </div>
         ))}
       {!categories.length && <p>Aucune catégorie</p>}
     </div>
