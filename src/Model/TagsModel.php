@@ -31,13 +31,6 @@ class TagsModel extends AbstractDatabase
         $req->bindParam(':id_tags', $id_tags, PDO::PARAM_INT);
         return $req->execute();
     }
-    public function updateTags(int $id, string $name): void
-    {
-        $req = $this->getBdd()->prepare('UPDATE tags SET name_tags = :name, update_at = NOW() WHERE id_tags = :id');
-        $req->bindParam(':id', $id, PDO::PARAM_INT);
-        $req->bindParam(':name', $name, PDO::PARAM_STR);
-        $req->execute();
-    }
     public function deleteTagsOfTransaction(int $id_tags, int $id_transaction): void
     {
         $req = $this->getBdd()->prepare('DELETE FROM tags_transaction WHERE tags_id = :id_tags AND transaction_id = :id_transaction;');
@@ -54,7 +47,7 @@ class TagsModel extends AbstractDatabase
     }
     public function editTags(int $id, string $name): void
     {
-        $req = $this->getBdd()->prepare('UPDATE tags SET name_tags = :name, update_at = NOW() WHERE id_tags = :id');
+        $req = $this->getBdd()->prepare('UPDATE tags SET name_tags = :name, updated_at = NOW() WHERE id_tags = :id');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();

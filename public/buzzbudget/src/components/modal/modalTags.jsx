@@ -14,6 +14,9 @@ function ModalTags({ onClose }) {
   const handleDeleteTags = (success) => {
     setSuccess(success);
   };
+  const handleEditTags = (success) => {
+    setSuccess(success);
+  };
 
   useEffect(() => {
     if (success) {
@@ -44,7 +47,11 @@ function ModalTags({ onClose }) {
             <FormAddTags onSuccessChange={handleSuccessChange} />
             <h3 className="text-xl font-bold text-black">Liste des tags</h3>
             <div id="messageTags"></div>
-            <TagsList tags={tags} onSuccesDelete={handleDeleteTags} />
+            <TagsList
+              tags={tags}
+              onSuccesDelete={handleDeleteTags}
+              onSuccessEdit={handleEditTags}
+            />
           </div>
         </div>
       </div>

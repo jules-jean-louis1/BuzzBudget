@@ -2,7 +2,7 @@ import EditCircle from "../svg/editCircle";
 import { useState } from "react";
 import ModalEditTags from "../modal/modalEditTags";
 
-const BtnEditTags = ({ tagsId, valueTags }) => {
+const BtnEditTags = ({ tagsId, valueTags, onSuccessEdit }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
@@ -20,6 +20,7 @@ const BtnEditTags = ({ tagsId, valueTags }) => {
           onClose={() => setModalOpen(false)}
           tagsId={tagsId}
           valueTags={valueTags}
+          onSuccessEdit={onSuccessEdit}
         />
       )}
     </>

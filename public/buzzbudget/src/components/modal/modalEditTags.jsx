@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import GenericInput from "../form/input/genericInput";
 import EditCircle from "../svg/editCircle";
 
-const ModalEditTags = ({ onClose, tagsId, valueTags }) => {
+const ModalEditTags = ({ onClose, tagsId, valueTags, onSuccessEdit }) => {
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
   const [tags, setTags] = useState(valueTags);
@@ -24,6 +24,7 @@ const ModalEditTags = ({ onClose, tagsId, valueTags }) => {
       console.log(data);
       if (data.success) {
         onClose();
+        onSuccessEdit(true);
       } else if (data.tags) {
         setError(data.tags);
       }

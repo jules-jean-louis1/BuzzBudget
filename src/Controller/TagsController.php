@@ -65,7 +65,7 @@ class TagsController extends AbstractClasses\AbstractContoller
         }
 
         if (empty($errors)) {
-            $tags->updateTags($id, $input_tags);
+            $tags->editTags($id, $input_tags);
             $errors['success'] = 'Le tag a bien été modifié';
             echo json_encode($errors);
         } else {
