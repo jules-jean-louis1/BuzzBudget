@@ -34,4 +34,11 @@ class CategoriesModel extends AbstractDatabase
         $req->bindParam(':id_categories', $id_categories, PDO::PARAM_INT);
         return $req->execute();
     }
+    public function editCategories(int $id, string $name): void
+    {
+        $req = $this->getBdd()->prepare('UPDATE categories SET name_categories = :name, updated_at = NOW() WHERE id_categories = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->bindParam(':name', $name, PDO::PARAM_STR);
+        $req->execute();
+    }
 }

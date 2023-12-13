@@ -64,7 +64,7 @@ class CategoriesController extends AbstractClasses\AbstractContoller
         }
 
         if (empty($errors)) {
-            $categories->editCategories($input_categories, $id, $id_users);
+            $categories->editCategories($id, $input_categories);
             $errors['success'] = 'La catégorie a bien été modifiée';
             echo json_encode($errors);
         } else {
