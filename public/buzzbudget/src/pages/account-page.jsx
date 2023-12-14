@@ -61,35 +61,41 @@ function AccountPage() {
     if (account && transactions) {
       return (
         <>
-          <div className=" rounded-xl bg-[#edf0f7]">
+          <div
+            className="rounded-xl"
+            style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
+          >
             <div
               id="totalAccount"
-              className="flex items-center justify-between px-2 w-full min-h-16 h-16"
+              className="flex items-center justify-between px-2 w-full min-h-16 h-16 text-white"
             >
-              <span className="text-xl text-[#222222]">Solde</span>
-              <span className="text-xl text-[#222222] font-bold">
-                {account.total} €
-              </span>
+              <span className="text-xl">Solde</span>
+              <span className="text-xl font-bold">{account.total} €</span>
             </div>
-            <div id="trancation" className="rounded-xl mx-2 bg-[#e0e4ec]">
-              {transactions.map((transaction) => (
-                <div
-                  key={transaction.id_transaction}
-                  className="flex items-center justify-between  w-full min-h-14 h-14"
-                >
-                  <span className="text-lg text-[#222222]">
-                    {transaction.name_transaction}
-                  </span>
-                  <span className="text-lg text-[#222222]">
-                    <FormattedDate
-                      dateString={transaction.date_of_transaction}
-                    />
-                  </span>
-                  <span className="text-lg text-[#222222]">
-                    {transaction.amount_transaction} €
-                  </span>
+            <div className="p-2 text-slate-50">
+              <div id="trancation" className="rounded-xl bg-[#0000001a]">
+                <div className="w-full">
+                  <h3 className="text-center">Dernières transactions</h3>
                 </div>
-              ))}
+                {transactions.map((transaction) => (
+                  <div
+                    key={transaction.id_transaction}
+                    className="flex items-center justify-between mx-2 min-h-14 h-14"
+                  >
+                    <span className="text-lg w-28">
+                      {transaction.name_transaction}
+                    </span>
+                    <span className="text-sm w-24">
+                      <FormattedDate
+                        dateString={transaction.date_of_transaction}
+                      />
+                    </span>
+                    <span className="text-lg w-16">
+                      {transaction.amount_transaction} €
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </>
@@ -99,7 +105,7 @@ function AccountPage() {
 
   return (
     <>
-      <div className="pt-12 bg-[#f2f2f6] h-full w-full px-2">
+      <div className="pt-16 bg-[#f2f2f6] h-full w-full px-2">
         <div className="px-2 py-3">
           <p className="text-2xl font-bold flex space-x-2">
             <span>Bonjour</span>
