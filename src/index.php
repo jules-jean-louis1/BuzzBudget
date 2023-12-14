@@ -64,6 +64,15 @@ $router->map('GET', '/auth/logout', function() use ($authUser) {
 });
 
 /* ############################# 
+        Profil routes
+############################# */
+$router->map('GET', '/profil/get', function() use ($authUser) {
+    $authUser->getProfil();    
+});
+$router->map('POST', '/profil/edit/[i:id]', function($id) use ($authUser) {
+    $authUser->editProfil($id);
+});
+/* ############################# 
         Account routes
 ############################# */
 $router->map('GET', '/account/display/[i:id]', function($id) use ($account) {

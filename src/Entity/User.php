@@ -51,6 +51,14 @@ class User {
     public function getAvatar() {
         return $this->avatar;
     }
-
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'avatar' => $this->avatar,
+        ];
+    }
     // Ajoutez d'autres méthodes ou fonctionnalités au besoin
 }

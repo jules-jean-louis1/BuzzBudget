@@ -214,4 +214,85 @@ class AuthController extends AbstractClasses\AbstractContoller
         session_destroy();
         echo json_encode(['success' => 'Vous êtes déconnecté']);
     }
+    public function getProfil(): void
+    {
+        $user = $_SESSION['user'];
+        echo json_encode($user->toArray());
+    }
+    public function editProfil(int $id) 
+    {
+        $firstname = $this->verifyField('firstname');
+        $lastname = $this->verifyField('lastname');
+        $email = $this->verifyField('email');
+        $password = $this->verifyField('password');
+        $passwordConfirm = $this->verifyField('passwordConfirm');
+
+        $errors = [];
+
+        $authModel = new AuthModel();
+        $user = $_SESSION['user'];
+
+        if (!$firstname) {
+            $errors['firstname'] = 'Veuillez indiquer votre prénom.';
+        } elseif (strlen($firstname) <= 2 || strlen($firstname) >= 50) {
+            $errors['firstname'] = 'Votre prénom doit contenir entre 2 et 50 caractères.';
+        } 
+        if (!$lastname) {
+            $errors['lastname'] = 'Veuillez indiquer votre nom.';
+        } elseif (strlen($lastname) <= 2 || strlen($lastname) >= 50) {
+            $errors['lastname'] = 'Votre nom doit contenir entre 2 et 50 caractères.';
+        }
+        if (!$email) {
+            $errors['email'] = 'Veuillez indiquer votre adresse e-mail.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Veuillez indiquer votre adresse e-mail valide.';
+        } elseif ($authModel->checkEmail($email)) {
+            $errors['email'] = 'Cette email est déjà utilisé.';
+            $errors['useEmail'] = 'Cette email est déjà utilisé.';
+        }
+        if (isset($_POST['password']) && !empty($_POST['password'])) {
+            if (!$password) {
+                $errors['password'] = 'Veuillez indiquer votre mot de passe.';
+            } elseif (strlen($password) <= 8 || strlen($password) >= 50) {
+                $errors['password'] = 'Votre mot de passe doit contenir entre 8 et 50 caractères.';
+            } elseif (!$this->VerifyPassword($password)) {
+                $errors['password'] = 'Votre mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.';
+            }
+            if (!$passwordConfirm) {
+                $errors['passwordConfirm'] = 'Veuillez confirmer votre mot de passe.';
+            } elseif ($password !== $passwordConfirm) {
+                $errors['passwordConfirm'] = 'Vos mots de passe ne correspondent pas.';
+            }
+        } else {
+            $password = null;
+        }
+        if (isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm'])) {
+            if (!$password) {
+                $errors['password'] = 'Veuillez indiquer votre mot de passe.';
+            } elseif (strlen($password) <= 8 || strlen($password) >= 50) {
+                $errors['password'] = 'Votre mot de passe doit contenir entre 8 et 50 caractères.';
+            } elseif (!$this->VerifyPassword($password)) {
+                $errors['password'] = 'Votre mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.';
+            }
+            if (!$passwordConfirm) {
+                $errors['passwordConfirm'] = 'Veuillez confirmer votre mot de passe.';
+            } elseif ($password !== $passwordConfirm) {
+                $errors['passwordConfirm'] = 'Vos mots de passe ne correspondent pas.';
+            }
+        } else {
+            $password = null;
+        }
+
+        if (empty($errors)) {
+            if ($id !== $user->getId()) {
+                $errors['error'] = 'Vous ne pouvez pas modifier les informations d\'un autre utilisateur';
+            } else {
+                if ($user->getFirstname() !== $firstname) {
+                    $authModel->editFirstname($firstname, $id);
+                    $user->setFirstname($firstname);
+                }
+            }
+        }
+        
+    }
 }
