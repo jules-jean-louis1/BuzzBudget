@@ -1,5 +1,5 @@
-import DeleteSvg from "../../assets/svg/deleteSvg";
 import { useState, useEffect } from "react";
+import CircleX from "../svg/circleX";
 
 const BtnDeleteCategories = ({ categoriesId, onSuccesDelete }) => {
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -33,14 +33,11 @@ const BtnDeleteCategories = ({ categoriesId, onSuccesDelete }) => {
     <>
       <button
         type="button"
-        className="px-3 rounded-full"
+        className="flex items-center justify-center rounded-r-xl bg-[#FF3B30] h-full w-10"
         onClick={() => setButtonClicked(true)}
       >
         <span className="p-2 rounded">
-          <DeleteSvg
-            className={"w-7 h-7 pointer-events-none"}
-            fill={"#525866"}
-          />
+          <CircleX className={"w-7 h-7"} stroke={"#0e1217"} />
         </span>
       </button>
     </>

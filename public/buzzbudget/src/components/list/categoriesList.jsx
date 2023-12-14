@@ -1,9 +1,9 @@
-import BtnEditCategories from "../button/btnEditCategories";
 import BtnDeleteCategories from "../button/btnDeleteCategories";
+import BtnEditCategories from "../button/btnEditCategories";
 // CategoriesList.jsx
 const CategoriesList = ({ categories, onSuccesDelete, onSuccessEdit }) => {
   return (
-    <div>
+    <div className="flex flex-col space-y-2 pt-3">
       {categories &&
         categories.map((category, index) => (
           <div key={index} className="rounded-xl bg-[#ced1da]">
