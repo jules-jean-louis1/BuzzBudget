@@ -290,8 +290,26 @@ class AuthController extends AbstractClasses\AbstractContoller
                 if ($user->getFirstname() !== $firstname) {
                     $authModel->editFirstname($firstname, $id);
                     $user->setFirstname($firstname);
+                    $errors['success'] = 'Votre prénom a bien été modifié';
                 }
+                if ($user->getLastname() !== $lastname) {
+                    $authModel->editLastname($lastname, $id);
+                    $user->setLastname($lastname);
+                    $errors['success'] = 'Votre nom a bien été modifié';
+                }
+                if ($user->getEmail() !== $email) {
+                    $authModel->editEmail($email, $id);
+                    $user->setEmail($email);
+                    $errors['success'] = 'Votre email a bien été modifié';
+                }
+                if ($password !== null && $passwordConfirm !== null) {
+                    $authModel->editPassword($password, $id);
+                    $errors['success'] = 'Votre mot de passe a bien été modifié';
+                }
+                echo json_encode($errors);
             }
+        } else {
+            echo json_encode($errors);
         }
         
     }

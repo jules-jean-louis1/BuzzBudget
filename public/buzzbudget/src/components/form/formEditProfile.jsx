@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import GenericInput from "./input/genericInput";
+import EmailSvg from "../svg/emailSvg";
+import UserSvg from "../svg/userSvg";
+import PasswordInput from "./input/passwordInput";
+import PasswordSvg from "../svg/passwordSvg";
 
 const FormEditProfile = ({ user }) => {
   const formRef = useRef();
@@ -63,6 +67,11 @@ const FormEditProfile = ({ user }) => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setButtonClicked(true);
+  };
+
   useEffect(() => {
     if (buttonClicked) {
       fetchData();
@@ -73,62 +82,87 @@ const FormEditProfile = ({ user }) => {
   return (
     <>
       <form ref={formRef} action="" method="post">
-        <div>
-          <div>
-            <GenericInput
-              label="Prénom"
-              type="text"
-              name="firstname"
-              id={"firstname"}
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
-            />
+        <div className="flex flex-col gap-2 mx-2">
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between rounded-xl bg-[#e0e4ec] px-3">
+              <UserSvg className={"w-7 h-7"} stroke={"#0e1217"} />
+              <GenericInput
+                label="Prénom"
+                type="text"
+                name="firstname"
+                id={"firstname"}
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+              />
+            </div>
+            {errorName && <p className="text-red-500">{errorName}</p>}
           </div>
-          <div>
-            <GenericInput
-              label="Nom"
-              type="text"
-              name="lastname"
-              id={"lastname"}
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-            />
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between rounded-xl bg-[#e0e4ec] px-3">
+              <UserSvg className={"w-7 h-7"} stroke={"#0e1217"} />
+              <GenericInput
+                label="Nom"
+                type="text"
+                name="lastname"
+                id={"lastname"}
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+              />
+            </div>
+            {errorLastname && <p className="text-red-500">{errorLastname}</p>}
           </div>
-          <div>
-            <GenericInput
-              label="Email"
-              type="email"
-              name="email"
-              id={"email"}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between rounded-xl bg-[#e0e4ec] px-3">
+              <EmailSvg className={"w-7 h-7"} fill={"#0e1217"} />
+              <GenericInput
+                label="Email"
+                type="email"
+                name="email"
+                id={"email"}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            {errorEmail && <p className="text-red-500">{errorEmail}</p>}
           </div>
-          <div>
-            <GenericInput
-              label="Mot de passe"
-              type="password"
-              name="password"
-              id={"password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between rounded-xl bg-[#e0e4ec] px-3">
+              <PasswordSvg className={"w-7 h-7"} stroke={"#0e1217"} />
+              <PasswordInput
+                label="Mot de passe"
+                type="password"
+                name="password"
+                id={"password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {errorPassword && <p className="text-red-500">{errorPassword}</p>}
           </div>
-          <div>
-            <GenericInput
-              label="Confirmer le mot de passe"
-              type="password"
-              name="passwordConfirm"
-              id={"passwordConfirm"}
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-            />
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between rounded-xl bg-[#e0e4ec] px-3">
+              <PasswordSvg className={"w-7 h-7"} stroke={"#0e1217"} />
+              <PasswordInput
+                label="Confirmer le mot de passe"
+                type="password"
+                name="passwordConfirm"
+                id={"passwordConfirm"}
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+              />
+            </div>
+            {errorPasswordConfirm && (
+              <p className="text-red-500">{errorPasswordConfirm}</p>
+            )}
           </div>
           <div>
             <button
-              type="button"
-              className="bg-[#e95037] text-white rounded-xl px-4 py-2"
-              onClick={() => setButtonClicked(true)}
+              type="submit"
+              style={{
+                background: "linear-gradient(140deg, #FF2E00, #FD9D58)",
+              }}
+              className="w-full rounded-xl border p-3 text-slate-50 font-semibold text-xl mt-2"
+              onClick={handleSubmit}
             >
               Modifier
             </button>

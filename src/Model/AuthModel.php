@@ -76,4 +76,26 @@ class AuthModel extends AbstractDatabase
         $req->bindParam(':firstname', $firstname, PDO::PARAM_STR);
         $req->execute();
     }
+    public function editLastname(string $lastname, int $id): void
+    {
+        $req = $this->getBdd()->prepare('UPDATE users SET lastname = :lastname, updated_at = NOW() WHERE id_users = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+        $req->execute();
+    }
+    public function editEmail(string $email, int $id): void
+    {
+        $req = $this->getBdd()->prepare('UPDATE users SET email = :email, updated_at = NOW() WHERE id_users = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->execute();
+    }
+    public function editPassword(string $password, int $id): void
+    {
+        $req = $this->getBdd()->prepare('UPDATE users SET password = :password, updated_at = NOW() WHERE id_users = :id');
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->bindParam(':password', $password, PDO::PARAM_STR);
+        $req->execute();
+    }
 }
