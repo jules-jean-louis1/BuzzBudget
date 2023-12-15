@@ -19,7 +19,9 @@ export default function LoginRegister({ successLogin, className, textColor }) {
 
   const handleSuccessLogin = (success) => {
     if (success) {
-      setModalOpen(false);
+      setTimeout(() => {
+        setModalOpen(false);
+      }, 2000);
       successLogin(true);
       setSuccess(true);
     }

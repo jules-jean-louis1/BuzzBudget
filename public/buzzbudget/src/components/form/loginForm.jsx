@@ -9,6 +9,7 @@ const LoginForm = ({ successLogin }) => {
   const [errorPassword, setErrorPassword] = useState("");
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -29,6 +30,11 @@ const LoginForm = ({ successLogin }) => {
         const user_token = data.success;
         localStorage.setItem("user_data", user_token.token);
         successLogin(true);
+      }
+      if (data.success) {
+        setSuccess(data.success.message);
+      } else {
+        setSuccess("");
       }
       if (data.email) {
         setErrorEmail(data.email);
@@ -138,6 +144,7 @@ const LoginForm = ({ successLogin }) => {
       </div>
       <div id="displayError">
         {error && <p className="text-red-500 text-center">{error}</p>}
+        {success && <p className="text-green-500 text-center">{success}</p>}
       </div>
       <div className="pt-14">
         <button

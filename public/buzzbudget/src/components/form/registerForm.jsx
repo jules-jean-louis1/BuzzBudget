@@ -13,6 +13,7 @@ const RegisterForm = ({ onSuccessRegistration }) => {
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [errorFirstname, setErrorFirstname] = useState("");
   const [errorLastname, setErrorLastname] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
@@ -77,9 +78,9 @@ const RegisterForm = ({ onSuccessRegistration }) => {
         setError("");
       }
       if (data.success) {
-        setError(data.success);
+        setSuccess(data.success);
       } else {
-        setError("");
+        setSuccess("");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -213,6 +214,7 @@ const RegisterForm = ({ onSuccessRegistration }) => {
         </div>
         <div id="displayError">
           {error && <p className="text-red-500 text-center">{error}</p>}
+          {success && <p className="text-green-500 text-center">{success}</p>}
         </div>
         <div className="pt-2">
           <button
