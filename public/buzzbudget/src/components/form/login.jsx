@@ -13,8 +13,13 @@ const Login = ({ successLogin }) => {
   }, [display]);
 
   const handleRegistrationSuccess = (success) => {
-    if (success) setDisplay(false);
-    else setDisplay(true);
+    if (success) {
+      setTimeout(() => {
+        setDisplay(false);
+      }, 2000);
+    } else {
+      setDisplay(true);
+    }
   };
 
   return (

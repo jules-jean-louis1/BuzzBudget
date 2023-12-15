@@ -16,7 +16,7 @@ class AuthModel extends AbstractDatabase
         $req->bindParam(':email', $email, \PDO::PARAM_STR);
         $req->execute();
         $user = $req->fetch();
-        if ($user['COUNT(*)'] > 0) {
+        if ($user['COUNT(*)'] = 0) {
             return true;
         } else {
             return false;

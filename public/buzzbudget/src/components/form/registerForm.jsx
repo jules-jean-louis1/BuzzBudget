@@ -48,6 +48,8 @@ const RegisterForm = ({ onSuccessRegistration }) => {
       }
       if (data.email) {
         setErrorEmail(data.email);
+      } else {
+        setErrorEmail("");
       }
       if (data.password) {
         setErrorPassword(data.password);
@@ -71,6 +73,11 @@ const RegisterForm = ({ onSuccessRegistration }) => {
       }
       if (data.error) {
         setError(data.error);
+      } else {
+        setError("");
+      }
+      if (data.success) {
+        setError(data.success);
       } else {
         setError("");
       }
