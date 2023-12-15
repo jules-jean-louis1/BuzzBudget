@@ -23,8 +23,8 @@ const Login = ({ successLogin }) => {
         {!display && (
           // Switch to LoginForm
           <div>
-            <div className="px-3">
-              <h1 className="text-2xl text-white">Connexion</h1>
+            <div className="p-3">
+              <h1 className="text-2xl text-black text-center">Connexion</h1>
             </div>
             <LoginForm successLogin={successLogin} />
           </div>
@@ -32,15 +32,15 @@ const Login = ({ successLogin }) => {
         {display && (
           // Switch to RegisterForm
           <div>
-            <div className="px-3">
-              <h1 className="text-2xl text-white">Inscription</h1>
+            <div className="p-3">
+              <h1 className="text-2xl text-black text-center">Inscription</h1>
             </div>
             <RegisterForm onSuccessRegistration={handleRegistrationSuccess} />
           </div>
         )}
       </div>
-      <div className="flex items-center justify-around text-white">
-        <p>{message_display}</p>
+      <div className="flex items-center justify-around text-black py-2">
+        <p className="">{message_display}</p>
         <button
           onClick={() => {
             setDisplay(!display);

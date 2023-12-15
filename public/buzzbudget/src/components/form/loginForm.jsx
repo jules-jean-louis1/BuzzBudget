@@ -4,7 +4,11 @@ import PasswordInput from "./input/passwordInput";
 
 const LoginForm = ({ successLogin }) => {
   const [email, setEmail] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
+  const [error, setError] = useState("");
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -25,6 +29,21 @@ const LoginForm = ({ successLogin }) => {
         const user_token = data.success;
         localStorage.setItem("user_data", user_token.token);
         successLogin(true);
+      }
+      if (data.email) {
+        setErrorEmail(data.email);
+      } else {
+        setErrorEmail("");
+      }
+      if (data.password) {
+        setErrorPassword(data.password);
+      } else {
+        setErrorPassword("");
+      }
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError("");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -51,8 +70,8 @@ const LoginForm = ({ successLogin }) => {
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col">
-        <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2">
-          <div className="flex flex-col pt-1 w-full">
+        <div className="border-2 border-b-0 border-[#8E8E92] flex flex-col rounded-t-xl px-2 bg-[#e0e4ec]">
+          <div className="flex items-center justify-between w-full">
             <GenericInput
               label={"E-mail"}
               type={"email"}
@@ -61,8 +80,6 @@ const LoginForm = ({ successLogin }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </div>
-          <div>
             <svg
               width="24"
               height="24"
@@ -93,9 +110,12 @@ const LoginForm = ({ successLogin }) => {
               </defs>
             </svg>
           </div>
+          {errorEmail && (
+            <p className="text-red-500 text-center">{errorEmail}</p>
+          )}
         </div>
-        <div className="flex flex-col bg-[#4A4A4A] rounded-b-xl">
-          <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-b-xl flex items-center justify-between px-2">
+        <div className="flex flex-col bg-[#8E8E92] rounded-b-xl">
+          <div className="bg-[#e0e4ec] border-2 border-[#8E8E92] rounded-b-xl flex flex-col px-2">
             <PasswordInput
               label="Mot de passe"
               name="password"
@@ -103,15 +123,21 @@ const LoginForm = ({ successLogin }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {errorPassword && (
+              <p className="text-red-500 text-center">{errorPassword}</p>
+            )}
           </div>
-          <div className="h-20">
+          <div className="h-20 flex justify-center items-center">
             <button className="w-full">
-              <p className="text-[#8E8E92] text-center">
+              <p className="text-[#777777] text-center">
                 Mot de passe oublié ?
               </p>
             </button>
           </div>
         </div>
+      </div>
+      <div id="displayError">
+        {error && <p className="text-red-500 text-center">{error}</p>}
       </div>
       <div className="pt-14">
         <button

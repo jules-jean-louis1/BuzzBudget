@@ -202,7 +202,7 @@ class AuthController extends AbstractClasses\AbstractContoller
                     'message' => 'Vous êtes connecté'
                 ]; 
             } else {
-                $errors['email'] = 'Email ou mot de passe incorrect';
+                $errors['error'] = 'Email ou mot de passe incorrect';
             }
                 echo json_encode($errors);
         } else {

@@ -12,6 +12,15 @@ const RegisterForm = ({ onSuccessRegistration }) => {
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  const [error, setError] = useState("");
+  const [errorFirstname, setErrorFirstname] = useState("");
+  const [errorLastname, setErrorLastname] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState("");
+  const [errorMoney, setErrorMoney] = useState("");
+  const [errorTerms, setErrorTerms] = useState("");
+
   const fetchData = async () => {
     try {
       const formData = new FormData(formRef.current);
@@ -26,6 +35,44 @@ const RegisterForm = ({ onSuccessRegistration }) => {
       console.log(data);
       if (data.success) {
         onSuccessRegistration(true);
+      }
+      if (data.firstname) {
+        setErrorFirstname(data.firstname);
+      } else {
+        setErrorFirstname("");
+      }
+      if (data.lastname) {
+        setErrorLastname(data.lastname);
+      } else {
+        setErrorLastname("");
+      }
+      if (data.email) {
+        setErrorEmail(data.email);
+      }
+      if (data.password) {
+        setErrorPassword(data.password);
+      } else {
+        setErrorPassword("");
+      }
+      if (data.passwordConfirm) {
+        setErrorPasswordConfirm(data.passwordConfirm);
+      } else {
+        setErrorPasswordConfirm("");
+      }
+      if (data.money) {
+        setErrorMoney(data.money);
+      } else {
+        setErrorMoney("");
+      }
+      if (data.terms) {
+        setErrorTerms(data.terms);
+      } else {
+        setErrorTerms("");
+      }
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError("");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -47,74 +94,120 @@ const RegisterForm = ({ onSuccessRegistration }) => {
   return (
     <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
       <div className="flex flex-col text-white px-2">
-        <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-t-xl flex items-center justify-between p-2">
-          <GenericInput
-            label={"Prénom"}
-            type={"text"}
-            name={"firstname"}
-            id={"firstname"}
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="bg-[#0E1217] border-x-2 border-[#4A4A4A] flex items-center justify-between p-2">
-          <GenericInput
-            label={"Nom"}
-            type={"text"}
-            name={"lastname"}
-            id={"lastname"}
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
-        <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] flex items-center justify-between p-2">
-          <GenericInput
-            label={"Adresse email"}
-            type={"email"}
-            name={"email"}
-            id={"email"}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="bg-[#0E1217] border-x-2 border-t-2 border-[#4A4A4A] flex items-center justify-between p-2">
-          <PasswordInput
-            label="Mot de passe"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-b-xl flex items-center justify-between p-2">
-          <PasswordInput
-            label="Confirmer le mot de passe"
-            name="passwordConfirm"
-            id="passwordConfirm"
-            value={passwordConfirm}
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col space-y-3">
-          <div className="bg-[#0E1217] border-2 border-[#4A4A4A] rounded-xl flex items-center justify-between p-2 mt-14">
+        <div className="border-2 border-[#8E8E92] bg-[#e0e4ec] rounded-t-xl">
+          <div className="flex flex-col w-full">
             <GenericInput
-              label="Ajouter un solde de départ"
-              type="number"
-              name="money"
-              id="money"
-              value={money}
-              onChange={(e) => setMoney(e.target.value)}
+              label={"Prénom"}
+              type={"text"}
+              name={"firstname"}
+              id={"firstname"}
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
             />
-          </div>
-          <div className="bg-[#4A4A4A] rounded-xl h-14 flex items-center justify-center">
-            <input type="hidden" name="terms" value="0" />
-            <input type="checkbox" name="terms" id="terms" value="1" />
-            <label htmlFor="terms">
-              J'accepte les conditions d'utilisation
-            </label>
+            {errorFirstname && (
+              <p className="text-red-500 text-center text-xs">
+                {errorFirstname}
+              </p>
+            )}
           </div>
         </div>
-        <div className="pt-14">
+        <div className="border-x-2 border-[#8E8E92] bg-[#e0e4ec]">
+          <div className="flex flex-col w-full">
+            <GenericInput
+              label={"Nom"}
+              type={"text"}
+              name={"lastname"}
+              id={"lastname"}
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+            {errorLastname && (
+              <p className="text-red-500 text-center text-xs">
+                {errorLastname}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="border-x-2 border-t-2 border-[#8E8E92] bg-[#e0e4ec]">
+          <div className="flex flex-col w-full">
+            <GenericInput
+              label={"Adresse email"}
+              type={"email"}
+              name={"email"}
+              id={"email"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errorEmail && (
+              <p className="text-red-500 text-center text-xs">{errorEmail}</p>
+            )}
+          </div>
+        </div>
+        <div className="border-x-2 border-t-2 border-[#8E8E92] bg-[#e0e4ec]">
+          <div className="flex flex-col w-full">
+            <PasswordInput
+              label="Mot de passe"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errorPassword && (
+              <p className="text-red-500 text-center text-xs">
+                {errorPassword}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="border-2 border-[#8E8E92] bg-[#e0e4ec] border-t-2">
+          <div className="flex flex-col w-full">
+            <PasswordInput
+              label="Confirmer le mot de passe"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
+            {errorPasswordConfirm && (
+              <p className="text-red-500 text-center text-xs">
+                {errorPasswordConfirm}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-2">
+          <div className="border-b-2 border-x-2 border-[#8E8E92] bg-[#e0e4ec] rounded-b-xl">
+            <div className="flex flex-col w-full">
+              <GenericInput
+                label="Ajouter un solde(optionel)"
+                type="number"
+                name="money"
+                id="money"
+                value={money}
+                onChange={(e) => setMoney(e.target.value)}
+              />
+              {errorMoney && (
+                <p className="text-red-500 text-center text-xs">{errorMoney}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col w-full">
+            <div className="bg-[#4A4A4A] rounded-xl h-14 flex items-center justify-center">
+              <input type="hidden" name="terms" value="0" />
+              <input type="checkbox" name="terms" id="terms" value="1" />
+              <label htmlFor="terms">
+                J'accepte les conditions d'utilisation
+              </label>
+            </div>
+            {errorTerms && (
+              <p className="text-red-500 text-center text-xs">{errorTerms}</p>
+            )}
+          </div>
+        </div>
+        <div id="displayError">
+          {error && <p className="text-red-500 text-center">{error}</p>}
+        </div>
+        <div className="pt-2">
           <button
             type="submit"
             style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
