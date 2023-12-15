@@ -15,6 +15,7 @@ function BtnLogout({ userStatus }) {
       if (data.success) {
         localStorage.removeItem("user_data");
         userStatus(null);
+        navigate("/");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -25,7 +26,6 @@ function BtnLogout({ userStatus }) {
     if (buttonClicked) {
       logoutSession();
       setButtonClicked(false);
-      navigate("/");
     }
   }, [buttonClicked]);
 

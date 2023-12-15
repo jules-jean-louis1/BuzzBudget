@@ -21,9 +21,9 @@ export default function LoginRegister({ successLogin, className, textColor }) {
     if (success) {
       setTimeout(() => {
         setModalOpen(false);
+        successLogin(true);
+        setSuccess(true);
       }, 2000);
-      successLogin(true);
-      setSuccess(true);
     }
   };
 
