@@ -4,7 +4,6 @@ import ArrowRightSvg from "../../components/svg/arrow-rightSvg";
 import LoginRegister from "../../components/button/loginRegister";
 
 function Homepage() {
-  const storedUser = localStorage.getItem("user_data");
   const [user, setUser] = useState(false);
   const [login, setLogin] = useState(false);
 
@@ -15,9 +14,9 @@ function Homepage() {
   };
 
   useEffect(() => {
+    const storedUser = localStorage.getItem("user_data");
     setUser(storedUser ? jwtDecode(storedUser) : null);
-  }, [storedUser, login]);
-
+  }, [login]);
   return (
     <>
       <div

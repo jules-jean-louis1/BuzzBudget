@@ -27,6 +27,7 @@ function Header() {
   const changeLogin = (success) => {
     setLogin(success);
   };
+  console.log(login);
   return (
     <>
       <header>

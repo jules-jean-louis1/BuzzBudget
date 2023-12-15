@@ -5,24 +5,12 @@ import { jwtDecode } from "jwt-decode";
 function useAuth() {
   const [user, setUser] = useState(null);
 
-  const getUser = () => {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem("user_data");
-      if (token) {
-        const decodedToken = jwtDecode(token);
-        setUser(decodedToken);
-        resolve(decodedToken);
-      } else {
-        resolve(null);
-      }
-    });
-  };
-
   useEffect(() => {
-    getUser();
+    const storedUser = localStorage.getItem("user_data");
+    setUser(storedUser ? jwtDecode(storedUser) : null);
   }, []);
 
-  return { user, getUser };
+  return { user };
 }
 
 export default useAuth;

@@ -4,7 +4,7 @@ import CloseSvg from "../svg/closeSvg";
 export default function ModalLogin({ onClose, successLogin }) {
   return (
     <div
-      className="fixed w-screen h-screen left-0 top-0"
+      className="fixed w-screen h-screen left-0 top-0 z-20"
       style={{ backgroundColor: "#e950373d" }}
     >
       <div className="h-full pt-2">

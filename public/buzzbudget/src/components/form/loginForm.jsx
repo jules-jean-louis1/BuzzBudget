@@ -25,7 +25,6 @@ const LoginForm = ({ successLogin }) => {
         }
       );
       const data = await response.json();
-      console.log(data);
       if (data.success) {
         const user_token = data.success;
         localStorage.setItem("user_data", user_token.token);

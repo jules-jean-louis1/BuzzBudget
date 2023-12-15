@@ -40,7 +40,7 @@ export default function LoginRegister({ successLogin, className, textColor }) {
         className={
           className
             ? className
-            : "border border-[#5258661f] flex-row justify-center items-center rounded-xl py-3 bg-slate-50 hover:bg-[#5258661f] w-full font-semibold"
+            : "border border-[#5258661f] flex justify-center items-center rounded-xl py-3 bg-slate-50 hover:bg-[#5258661f] w-full font-semibold"
         }
       >
         <span className={textColor ? textColor : "text-black"}>Connexion</span>
