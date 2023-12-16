@@ -73,7 +73,7 @@ function FormAddTransaction({ onDataSuccess }) {
     <div>
       <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
         <div>
-          <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2 min-h-16 h-20">
+          <div className="border-2 border-b-0 border-[#4A4A4A] bg-[#E0E4EC] rounded-t-xl flex items-center justify-between px-2">
             <div className="flex flex-col w-full">
               <GenericInput
                 label={"Nom de la transaction"}
@@ -89,7 +89,7 @@ function FormAddTransaction({ onDataSuccess }) {
             )}
           </div>
 
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2  bg-[#E0E4EC]">
             <div className="flex flex-col w-full">
               <GenericInput
                 label={"Montant"}
@@ -106,7 +106,7 @@ function FormAddTransaction({ onDataSuccess }) {
               )}
             </div>
           </div>
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2  min-h-16 h-20">
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2  bg-[#E0E4EC]">
             <div className="flex flex-col w-full">
               <GenericInput
                 label={"Date"}
@@ -123,7 +123,7 @@ function FormAddTransaction({ onDataSuccess }) {
               )}
             </div>
           </div>
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2  bg-[#E0E4EC]">
             <div className="flex flex-col w-full">
               <div className="flex flex-col pt-1 w-full relative">
                 <label htmlFor="type" className="text-[#8E8E92] absolute">
@@ -132,7 +132,7 @@ function FormAddTransaction({ onDataSuccess }) {
                 <select
                   name="type"
                   id="type"
-                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                  className=" bg-[#E0E4EC] rounded-xl p-3 text-black text-xl outline-none mt-1"
                   onChange={(e) => setSelectedType(e.target.value)}
                 >
                   <option value="depense">Dépense</option>
@@ -148,7 +148,7 @@ function FormAddTransaction({ onDataSuccess }) {
           </div>
 
           {selectedType === "depense" && (
-            <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
+            <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
               <div className="flex flex-col w-full">
                 <div className="flex flex-col pt-1 w-full relative">
                   <label
@@ -160,7 +160,7 @@ function FormAddTransaction({ onDataSuccess }) {
                   <select
                     name="paymentMethod"
                     id="paymentMethod"
-                    className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                    className="bg-[#E0E4EC] rounded-xl p-3 text-black text-xl outline-none mt-1"
                   >
                     <option value="n/a">Non défini</option>
                     <option value="carte">Carte</option>
@@ -177,10 +177,10 @@ function FormAddTransaction({ onDataSuccess }) {
               </div>
             </div>
           )}
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2">
             <div className="flex flex-col h-full w-full py-4">
               <div className="w-full flex items-center justify-between">
-                <p className="text-white text-xl">Description</p>
+                <p className="text-black text-xl">Description</p>
                 <button
                   type="button"
                   onClick={() => setDescription(!description)}
@@ -203,16 +203,16 @@ function FormAddTransaction({ onDataSuccess }) {
                     id="description"
                     cols="40"
                     rows="5"
-                    className="bg-[#1C1F26] rounded-lg w-full p-3 text-white text-xl outline-none"
+                    className="bg-[#E0E4EC] rounded-lg w-full p-3 text-black text-xl outline-none"
                   ></textarea>
                 </div>
               )}
             </div>
           </div>
-          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
+          <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2">
             <div className="flex flex-col w-full h-full py-4">
               <div className="w-full h-full flex items-center justify-between">
-                <p className="text-white text-xl">Récurrence</p>
+                <p className="text-black text-xl">Récurrence</p>
                 <button type="button" onClick={() => setRecurrent(!recurrent)}>
                   {recurrent ? (
                     <div className="p-2 rounded-md bg-[#1c1f26]">
@@ -247,7 +247,7 @@ function FormAddTransaction({ onDataSuccess }) {
               id="containersCategories"
             >
               <div className="w-full h-full flex items-center justify-between">
-                <p className="text-white text-xl">Catégories</p>
+                <p className="text-black text-xl">Catégories</p>
                 <button type="button" onClick={() => setCategory(!category)}>
                   {category ? (
                     <div className="p-2 rounded-md bg-[#1c1f26]">
@@ -266,7 +266,7 @@ function FormAddTransaction({ onDataSuccess }) {
                     <select
                       name="categories"
                       id="categories"
-                      className="bg-[#1C1F26] rounded-lg w-full p-3 text-white text-xl outline-none"
+                      className="bg-[#E0E4EC] rounded-lg w-full p-3 text-black text-xl outline-none"
                     >
                       {categories.map((category) => (
                         <option
@@ -285,7 +285,7 @@ function FormAddTransaction({ onDataSuccess }) {
           <div className="border-2 border-b-2 rounded-b-xl border-[#4A4A4A] flex items-center justify-between px-2 min-h-[80px] max-h-full">
             <div className="flex flex-col w-full h-full py-4">
               <div className="w-full h-full flex items-center justify-between">
-                <p className="text-white text-xl">Tags</p>
+                <p className="text-black text-xl">Tags</p>
                 <button type="button" onClick={() => setTag(!tag)}>
                   {tag ? (
                     <div className="p-2 rounded-md bg-[#1c1f26]">
