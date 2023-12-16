@@ -24,6 +24,8 @@ function FormAddTransaction({ onDataSuccess }) {
   const formRef = useRef();
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  const [errorName, setErrorName] = useState("");
+
   const fetchData = async () => {
     try {
       const formData = new FormData(formRef.current);
@@ -41,6 +43,11 @@ function FormAddTransaction({ onDataSuccess }) {
         onDataSuccess(true);
       } else {
         onDataSuccess(false);
+      }
+      if (data.name) {
+        setErrorName(data.name);
+      } else {
+        setErrorName("");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -63,15 +70,21 @@ function FormAddTransaction({ onDataSuccess }) {
       <form ref={formRef} action="" method="post" onSubmit={handleSubmit}>
         <div>
           <div className="border-2 border-b-0 border-[#4A4A4A] rounded-t-xl flex items-center justify-between px-2 min-h-16 h-20">
-            <GenericInput
-              label={"Nom de la transaction"}
-              type={"text"}
-              name={"name"}
-              id={"name"}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div className="flex flex-col w-full">
+              <GenericInput
+                label={"Nom de la transaction"}
+                type={"text"}
+                name={"name"}
+                id={"name"}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            {errorName && (
+              <p className="text-red-500 text-center">{errorName}</p>
+            )}
           </div>
+
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
             <GenericInput
               label={"Montant"}
