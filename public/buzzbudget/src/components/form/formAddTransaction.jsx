@@ -3,8 +3,6 @@ import GenericInput from "./input/genericInput";
 import useCategories from "../hook/useCategories";
 import useTags from "../hook/useTags";
 import GenericAddBtn from "../button/AddSome/GenericAddBtn";
-import ChevronUp from "../svg/chevronUp";
-import ChevronDown from "../svg/chevronDown";
 
 function FormAddTransaction({ onDataSuccess }) {
   const [name, setName] = useState("");
@@ -43,6 +41,7 @@ function FormAddTransaction({ onDataSuccess }) {
       );
       const data = await response.json();
       console.log(data);
+
       if (data.success) {
         onDataSuccess(true);
       } else {
