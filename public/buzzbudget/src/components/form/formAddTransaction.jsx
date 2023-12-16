@@ -53,6 +53,24 @@ function FormAddTransaction({ onDataSuccess }) {
       } else {
         setErrorName("");
       }
+      if (data.amount) {
+        setErrorAmount(data.amount);
+      } else {
+        setErrorAmount("");
+      }
+      if (data.date) {
+        setErrorDate(data.date);
+      } else {
+        setErrorDate("");
+      }
+      if (data.type) {
+        setErrorType(data.type);
+      } else {
+        setErrorType("");
+      }
+      if (data.paymentMethod) {
+        setErrorPaymentMethod(data.paymentMethod);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
