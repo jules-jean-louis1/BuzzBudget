@@ -25,6 +25,8 @@ function FormAddTransaction({ onDataSuccess }) {
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const [errorName, setErrorName] = useState("");
+  const [errorAmount, setErrorAmount] = useState("");
+  const [errorDate, setErrorDate] = useState("");
 
   const fetchData = async () => {
     try {
@@ -81,29 +83,43 @@ function FormAddTransaction({ onDataSuccess }) {
               />
             </div>
             {errorName && (
-              <p className="text-red-500 text-center">{errorName}</p>
+              <p className="text-red-500 text-center text-base">{errorName}</p>
             )}
           </div>
 
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
-            <GenericInput
-              label={"Montant"}
-              type={"number"}
-              name={"amount"}
-              id={"amount"}
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+            <div className="flex flex-col w-full">
+              <GenericInput
+                label={"Montant"}
+                type={"number"}
+                name={"amount"}
+                id={"amount"}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+              {errorAmount && (
+                <p className="text-red-500 text-center text-base">
+                  {errorAmount}
+                </p>
+              )}
+            </div>
           </div>
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2  min-h-16 h-20">
-            <GenericInput
-              label={"Date"}
-              type={"date"}
-              name={"date"}
-              id={"date"}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
+            <div className="flex flex-col w-full">
+              <GenericInput
+                label={"Date"}
+                type={"date"}
+                name={"date"}
+                id={"date"}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+              {errorDate && (
+                <p className="text-red-500 text-center text-base">
+                  {errorDate}
+                </p>
+              )}
+            </div>
           </div>
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
             <div className="flex flex-col pt-1 w-full relative">
