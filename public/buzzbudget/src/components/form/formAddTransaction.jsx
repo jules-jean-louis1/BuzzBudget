@@ -27,6 +27,8 @@ function FormAddTransaction({ onDataSuccess }) {
   const [errorName, setErrorName] = useState("");
   const [errorAmount, setErrorAmount] = useState("");
   const [errorDate, setErrorDate] = useState("");
+  const [errorType, setErrorType] = useState("");
+  const [errorPaymentMethod, setErrorPaymentMethod] = useState("");
 
   const fetchData = async () => {
     try {
@@ -122,42 +124,56 @@ function FormAddTransaction({ onDataSuccess }) {
             </div>
           </div>
           <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
-            <div className="flex flex-col pt-1 w-full relative">
-              <label htmlFor="type" className="text-[#8E8E92] absolute">
-                Type
-              </label>
-              <select
-                name="type"
-                id="type"
-                className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
-                onChange={(e) => setSelectedType(e.target.value)}
-              >
-                <option value="depense">Dépense</option>
-                <option value="revenu">Revenu</option>
-              </select>
+            <div className="flex flex-col w-full">
+              <div className="flex flex-col pt-1 w-full relative">
+                <label htmlFor="type" className="text-[#8E8E92] absolute">
+                  Type
+                </label>
+                <select
+                  name="type"
+                  id="type"
+                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                  onChange={(e) => setSelectedType(e.target.value)}
+                >
+                  <option value="depense">Dépense</option>
+                  <option value="revenu">Revenu</option>
+                </select>
+              </div>
+              {errorType && (
+                <p className="text-red-500 text-center text-base">
+                  {errorType}
+                </p>
+              )}
             </div>
           </div>
 
           {selectedType === "depense" && (
             <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 min-h-16 h-20">
-              <div className="flex flex-col pt-1 w-full relative">
-                <label
-                  htmlFor="paymentMethod"
-                  className="text-[#8E8E92] absolute"
-                >
-                  Méthode de paiement
-                </label>
-                <select
-                  name="paymentMethod"
-                  id="paymentMethod"
-                  className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
-                >
-                  <option value="n/a">Non défini</option>
-                  <option value="carte">Carte</option>
-                  <option value="espece">Espèces</option>
-                  <option value="cheque">Chèque</option>
-                  <option value="virement">Virement</option>
-                </select>
+              <div className="flex flex-col w-full">
+                <div className="flex flex-col pt-1 w-full relative">
+                  <label
+                    htmlFor="paymentMethod"
+                    className="text-[#8E8E92] absolute"
+                  >
+                    Méthode de paiement
+                  </label>
+                  <select
+                    name="paymentMethod"
+                    id="paymentMethod"
+                    className="bg-[#0E1217] rounded-xl p-3 text-white text-xl outline-none mt-1"
+                  >
+                    <option value="n/a">Non défini</option>
+                    <option value="carte">Carte</option>
+                    <option value="espece">Espèces</option>
+                    <option value="cheque">Chèque</option>
+                    <option value="virement">Virement</option>
+                  </select>
+                </div>
+                {errorPaymentMethod && (
+                  <p className="text-red-500 text-center text-base">
+                    {errorPaymentMethod}
+                  </p>
+                )}
               </div>
             </div>
           )}
