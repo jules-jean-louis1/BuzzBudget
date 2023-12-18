@@ -11,6 +11,8 @@ import HistoryPage from "./pages/history-page.jsx";
 import ProfilePage from "./pages/profile-page.jsx";
 import AboutPage from "./pages/about-page.jsx";
 import ContactPage from "./pages/contact-page.jsx";
+import PrivatesTest from "./pages/routes/privates-test.jsx";
+import TestPage from "./pages/test-page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,19 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      },
+      {
+        path: "test/:userId",
+        element: (
+          <>
+            <PrivatesTest />
+            <TestPage />
+          </>
+        ),
       },
     ],
   },
