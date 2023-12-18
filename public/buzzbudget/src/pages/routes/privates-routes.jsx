@@ -1,31 +1,32 @@
-import { Route, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/hook/auth.jsx";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAuth from "../../components/hook/useAuth";
 
-function PrivateRoute({ element, ...rest }) {
+const PrivatesRoutes = () => {
   const { user } = useAuth();
+  const { userId } = useParams();
   const navigate = useNavigate();
 
-  return (
-    <Route
-      {...rest}
-      element={({ location }) => {
-        if (user) {
-          // Vérifier l'existence de l'utilisateur avant de vérifier l'ID
-          if (!rest.userId || user.id === rest.userId) {
-            return element;
-          } else {
-            // Rediriger vers la page de connexion si l'ID ne correspond pas
-            navigate("/login", { state: { from: location } });
-            return null;
-          }
-        } else {
-          // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-          navigate("/login", { state: { from: location } });
-          return null;
-        }
-      }}
-    />
-  );
-}
+  const [id, setId] = useState(null);
+  const [statusConvert, setStatusConvert] = useState(false);
 
-export default PrivateRoute;
+  const shouldRenderChild = !id || user.id === id;
+
+  useEffect(() => {
+    let ID = +userId;
+    setId(ID);
+    setStatusConvert(true);
+  }, [userId]);
+
+  useEffect(() => {
+    if (statusConvert) {
+      if (!shouldRenderChild) {
+        navigate("/login");
+      }
+    }
+  }, [shouldRenderChild, navigate, statusConvert]);
+
+  return shouldRenderChild ? <div></div> : null;
+};
+
+export default PrivatesRoutes;
