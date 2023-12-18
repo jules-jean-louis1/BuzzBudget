@@ -19,7 +19,7 @@ function Homepage() {
   }, [login]);
   return (
     <>
-      <div
+      <section
         style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
         className="h-screen"
       >
@@ -82,7 +82,91 @@ function Homepage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      <section id="explainApp">
+        <div className="px-5 h-full flex flex-col items-stretch justify-between py-32">
+          <div className="flex flex-col space-y-6">
+            <div className="flex flex-col space-y-3">
+              <div className="flex flex-col space-y-1">
+                <span className="text-2xl font-bold">
+                  Une application simple et intuitive
+                </span>
+                <span className="text-xl">
+                  BuzzBudget vous permet de gérer votre budget en toute
+                  simplicité
+                </span>
+              </div>
+              <div className="flex flex-col space-y-1">
+                <span className="text-2xl font-bold">
+                  Suivez vos dépenses et revenus avec notre application
+                  conviviale conçue pour vous offrir un contrôle total sur vos
+                  finances. Organisez, catégorisez et étiquetez vos transactions
+                  pour une gestion claire et efficace.
+                </span>
+              </div>
+            </div>
+            <div>
+              <h3>Gestion des Dépenses et Revenus</h3>
+              <ul>
+                <li>
+                  <p>
+                    Tenez un registre précis de toutes vos transactions
+                    financières.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Visualisez vos flux monétaires pour mieux comprendre vos
+                    habitudes de dépenses et maximiser vos revenus.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Créez vos Propres Catégories et Tags</h3>
+              <ul>
+                <li>
+                  <p>
+                    Personnalisez votre expérience en créant des catégories et
+                    des tags adaptés à vos besoins.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Trouvez facilement et rapidement les transactions associées
+                    à des catégories spécifiques grâce à notre système de tags
+                    intuitif.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Historique Consultable et Bien Rangé</h3>
+            </div>
+            <ul>
+              <li>
+                <p>
+                  Accédez à votre historique financier complet en un clin d'œil.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Organisez vos transactions pour une consultation aisée, vous
+                  permettant de mieux planifier et d'optimiser votre gestion
+                  financière.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p>
+              Notre application simplifie la gestion de vos finances pour vous
+              permettre de prendre des décisions éclairées et de contrôler votre
+              argent comme jamais auparavant.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

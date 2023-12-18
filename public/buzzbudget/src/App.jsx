@@ -34,18 +34,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/account/:userId",
-        element: <AccountPage />,
+        element: (
+          <>
+            <PrivatesRoutes />
+            <AccountPage />
+          </>
+        ),
       },
       {
         path: "/account/history/:userId",
-        element: <HistoryPage />,
+        element: (
+          <>
+            <PrivatesRoutes />
+            <HistoryPage />
+          </>
+        ),
       },
       {
         path: "/profil/:userId",
         element: (
           <>
-          <PrivatesRoutes />
-          <ProfilePage />
+            <PrivatesRoutes />
+            <ProfilePage />
           </>
         ),
       },
