@@ -25,7 +25,7 @@ const BtnDeleteTransaction = ({ transactionId }) => {
       <button
         type="button"
         onClick={() => setButtonClicked(true)}
-        className="flex items-center justify-center rounded-lg p-2 bg-[#FF3B30] h-full w-full"
+        className="flex items-center justify-center rounded-lg p-2 h-full w-full"
       >
         <span className="text-xl text-black">Supprimer</span>
         <span>

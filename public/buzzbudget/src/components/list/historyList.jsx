@@ -75,7 +75,7 @@ const HistoryList = ({ items }) => {
                       </div>
                       <div
                         id="callToAction"
-                        className="flex justify-between space-x-1"
+                        className="flex justify-between space-x-1 bg-[#f6f8fc]"
                       >
                         <BtnEditTransaction
                           transactionId={item.id_transaction}
