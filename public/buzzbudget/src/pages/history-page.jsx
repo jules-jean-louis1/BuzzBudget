@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const HistoryPage = () => {
   const [data, setData] = useState([]);
+  console.log(data);
 
   const handleDataHistory = (data) => {
     setData(data);

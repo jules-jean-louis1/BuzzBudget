@@ -54,7 +54,24 @@ const HistoryList = ({ items }) => {
                           <p>Type</p>
                           <p>{item.type_of_transaction}</p>
                         </div>
+                        <div
+                          className="flex items-center justify-between text-sm"
+                          id="date"
+                        >
+                          <p>Paiement</p>
+                          <p>{item.payment_method}</p>
+                        </div>
+                        {item.description !== null && (
+                          <div
+                            className="flex flex-col space-y-1 rounded-md bg-slate-300 p-0.5"
+                            id="description"
+                          >
+                            <p className="text-sm">Description</p>
+                            <p>{item.description}</p>
+                          </div>
+                        )}
                       </div>
+                      <div id="callToAction"></div>
                     </>
                   )}
                 </div>
