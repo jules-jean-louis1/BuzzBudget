@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormattedDate from "../form/formattedDate";
 import BtnDeleteTransaction from "../button/btnDeleteTransaction";
+import BtnEditTransaction from "../button/btnEditTransaction";
 const HistoryList = ({ items }) => {
   const [buttons, setButtons] = useState({});
 
@@ -72,7 +73,13 @@ const HistoryList = ({ items }) => {
                           </div>
                         )}
                       </div>
-                      <div id="callToAction">
+                      <div
+                        id="callToAction"
+                        className="flex justify-between space-x-1"
+                      >
+                        <BtnEditTransaction
+                          transactionId={item.id_transaction}
+                        />
                         <BtnDeleteTransaction
                           transactionId={item.id_transaction}
                         />
