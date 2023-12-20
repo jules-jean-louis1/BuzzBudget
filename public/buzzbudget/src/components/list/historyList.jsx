@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormattedDate from "../form/formattedDate";
+import BtnDeleteTransaction from "../button/btnDeleteTransaction";
 const HistoryList = ({ items }) => {
   const [buttons, setButtons] = useState({});
 
@@ -71,7 +72,11 @@ const HistoryList = ({ items }) => {
                           </div>
                         )}
                       </div>
-                      <div id="callToAction"></div>
+                      <div id="callToAction">
+                        <BtnDeleteTransaction
+                          transactionId={item.id_transaction}
+                        />
+                      </div>
                     </>
                   )}
                 </div>
