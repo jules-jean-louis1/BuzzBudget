@@ -96,4 +96,15 @@ class TransactionController extends AbstractClasses\AbstractContoller
         }
 
     }
+    public function delete(int $id) {
+        $transaction = new TransactionModel();
+        $user = $_SESSION['user'];
+        $id_users = $user->getId();
+        if ($transaction->deleteTransaction($id, $id_users)) {
+            $errors['success'] = 'La transaction a bien été supprimée';
+        } else {
+            $errors['error'] = 'La transaction n\'a pas pu être supprimée';
+        }
+        echo json_encode($errors);
+    }
 }

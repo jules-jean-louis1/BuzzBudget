@@ -100,4 +100,24 @@ class TransactionModel extends AbstractDatabase
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function deleteTransaction(int $id, int $id_users): bool
+    {
+        $sql_Tags = 'DELETE FROM tags_transaction WHERE transaction_id = :id';
+        $sql_Categories = 'DELETE FROM categories_transaction WHERE transaction_id = :id';
+        $sql_Transaction = 'DELETE FROM transaction WHERE id_transaction = :id AND users_id = :id_users';
+
+        $bdd = $this->getBdd();
+        $bdd->beginTransaction();
+        $req = $bdd->prepare($sql_Tags);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $req = $bdd->prepare($sql_Categories);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $req = $bdd->prepare($sql_Transaction);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->bindParam(':id_users', $id_users, PDO::PARAM_INT);
+        return $req->execute();
+    }
+
 }
