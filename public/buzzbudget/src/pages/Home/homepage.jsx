@@ -21,7 +21,7 @@ function Homepage() {
     <>
       <section
         style={{ background: "linear-gradient(140deg, #FF2E00, #FD9D58)" }}
-        className="h-screen"
+        className="h-screen rounded-b-xl"
       >
         <div className="px-5 h-full flex flex-col items-stretch justify-between py-32">
           <div id="logo-container" className="flex flex-col space-y-6">
@@ -81,17 +81,6 @@ function Homepage() {
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="pb-20"
-          style={{
-            background: "linear-gradient(140deg, #fe8246, #FD9D58)",
-          }}
-        >
-          <div
-            className="mt-10 h-full"
-            style={{ background: "linear-gradient(180deg, black, white)" }}
-          ></div>
         </div>
       </section>
       <section id="explainApp">
