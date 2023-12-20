@@ -1,3 +1,4 @@
+import FormEditTransaction from "../form/formEditTransaction";
 import CloseSvg from "../svg/closeSvg";
 
 const ModalEditTransaction = ({ onClose, tranactionId }) => {
@@ -17,6 +18,7 @@ const ModalEditTransaction = ({ onClose, tranactionId }) => {
             </button>
           </div>
         </div>
+        <FormEditTransaction transactionId={tranactionId} />
       </div>
     </>
   );

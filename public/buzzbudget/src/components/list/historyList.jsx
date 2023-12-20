@@ -2,8 +2,11 @@ import { useState } from "react";
 import FormattedDate from "../form/formattedDate";
 import BtnDeleteTransaction from "../button/btnDeleteTransaction";
 import BtnEditTransaction from "../button/btnEditTransaction";
+import { ValidateSuccessProvider } from "../hook/useValidateSuccess";
 const HistoryList = ({ items }) => {
   const [buttons, setButtons] = useState({});
+  const { success } = ValidateSuccessProvider();
+  console.log(success);
 
   return (
     <>
@@ -77,12 +80,14 @@ const HistoryList = ({ items }) => {
                         id="callToAction"
                         className="flex justify-between space-x-1 bg-[#f6f8fc]"
                       >
-                        <BtnEditTransaction
-                          transactionId={item.id_transaction}
-                        />
-                        <BtnDeleteTransaction
-                          transactionId={item.id_transaction}
-                        />
+                        <ValidateSuccessProvider>
+                          <BtnEditTransaction
+                            transactionId={item.id_transaction}
+                          />
+                          <BtnDeleteTransaction
+                            transactionId={item.id_transaction}
+                          />
+                        </ValidateSuccessProvider>
                       </div>
                     </>
                   )}
