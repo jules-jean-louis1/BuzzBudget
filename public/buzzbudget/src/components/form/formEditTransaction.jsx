@@ -14,7 +14,7 @@ const FormEditTransaction = ({ transactionId }) => {
   return (
     <>
       <form action="" method="post">
-        <button onClick={handleSubmit} type="submit">
+        <button onClick={handleSubmit} type="submit" id="EditTransaction">
           <span className="text-xl text-black">Modifier</span>
           <span>
             <EditCircle className={"w-7 h-7"} stroke={"#0e1217"} />

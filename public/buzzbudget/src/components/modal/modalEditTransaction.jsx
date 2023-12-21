@@ -17,8 +17,8 @@ const ModalEditTransaction = ({ onClose, tranactionId }) => {
               />
             </button>
           </div>
+          <FormEditTransaction transactionId={tranactionId} />
         </div>
-        <FormEditTransaction transactionId={tranactionId} />
       </div>
     </>
   );
