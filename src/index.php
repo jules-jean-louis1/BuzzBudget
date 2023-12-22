@@ -88,6 +88,9 @@ $router->map('POST', '/transaction/add', function() use ($transaction) {
 $router->map('POST', '/transaction/delete/[i:id]', function($id) use ($transaction) {
     $transaction->delete($id);
 });
+$router->map('GET', '/transaction/getOne/[i:id]', function($id) use ($transaction) {
+    $transaction->getOne($id);
+});
 /* ############################# 
         Categories routes
 ############################# */

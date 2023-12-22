@@ -119,5 +119,14 @@ class TransactionModel extends AbstractDatabase
         $req->bindParam(':id_users', $id_users, PDO::PARAM_INT);
         return $req->execute();
     }
-
+    public function getOneTransaction(int $id_transaction, int $id_users): array
+    {
+        $sql = 'SELECT * FROM transaction WHERE id_transaction = :id_transaction AND users_id = :id_users';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->bindParam(':id_users', $id_users, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
 }

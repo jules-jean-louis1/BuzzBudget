@@ -13,6 +13,7 @@ import AboutPage from "./pages/about-page.jsx";
 import ContactPage from "./pages/contact-page.jsx";
 import PrivatesRoutes from "./pages/routes/privates-routes.jsx";
 import TestPage from "./pages/test-page.jsx";
+import { ValidateSuccessProvider } from "./components/hook/useValidateSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +46,10 @@ const router = createBrowserRouter([
         path: "/account/history/:userId",
         element: (
           <>
-            <PrivatesRoutes />
-            <HistoryPage />
+            <ValidateSuccessProvider>
+              <PrivatesRoutes />
+              <HistoryPage />
+            </ValidateSuccessProvider>
           </>
         ),
       },

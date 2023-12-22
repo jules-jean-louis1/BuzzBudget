@@ -107,4 +107,12 @@ class TransactionController extends AbstractClasses\AbstractContoller
         }
         echo json_encode($errors);
     }
+    public function getOne(int $id_transaction): void
+    {
+        $transaction = new TransactionModel();
+        $user = $_SESSION['user'];
+        $id_users = $user->getId();
+        $transaction = $transaction->getOneTransaction($id_transaction, $id_users);
+        echo json_encode($transaction);
+    }
 }

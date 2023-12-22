@@ -1,17 +1,20 @@
 import FormFilter from "../components/form/formFilter";
+import { useValidateSuccess } from "../components/hook/useValidateSuccess";
 import HistoryList from "../components/list/historyList";
 import { useState } from "react";
-import { ValidateSuccessProvider } from "../components/hook/useValidateSuccess";
 
 const HistoryPage = () => {
   const [data, setData] = useState([]);
+  const { success } = useValidateSuccess();
+
+  console.log(success);
 
   const handleDataHistory = (data) => {
     setData(data);
   };
 
   return (
-    <ValidateSuccessProvider>
+    <>
       <div className="h-screen bg-[#f2f2f6]">
         <div className="pt-14">
           <h1 className="text-2xl px-2 mt-2 font-normal">Historique</h1>
@@ -25,7 +28,7 @@ const HistoryPage = () => {
           </div>
         </div>
       </div>
-    </ValidateSuccessProvider>
+    </>
   );
 };
 

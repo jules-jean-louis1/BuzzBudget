@@ -2,13 +2,10 @@ import { useState } from "react";
 import FormattedDate from "../form/formattedDate";
 import BtnDeleteTransaction from "../button/btnDeleteTransaction";
 import BtnEditTransaction from "../button/btnEditTransaction";
-import { useValidateSuccess } from "../hook/useValidateSuccess";
 
 const HistoryList = ({ items }) => {
   const [buttons, setButtons] = useState({});
-  const { success } = useValidateSuccess();
 
-  console.log(success);
   return (
     <>
       <div className="flex flex-col space-y-4">
