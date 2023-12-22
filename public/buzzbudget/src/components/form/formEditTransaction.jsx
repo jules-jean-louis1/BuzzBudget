@@ -20,7 +20,7 @@ const FormEditTransaction = ({ transactionId }) => {
       );
       const data = await response.json();
       console.log(data);
-      setDataTransaction(data);
+      //setDataTransaction(data);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }

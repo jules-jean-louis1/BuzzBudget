@@ -1,7 +1,7 @@
 import FormEditTransaction from "../form/formEditTransaction";
 import CloseSvg from "../svg/closeSvg";
 
-const ModalEditTransaction = ({ onClose, tranactionId }) => {
+const ModalEditTransaction = ({ onClose, transactionId }) => {
   return (
     <>
       <div className="fixed w-screen h-screen left-0 top-0 bg-[#edf0f7]">
@@ -17,7 +17,7 @@ const ModalEditTransaction = ({ onClose, tranactionId }) => {
               />
             </button>
           </div>
-          <FormEditTransaction transactionId={tranactionId} />
+          <FormEditTransaction transactionId={transactionId} />
         </div>
       </div>
     </>

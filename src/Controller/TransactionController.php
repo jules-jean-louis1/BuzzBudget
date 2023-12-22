@@ -112,7 +112,19 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $transaction = new TransactionModel();
         $user = $_SESSION['user'];
         $id_users = $user->getId();
-        $transaction = $transaction->getOneTransaction($id_transaction, $id_users);
-        echo json_encode($transaction);
+        $errors = [];
+        $getTransaction = $transaction->getOneTransaction($id_transaction, $id_users);
+
+        if (empty($getTransaction)) {
+            $errors['error'] = 'La transaction n\'existe pas';
+            echo json_encode($errors);
+        } else {
+            $tags = $transaction->getTagsOfTransaction($id_transaction);
+            $categories = $transaction->getCategoriesOfTransaction($id_transaction);
+            $errors['success'] = ['transaction' => $getTransaction,
+                                'tags' => $tags,
+                                'categories' => $categories];
+            echo json_encode($errors);
+        }
     }
 }

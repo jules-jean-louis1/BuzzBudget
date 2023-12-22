@@ -6,6 +6,7 @@ const BtnEditTransaction = ({ transactionId }) => {
   const [modal, setModal] = useState(false);
 
   const handleClic = () => {
+    console.log(transactionId);
     setModal(true);
   };
   return (
