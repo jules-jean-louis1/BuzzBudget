@@ -24,6 +24,10 @@ const FormEditTransaction = ({ transactionId }) => {
   const [selectedType, setSelectedType] = useState(
     transaction.type_of_transaction || ""
   );
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
+    transaction.payment_method || ""
+  );
+  const [description, setDescription] = useState(transaction.description || "");
 
   // Error
   const [errorName, setErrorName] = useState("");
@@ -145,7 +149,9 @@ const FormEditTransaction = ({ transactionId }) => {
                 <select
                   name="paymentMethod"
                   id="paymentMethod"
+                  value={selectedPaymentMethod}
                   className="bg-[#E0E4EC] rounded-xl p-3 text-black text-xl outline-none mt-1"
+                  onChange={(e) => setSelectedPaymentMethod(e.target.value)}
                 >
                   <option value="n/a">Non défini</option>
                   <option value="carte">Carte</option>
@@ -162,6 +168,17 @@ const FormEditTransaction = ({ transactionId }) => {
             </div>
           </div>
         )}
+        <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
+          <div className="flex flex-col w-full">
+            <GenericInput
+              label={"Description"}
+              type={"text"}
+              name={"description"}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+        </div>
         <div className="pt-4">
           <button
             onClick={handleSubmit}
