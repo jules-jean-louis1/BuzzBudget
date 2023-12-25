@@ -41,6 +41,17 @@ const FormEditTransaction = ({ transactionId }) => {
   const [errorType, setErrorType] = useState("");
   const [errorPaymentMethod, setErrorPaymentMethod] = useState("");
 
+  const handleCategories = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setCategoriesData([...categoriesData, { id_categories: value }]);
+    } else {
+      setCategoriesData(
+        categoriesData.filter((data) => data.id_categories !== value)
+      );
+    }
+  };
+
   const getDataFormTransaction = async () => {
     try {
       const response = await fetch(
@@ -193,13 +204,41 @@ const FormEditTransaction = ({ transactionId }) => {
               {tags.map((tag) => (
                 <div key={tag.id_tags}>
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="tags"
                     id={tag.name_tags}
                     value={tag.id_tags}
-                    checked={tag.id_tags === tagsData.id_tags} // use 'checked' attribute here
+                    checked={tagsData.some(
+                      (data) => data.id_tags === tag.id_tags
+                    )}
                   />
                   <label htmlFor={tag.name_tags}>{tag.name_tags}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
+          <div className="flex flex-col w-full">
+            <div className="flex flex-col pt-1 w-full relative">
+              <label htmlFor="categories" className="text-[#8E8E92] absolute">
+                Catégories
+              </label>
+              {categories.map((category) => (
+                <div key={category.id_categories}>
+                  <input
+                    type="checkbox"
+                    name="categories"
+                    id={category.name_categories}
+                    value={category.id_categories}
+                    checked={categoriesData.some(
+                      (data) => data.id_categories === category.id_categories
+                    )}
+                    onChange={handleCategories}
+                  />
+                  <label htmlFor={category.name_categories}>
+                    {category.name_categories}
+                  </label>
                 </div>
               ))}
             </div>
