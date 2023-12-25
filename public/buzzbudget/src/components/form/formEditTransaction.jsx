@@ -17,22 +17,12 @@ const FormEditTransaction = ({ transactionId }) => {
   const [categoriesData, setCategoriesData] = useState([]);
 
   const formRef = useRef();
-  const [nameTransaction, setNameTransaction] = useState(
-    transaction.name_transaction || ""
-  );
-  const [amount, setAmount] = useState(transaction.amount_transaction || "");
-  const [date, setDate] = useState(
-    transaction.date_of_transaction
-      ? transaction.date_of_transaction.substring(0, 10)
-      : ""
-  );
-  const [selectedType, setSelectedType] = useState(
-    transaction.type_of_transaction || ""
-  );
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
-    transaction.payment_method || ""
-  );
-  const [description, setDescription] = useState(transaction.description || "");
+  const [nameTransaction, setNameTransaction] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const [description, setDescription] = useState("");
 
   // Error
   const [errorName, setErrorName] = useState("");
@@ -52,6 +42,15 @@ const FormEditTransaction = ({ transactionId }) => {
     }
   };
 
+  const handleTags = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setTagsData([...tagsData, { id_tags: value }]);
+    } else {
+      setTagsData(tagsData.filter((data) => data.id_tags !== value));
+    }
+  };
+  console.log(transaction);
   const getDataFormTransaction = async () => {
     try {
       const response = await fetch(
@@ -66,6 +65,14 @@ const FormEditTransaction = ({ transactionId }) => {
         setTransaction(data.success.transaction);
         setTagsData(data.success.tags);
         setCategoriesData(data.success.categories);
+
+        // Set value
+        setNameTransaction(data.success.transaction.name_transaction);
+        setAmount(data.success.transaction.amount_transaction);
+        setDate(data.success.transaction.date_of_transaction.substring(0, 10));
+        setSelectedType(data.success.transaction.type_of_transaction);
+        setSelectedPaymentMethod(data.success.transaction.payment_method);
+        setDescription(data.success.transaction.description);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -211,6 +218,7 @@ const FormEditTransaction = ({ transactionId }) => {
                     checked={tagsData.some(
                       (data) => data.id_tags === tag.id_tags
                     )}
+                    onChange={handleTags}
                   />
                   <label htmlFor={tag.name_tags}>{tag.name_tags}</label>
                 </div>
