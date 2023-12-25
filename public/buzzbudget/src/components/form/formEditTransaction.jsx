@@ -2,14 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import EditCircle from "../svg/editCircle";
 import { useValidateSuccess } from "../hook/useValidateSuccess";
 import GenericInput from "./input/genericInput";
+import useTags from "../hook/useTags";
+import useCategories from "../hook/useCategories";
 
 const FormEditTransaction = ({ transactionId }) => {
   const { setSuccess } = useValidateSuccess();
+  const { tags } = useTags();
+  const { categories } = useCategories();
+
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const [transaction, setTransaction] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [tagsData, setTagsData] = useState([]);
+  const [categoriesData, setCategoriesData] = useState([]);
 
   const formRef = useRef();
   const [nameTransaction, setNameTransaction] = useState(
@@ -48,8 +53,8 @@ const FormEditTransaction = ({ transactionId }) => {
       const data = await response.json();
       if (data.success) {
         setTransaction(data.success.transaction);
-        setTags(data.success.tags);
-        setCategories(data.success.categories);
+        setTagsData(data.success.tags);
+        setCategoriesData(data.success.categories);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -177,6 +182,27 @@ const FormEditTransaction = ({ transactionId }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+          </div>
+        </div>
+        <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
+          <div className="flex flex-col w-full">
+            <div className="flex flex-col pt-1 w-full relative">
+              <label htmlFor="tags" className="text-[#8E8E92] absolute">
+                Tags
+              </label>
+              {tags.map((tag) => (
+                <div key={tag.id_tags}>
+                  <input
+                    type="radio"
+                    name="tags"
+                    id={tag.name_tags}
+                    value={tag.id_tags}
+                    checked={tag.id_tags === tagsData.id_tags} // use 'checked' attribute here
+                  />
+                  <label htmlFor={tag.name_tags}>{tag.name_tags}</label>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="pt-4">
