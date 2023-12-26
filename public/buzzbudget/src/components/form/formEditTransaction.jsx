@@ -232,23 +232,14 @@ const FormEditTransaction = ({ transactionId }) => {
               <label htmlFor="categories" className="text-[#8E8E92] absolute">
                 Catégories
               </label>
-              {categories.map((category) => (
-                <div key={category.id_categories}>
-                  <input
-                    type="checkbox"
-                    name="categories"
-                    id={category.name_categories}
-                    value={category.id_categories}
-                    checked={categoriesData.some(
-                      (data) => data.id_categories === category.id_categories
-                    )}
-                    onChange={handleCategories}
-                  />
-                  <label htmlFor={category.name_categories}>
-                    {category.name_categories}
-                  </label>
-                </div>
-              ))}
+              <select name="categories" id="categories">
+                <option value="n/a">Non défini</option>
+                {categories.map((categorie) => (
+                  <option key={categorie.id_categories} value="categorie">
+                    {categorie.name_categories}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
