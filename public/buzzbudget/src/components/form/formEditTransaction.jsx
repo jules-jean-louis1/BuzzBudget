@@ -93,6 +93,35 @@ const FormEditTransaction = ({ transactionId }) => {
     getDataFormTransaction();
   }, []);
 
+  const sendData = async () => {
+    const formData = new FormData(formRef.current);
+    formData.append("tags", JSON.stringify(tagsData));
+    formData.append("categories", JSON.stringify(categoriesData));
+    try {
+      const response = await fetch(
+        `http://localhost:80/buzzbudget/src/transaction/update/${transactionId}`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      if (data.success) {
+        setSuccess(true);
+      }
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (buttonClicked) {
+      sendData();
+      setButtonClicked(false);
+    }
+  }, [buttonClicked]);
+
   return (
     <>
       <form action="" method="post" ref={formRef}>

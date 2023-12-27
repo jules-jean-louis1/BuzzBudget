@@ -127,4 +127,7 @@ class TransactionController extends AbstractClasses\AbstractContoller
             echo json_encode($errors);
         }
     }
+    public function update(int $id_transaction) {
+        
+    }
 }
