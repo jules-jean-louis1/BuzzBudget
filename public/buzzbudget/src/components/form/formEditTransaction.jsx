@@ -67,12 +67,16 @@ const FormEditTransaction = ({ transactionId }) => {
         setCategoriesData(data.success.categories);
 
         // Set value
-        setNameTransaction(data.success.transaction.name_transaction);
-        setAmount(data.success.transaction.amount_transaction);
-        setDate(data.success.transaction.date_of_transaction.substring(0, 10));
-        setSelectedType(data.success.transaction.type_of_transaction);
-        setSelectedPaymentMethod(data.success.transaction.payment_method);
-        setDescription(data.success.transaction.description);
+        setNameTransaction(data.success.transaction.name_transaction || "");
+        setAmount(data.success.transaction.amount_transaction || "");
+        setDate(
+          data.success.transaction.date_of_transaction
+            ? data.success.transaction.date_of_transaction.substring(0, 10)
+            : ""
+        );
+        setSelectedType(data.success.transaction.type_of_transaction || "");
+        setSelectedPaymentMethod(data.success.transaction.payment_method || "");
+        setDescription(data.success.transaction.description || "");
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -204,38 +208,41 @@ const FormEditTransaction = ({ transactionId }) => {
         </div>
         <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
           <div className="flex flex-col w-full">
-            <div className="flex flex-col pt-1 w-full relative">
-              <label htmlFor="tags" className="text-[#8E8E92] absolute">
-                Tags
-              </label>
-              {tags.map((tag) => (
-                <div key={tag.id_tags}>
-                  <input
-                    type="checkbox"
-                    name="tags"
-                    id={tag.name_tags}
-                    value={tag.id_tags}
-                    checked={tagsData.some(
-                      (data) => data.id_tags === tag.id_tags
-                    )}
-                    onChange={handleTags}
-                  />
-                  <label htmlFor={tag.name_tags}>{tag.name_tags}</label>
-                </div>
-              ))}
+            <div className="flex flex-col w-full relative">
+              <p className="text-[#8E8E92] absolute">Tags</p>
+              <div className="pt-6">
+                {tags.map((tag) => (
+                  <div key={tag.id_tags}>
+                    <input
+                      type="checkbox"
+                      name="tags"
+                      id={tag.name_tags}
+                      value={tag.id_tags}
+                      checked={tagsData.some(
+                        (data) => data.id_tags === tag.id_tags
+                      )}
+                      onChange={handleTags}
+                    />
+                    <label htmlFor={tag.name_tags}>{tag.name_tags}</label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <div className="border-2 border-b-0 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC]">
-          <div className="flex flex-col w-full">
-            <div className="flex flex-col pt-1 w-full relative">
+        <div className="border-2 border-[#4A4A4A] flex items-center justify-between px-2 bg-[#E0E4EC] h-16 rounded-b-xl">
+          <div className="flex flex-col w-full h-full justify-evenly">
+            <div className="flex flex-col pt-1 w-full h-full relative space-y-7">
               <label htmlFor="categories" className="text-[#8E8E92] absolute">
                 Catégories
               </label>
               <select name="categories" id="categories">
                 <option value="n/a">Non défini</option>
                 {categories.map((categorie) => (
-                  <option key={categorie.id_categories} value="categorie">
+                  <option
+                    key={categorie.id_categories}
+                    value={categorie.id_categories}
+                  >
                     {categorie.name_categories}
                   </option>
                 ))}
@@ -248,7 +255,7 @@ const FormEditTransaction = ({ transactionId }) => {
             onClick={handleSubmit}
             type="submit"
             id="EditTransaction"
-            className="flex justify-between items-center rounded-xl bg-[#E0E4EC] h-10 w-full p-2"
+            className="flex justify-between items-center rounded-xl bg-[#E0E4EC] w-full px-2 py-4"
           >
             <span className="text-xl text-black">Modifier</span>
             <span>
