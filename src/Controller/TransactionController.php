@@ -128,6 +128,15 @@ class TransactionController extends AbstractClasses\AbstractContoller
         }
     }
     public function update(int $id_transaction) {
+        $transaction = new TransactionModel();
+        $user = $_SESSION['user'];
+        $id_users = $user->getId();
+        $errors = [];
+
+        $getTransaction = $transaction->getOneTransaction($id_transaction, $id_users);
+        $getTags = $transaction->getTagsOfTransaction($id_transaction);
+        $getCategories = $transaction->getCategoriesOfTransaction($id_transaction);
+
         
     }
 }
