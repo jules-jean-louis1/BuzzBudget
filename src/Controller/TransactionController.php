@@ -137,6 +137,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $getTags = $transaction->getTagsOfTransaction($id_transaction);
         $getCategories = $transaction->getCategoriesOfTransaction($id_transaction);
 
-        
+        $nameCheck = $getTransaction['name_transaction'];
     }
 }
