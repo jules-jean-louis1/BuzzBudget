@@ -163,5 +163,48 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $tags = $this->verifyField('tags');
         $categories = $this->verifyField('categories');
 
+        if (empty($getTransaction)) {
+            $errors['error'] = 'La transaction n\'existe pas';
+            echo json_encode($errors);
+        } else {
+            if (!$name) {
+                $name = $bddName;
+            } elseif (strlen($name) < 2 || strlen($name) > 50) {
+                $errors['name'] = 'Le nom de la transaction doit contenir entre 2 et 50 caractères';
+            }
+            if (!$description) {
+                $description = $bddDescription;
+            } elseif (strlen($description) < 2 || strlen($description) > 255) {
+                $errors['description'] = 'La description doit contenir entre 2 et 255 caractères';
+            }
+            if (!$amount) {
+                $amount = $bddAmount;
+            } elseif (!is_numeric($amount)) {
+                $errors['amount'] = 'Le montant doit être un nombre';
+            }
+            if (!$type) {
+                $type = $bddType;
+            } elseif ($type !== 'depense' && $type !== 'revenu') {
+                $errors['type'] = 'Le type de transaction doit être soit une dépense soit un revenu';
+            } elseif ($type === 'depense') {
+                if($paymentMethod !== 'espece' && $paymentMethod !== 'carte' && $paymentMethod !== 'cheque' && $paymentMethod !== 'virement' && $paymentMethod !== 'n/a') {
+                    $errors['paymentMethod'] = 'Le mode de paiement doit être soit espèce, carte, chèque ou virement';
+                }
+            } else {
+                $paymentMethod = null;
+            }
+            if (!$date) {
+                $date = $bddDate;
+            } elseif (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
+                $errors['date'] = 'La date doit être au format YYYY-MM-DD';
+            }
+            if (!$tags) {
+                $tags = $getTags;
+            }
+            if (!$categories) {
+                $categories = $getCategories;
+            }
+        }
+
     }
 }

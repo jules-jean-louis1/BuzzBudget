@@ -31,26 +31,24 @@ const FormEditTransaction = ({ transactionId }) => {
   const [errorType, setErrorType] = useState("");
   const [errorPaymentMethod, setErrorPaymentMethod] = useState("");
 
-  const handleCategories = (e) => {
-    const { checked, value } = e.target;
-    if (checked) {
-      setCategoriesData([...categoriesData, { id_categories: value }]);
+  const handleCategories = (event) => {
+    const selectedCategoryId = event.target.value;
+    if (selectedCategoryId) {
+      setCategoriesData([{ id_categories: parseInt(selectedCategoryId) }]);
     } else {
-      setCategoriesData(
-        categoriesData.filter((data) => data.id_categories !== value)
-      );
+      setCategoriesData([]);
     }
   };
 
   const handleTags = (e) => {
     const { checked, value } = e.target;
     if (checked) {
-      setTagsData([...tagsData, { id_tags: value }]);
+      setTagsData([...tagsData, { id_tags: parseInt(value) }]);
     } else {
-      setTagsData(tagsData.filter((data) => data.id_tags !== value));
+      setTagsData(tagsData.filter((data) => data.id_tags !== parseInt(value)));
     }
   };
-  console.log(transaction);
+  console.log(categoriesData);
   const getDataFormTransaction = async () => {
     try {
       const response = await fetch(
@@ -91,7 +89,7 @@ const FormEditTransaction = ({ transactionId }) => {
 
   useEffect(() => {
     getDataFormTransaction();
-  }, []);
+  }, [transactionId]);
 
   const sendData = async () => {
     const formData = new FormData(formRef.current);
@@ -265,7 +263,12 @@ const FormEditTransaction = ({ transactionId }) => {
               <label htmlFor="categories" className="text-[#8E8E92] absolute">
                 Catégories
               </label>
-              <select name="categories" id="categories">
+              <select
+                name="categories"
+                id="categories"
+                value={categoriesData[0]?.id_categories || "n/a"}
+                onChange={handleCategories}
+              >
                 <option value="n/a">Non défini</option>
                 {categories.map((categorie) => (
                   <option
