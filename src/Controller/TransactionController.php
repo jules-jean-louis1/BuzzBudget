@@ -137,6 +137,17 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $getTags = $transaction->getTagsOfTransaction($id_transaction);
         $getCategories = $transaction->getCategoriesOfTransaction($id_transaction);
 
-        $nameCheck = $getTransaction['name_transaction'];
+        var_dump($getTransaction);
+        var_dump($getTags);
+        var_dump($getCategories);
+
+        $bddName = $getTransaction['name_transaction'];
+        $bddDescription = $getTransaction['description_transaction'];
+        $bddAmount = $getTransaction['amount_transaction'];
+        $bddType = $getTransaction['type_of_transaction'];
+        $bddPaymentMethod = $getTransaction['payment_method'];
+        $bddDate = $getTransaction['date_transaction'];
+        $bddRecurrent = $getTransaction['recurrent'];
+        
     }
 }
