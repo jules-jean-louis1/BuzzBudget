@@ -212,6 +212,15 @@ class TransactionController extends AbstractClasses\AbstractContoller
             } else {
                 $categories = $categoriesArray;
             }
+
+            if (empty($errors)) {
+                if ($bddName !== $name) {
+                    $transaction->updateName($id_transaction, $name);
+                }
+                if ($bddDescription !== $description) {
+                    $transaction->updateDescription($id_transaction, $description);
+                }
+            }
         }
 
     }

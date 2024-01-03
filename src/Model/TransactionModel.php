@@ -147,4 +147,24 @@ class TransactionModel extends AbstractDatabase
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /* update transaction function */
+    public function updateName(int $id_transaction, string $name): void
+    {
+        $sql = 'UPDATE transaction SET name_transaction = :name WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':name', $name, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function updateDescription(int $id_transaction, string $description): void
+    {
+        $sql = 'UPDATE transaction SET description = :description WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':description', $description, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
