@@ -94,7 +94,7 @@ $router->map('GET', '/transaction/getOne/[i:id]', function($id) use ($transactio
 $router->map('POST', '/transaction/update/[i:id]', function($id) use ($transaction) {
     $transaction->update($id);
 });
-$router->map('GET', '/testEdit/[i:id]', function($id) use ($transaction) {
+$router->map('POST', '/testEdit/[i:id]', function($id) use ($transaction) {
     $transaction->update($id);
 });
 /* ############################# 

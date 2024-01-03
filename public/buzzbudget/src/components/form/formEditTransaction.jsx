@@ -99,7 +99,7 @@ const FormEditTransaction = ({ transactionId }) => {
     formData.append("categories", JSON.stringify(categoriesData));
     try {
       const response = await fetch(
-        `http://localhost:80/buzzbudget/src/transaction/update/${transactionId}`,
+        `http://localhost:80/buzzbudget/src/testEdit/${transactionId}`,
         {
           method: "POST",
           credentials: "include",

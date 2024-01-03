@@ -137,17 +137,31 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $getTags = $transaction->getTagsOfTransaction($id_transaction);
         $getCategories = $transaction->getCategoriesOfTransaction($id_transaction);
 
-        var_dump($getTransaction);
+        /* var_dump($getTransaction);
         var_dump($getTags);
-        var_dump($getCategories);
+        var_dump($getCategories); */
 
+        /* Dealing with the transaction */
         $bddName = $getTransaction['name_transaction'];
-        $bddDescription = $getTransaction['description_transaction'];
+        $bddDescription = $getTransaction['description'];
         $bddAmount = $getTransaction['amount_transaction'];
         $bddType = $getTransaction['type_of_transaction'];
         $bddPaymentMethod = $getTransaction['payment_method'];
-        $bddDate = $getTransaction['date_transaction'];
+        $bddDate = $getTransaction['date_of_transaction'];
         $bddRecurrent = $getTransaction['recurrent'];
+
+        var_dump($_POST);
+        /* $name = isset($_POST['name']) && !empty($_POST['name']) ? $_POST['name'] : null; */
         
+        /* verifyField() is a method from AbstractController */
+        $name = $this->verifyField('name');
+        $description = $this->verifyField('description');
+        $amount = $this->verifyField('amount');
+        $type = $this->verifyField('type');
+        $paymentMethod = $this->verifyField('paymentMethod');
+        $date = $this->verifyField('date');
+        $tags = $this->verifyField('tags');
+        $categories = $this->verifyField('categories');
+
     }
 }
