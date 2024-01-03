@@ -161,7 +161,11 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $paymentMethod = $this->verifyField('paymentMethod');
         $date = $this->verifyField('date');
         $tags = $this->verifyField('tags');
+        $tagsArray = json_decode($tags, true);
         $categories = $this->verifyField('categories');
+        $categoriesArray = json_decode($categories, true);
+
+        var_dump($name, $description, $amount, $type, $paymentMethod, $date, $tags, $categories);
 
         if (empty($getTransaction)) {
             $errors['error'] = 'La transaction n\'existe pas';
@@ -198,11 +202,15 @@ class TransactionController extends AbstractClasses\AbstractContoller
             } elseif (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
                 $errors['date'] = 'La date doit être au format YYYY-MM-DD';
             }
-            if (!$tags) {
-                $tags = $getTags;
+            if (empty($tagsArray)) {
+                $tags = null;
+            } else {
+                $tags = $tagsArray;
             }
-            if (!$categories) {
-                $categories = $getCategories;
+            if (empty($categoriesArray)) {
+                $categories = null;
+            } else {
+                $categories = $categoriesArray;
             }
         }
 

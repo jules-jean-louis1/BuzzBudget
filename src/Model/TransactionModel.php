@@ -131,7 +131,7 @@ class TransactionModel extends AbstractDatabase
     }
     public function getTagsOfTransaction(int $id_transaction): array
     {
-        $sql = 'SELECT * FROM tags WHERE id_tags IN (SELECT id_tags_transaction FROM tags_transaction WHERE transaction_id = :id_transaction)';
+        $sql = 'SELECT id_tags, name_tags FROM tags WHERE id_tags IN (SELECT id_tags_transaction FROM tags_transaction WHERE transaction_id = :id_transaction)';
         $bdd = $this->getBdd();
         $req = $bdd->prepare($sql);
         $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
@@ -140,7 +140,7 @@ class TransactionModel extends AbstractDatabase
     }
     public function getCategoriesOfTransaction(int $id_transaction): array
     {
-        $sql = 'SELECT * FROM categories WHERE id_categories IN (SELECT id_categories_transaction FROM categories_transaction WHERE transaction_id = :id_transaction)';
+        $sql = 'SELECT id_categories, name_categories FROM categories WHERE id_categories IN (SELECT id_categories_transaction FROM categories_transaction WHERE transaction_id = :id_transaction)';
         $bdd = $this->getBdd();
         $req = $bdd->prepare($sql);
         $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
