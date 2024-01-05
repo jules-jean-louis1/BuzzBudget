@@ -213,7 +213,7 @@ class TransactionModel extends AbstractDatabase
     }
     public function addTagToTransaction(int $id_transaction, int $id_tags): void
     {
-        $sql = 'INSERT INTO tags_transaction (id_tags_transaction, transaction_id) VALUES (:id_tags, :id_transaction)';
+        $sql = 'INSERT INTO tags_transaction (tags_id, transaction_id) VALUES (:id_tags, :id_transaction)';
         $bdd = $this->getBdd();
         $req = $bdd->prepare($sql);
         $req->bindParam(':id_tags', $id_tags, PDO::PARAM_INT);
@@ -230,7 +230,7 @@ class TransactionModel extends AbstractDatabase
     }
     public function addCategoriesToTransaction(int $id_transaction, int $id_categories): void
     {
-        $sql = 'INSERT INTO categories_transaction (id_categories_transaction, transaction_id) VALUES (:id_categories, :id_transaction)';
+        $sql = 'INSERT INTO categories_transaction (categories_id, transaction_id) VALUES (:id_categories, :id_transaction)';
         $bdd = $this->getBdd();
         $req = $bdd->prepare($sql);
         $req->bindParam(':id_categories', $id_categories, PDO::PARAM_INT);
