@@ -167,4 +167,74 @@ class TransactionModel extends AbstractDatabase
         $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
         $req->execute();
     }
+    public function updateAmount(int $id_transaction, mixed $amount): void
+    {
+        $sql = 'UPDATE transaction SET amount_transaction = :amount WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':amount', $amount, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function updateDate(int $id_transaction, string $date): void
+    {
+        $sql = 'UPDATE transaction SET date_of_transaction = :date WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':date', $date, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function updateType(int $id_transaction, string $type): void
+    {
+        $sql = 'UPDATE transaction SET type_of_transaction = :type WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':type', $type, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function updatePaymentMethod(int $id_transaction, string $paymentMethod): void
+    {
+        $sql = 'UPDATE transaction SET payment_method = :paymentMethod WHERE id_transaction = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':paymentMethod', $paymentMethod, PDO::PARAM_STR);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function deleteTagsOfTransaction(int $id_transaction): void
+    {
+        $sql = 'DELETE FROM tags_transaction WHERE transaction_id = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function addTagToTransaction(int $id_transaction, int $id_tags): void
+    {
+        $sql = 'INSERT INTO tags_transaction (id_tags_transaction, transaction_id) VALUES (:id_tags, :id_transaction)';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id_tags', $id_tags, PDO::PARAM_INT);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function deleteCategoriesOfTransaction(int $id_transaction): void
+    {
+        $sql = 'DELETE FROM categories_transaction WHERE transaction_id = :id_transaction';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
+    public function addCategoriesToTransaction(int $id_transaction, int $id_categories): void
+    {
+        $sql = 'INSERT INTO categories_transaction (id_categories_transaction, transaction_id) VALUES (:id_categories, :id_transaction)';
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare($sql);
+        $req->bindParam(':id_categories', $id_categories, PDO::PARAM_INT);
+        $req->bindParam(':id_transaction', $id_transaction, PDO::PARAM_INT);
+        $req->execute();
+    }
 }

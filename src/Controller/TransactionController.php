@@ -149,9 +149,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $bddPaymentMethod = $getTransaction['payment_method'];
         $bddDate = $getTransaction['date_of_transaction'];
         $bddRecurrent = $getTransaction['recurrent'];
-
-        var_dump($_POST);
-        /* $name = isset($_POST['name']) && !empty($_POST['name']) ? $_POST['name'] : null; */
         
         /* verifyField() is a method from AbstractController */
         $name = $this->verifyField('name');
@@ -219,6 +216,34 @@ class TransactionController extends AbstractClasses\AbstractContoller
                 }
                 if ($bddDescription !== $description) {
                     $transaction->updateDescription($id_transaction, $description);
+                }
+                if ($bddAmount !== $amount) {
+                    $transaction->updateAmount($id_transaction, $amount);
+                }
+                if ($bddType !== $type) {
+                    $transaction->updateType($id_transaction, $type);
+                }
+                if ($bddPaymentMethod !== $paymentMethod) {
+                    $transaction->updatePaymentMethod($id_transaction, $paymentMethod);
+                }
+                if ($bddDate !== $date) {
+                    $transaction->updateDate($id_transaction, $date);
+                }
+                if ($tags !== null) {
+                    $transaction->deleteTagsOfTransaction($id_transaction);
+                    foreach ($tags as $tag) {
+                        $transaction->addTagToTransaction($id_transaction, $tag['id_tags']);
+                    }
+                } else {
+                    $transaction->deleteTagsOfTransaction($id_transaction);
+                }
+                if ($categories !== null) {
+                    $transaction->deleteCategoriesOfTransaction($id_transaction);
+                    foreach ($categories as $category) {
+                        $transaction->addCategoriesToTransaction($id_transaction, $category['id_categories']);
+                    }
+                } else {
+                    $transaction->deleteCategoriesOfTransaction($id_transaction);
                 }
             }
         }
