@@ -134,12 +134,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $errors = [];
 
         $getTransaction = $transaction->getOneTransaction($id_transaction, $id_users);
-        $getTags = $transaction->getTagsOfTransaction($id_transaction);
-        $getCategories = $transaction->getCategoriesOfTransaction($id_transaction);
-
-        /* var_dump($getTransaction);
-        var_dump($getTags);
-        var_dump($getCategories); */
 
         /* Dealing with the transaction */
         $bddName = $getTransaction['name_transaction'];
@@ -148,7 +142,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $bddType = $getTransaction['type_of_transaction'];
         $bddPaymentMethod = $getTransaction['payment_method'];
         $bddDate = $getTransaction['date_of_transaction'];
-        $bddRecurrent = $getTransaction['recurrent'];
         
         /* verifyField() is a method from AbstractController */
         $name = $this->verifyField('name');
@@ -162,7 +155,6 @@ class TransactionController extends AbstractClasses\AbstractContoller
         $categories = $this->verifyField('categories');
         $categoriesArray = json_decode($categories, true);
 
-        var_dump($name, $description, $amount, $type, $paymentMethod, $date, $tags, $categories);
 
         if (empty($getTransaction)) {
             $errors['error'] = 'La transaction n\'existe pas';
@@ -209,43 +201,47 @@ class TransactionController extends AbstractClasses\AbstractContoller
             } else {
                 $categories = $categoriesArray;
             }
+        }
 
-            if (empty($errors)) {
-                if ($bddName !== $name) {
-                    $transaction->updateName($id_transaction, $name);
-                }
-                if ($bddDescription !== $description) {
-                    $transaction->updateDescription($id_transaction, $description);
-                }
-                if ($bddAmount !== $amount) {
-                    $transaction->updateAmount($id_transaction, $amount);
-                }
-                if ($bddType !== $type) {
-                    $transaction->updateType($id_transaction, $type);
-                }
-                if ($bddPaymentMethod !== $paymentMethod) {
-                    $transaction->updatePaymentMethod($id_transaction, $paymentMethod);
-                }
-                if ($bddDate !== $date) {
-                    $transaction->updateDate($id_transaction, $date);
-                }
-                if ($tags !== null) {
-                    $transaction->deleteTagsOfTransaction($id_transaction);
-                    foreach ($tags as $tag) {
-                        $transaction->addTagToTransaction($id_transaction, $tag['id_tags']);
-                    }
-                } else {
-                    $transaction->deleteTagsOfTransaction($id_transaction);
-                }
-                if ($categories !== null) {
-                    $transaction->deleteCategoriesOfTransaction($id_transaction);
-                    foreach ($categories as $category) {
-                        $transaction->addCategoriesToTransaction($id_transaction, $category['id_categories']);
-                    }
-                } else {
-                    $transaction->deleteCategoriesOfTransaction($id_transaction);
-                }
+        if (empty($errors)) {
+            if ($bddName !== $name) {
+                $transaction->updateName($id_transaction, $name);
             }
+            if ($bddDescription !== $description) {
+                $transaction->updateDescription($id_transaction, $description);
+            }
+            if ($bddAmount !== $amount) {
+                $transaction->updateAmount($id_transaction, $amount);
+            }
+            if ($bddType !== $type) {
+                $transaction->updateType($id_transaction, $type);
+            }
+            if ($bddPaymentMethod !== $paymentMethod) {
+                $transaction->updatePaymentMethod($id_transaction, $paymentMethod);
+            }
+            if ($bddDate !== $date) {
+                $transaction->updateDate($id_transaction, $date);
+            }
+            if ($tags !== null) {
+                $transaction->deleteTagsOfTransaction($id_transaction);
+                foreach ($tags as $tag) {
+                    $transaction->addTagToTransaction($id_transaction, $tag['id_tags']);
+                }
+            } else {
+                $transaction->deleteTagsOfTransaction($id_transaction);
+            }
+            if ($categories !== null) {
+                $transaction->deleteCategoriesOfTransaction($id_transaction);
+                foreach ($categories as $category) {
+                    $transaction->addCategoriesToTransaction($id_transaction, $category['id_categories']);
+                }
+            } else {
+                $transaction->deleteCategoriesOfTransaction($id_transaction);
+            }
+            $errors['success'] = 'La transaction a bien été modifiée';
+            echo json_encode($errors);
+        } else {
+            echo json_encode($errors);
         }
 
     }
