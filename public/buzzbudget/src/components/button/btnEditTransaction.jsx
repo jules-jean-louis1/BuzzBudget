@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditCircle from "../svg/editCircle";
 import ModalEditTransaction from "../modal/modalEditTransaction";
+import { useValidateSuccess } from "../hook/useValidateSuccess";
 
 const BtnEditTransaction = ({ transactionId }) => {
+  const { success } = useValidateSuccess();
   const [modal, setModal] = useState(false);
 
   const handleClic = () => {
     setModal(true);
   };
+
+  useEffect(() => {
+    if (success) {
+      setModal(false);
+    }
+  }, [success]);
+
   return (
     <>
       <button
